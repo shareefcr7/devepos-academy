@@ -18,8 +18,8 @@ const CelebrationBackground = () => {
 
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
-       {/* Floating Job/Success Icons - Increased Quantity */}
-       {[...Array(20)].map((_, i) => {
+       {/* Floating Job/Success Icons - Optimized Quantity */}
+       {[...Array(8)].map((_, i) => {
          const Icon = icons[Math.floor(Math.random() * icons.length)];
          return (
          <motion.div

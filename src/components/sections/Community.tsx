@@ -29,7 +29,7 @@ const CodeRain = () => {
   return (
     <div className="absolute inset-0 overflow-hidden opacity-20 pointer-events-none">
       <div className="flex justify-between">
-        {[...Array(50)].map((_, i) => {
+        {[...Array(15)].map((_, i) => {
            const Icon = rainIcons[Math.floor(Math.random() * rainIcons.length)];
            const keyword = keywords[Math.floor(Math.random() * keywords.length)];
            return (
@@ -38,7 +38,7 @@ const CodeRain = () => {
               initial={{ y: -100, opacity: 0 }}
               animate={{ y: "100vh", opacity: [0, 1, 0] }}
               transition={{
-                duration: Math.random() * 5 + 5,
+                duration: Math.random() * 5 + 10,
                 repeat: Infinity,
                 ease: "linear",
                 delay: Math.random() * 5,

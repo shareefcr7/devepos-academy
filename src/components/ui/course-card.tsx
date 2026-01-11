@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 export interface Course {
@@ -32,10 +33,11 @@ export function CourseCard({ course, index }: { course: Course; index: number })
       <div className="p-4 pb-0">
         {/* Image Container */}
         <div className="relative h-48 rounded-[1.5rem] overflow-hidden">
-           <img 
+           <Image 
              src={course.image} 
              alt={course.title}
-             className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+             fill
+             className="object-cover transform group-hover:scale-110 transition-transform duration-500"
            />
            {/* Level Badge */}
            {course.featured ? (
