@@ -36,7 +36,7 @@ const testimonials = [
   {
     id: 5,
     name: "Sivanand",
-    role: "Graphic Designer",
+    role: "frontend developer",
     text: "It's not just about tools, it's about design thinking. I learned how to create user-centric designs that stand out.",
     image: "/testimonials/sivanand.png"
   },
@@ -85,7 +85,7 @@ const testimonials = [
   {
     id: 12,
     name: "Nived",
-    role: "MERN Stack Developer",
+    role: "Full Stack Developer",
     text: "The project-based learning approach was exactly what I needed. I went from knowing basic HTML to building full-stack apps.",
     image: "/testimonials/nived.png"
   }
