@@ -43,8 +43,8 @@ export function Benefits() {
           viewport={{ once: true }}
           className="text-center mb-20"
         >
-           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-             But Why <span className="text-electric-blue">DEVOPS HUB ?</span>
+           <h2 className="text-4xl md:text-5xl font-bold mb-6">
+             <span className="bg-clip-text text-transparent bg-gradient-to-b from-white via-white to-white/60">But Why</span> <span className="text-blue-500">SDEC Academy ?</span>
            </h2>
            <p className="text-gray-400 max-w-2xl mx-auto text-lg">
              Explore the incredible advantages of enrolling in our courses and enhancing your skills for the ultimate career success.
@@ -86,7 +86,7 @@ export function Benefits() {
                  <div className="relative h-[400px] w-full rounded-2xl overflow-hidden mb-8">
                     <Image 
                       src="/images/journey-team.jpg"
-                      alt="DEVOPS HUB Team"
+                      alt="SDEC Academy Team"
                       fill
                       className="object-cover transition-transform duration-700 group-hover:scale-110"
                     />
@@ -94,14 +94,14 @@ export function Benefits() {
                  </div>
                  
                  <div className="space-y-4">
-                    <h4 className="text-xl font-bold text-white">We started our journey:</h4>
+                    <h4 className="text-xl font-bold text-white">About Us</h4>
                     <p className="text-gray-400 text-sm leading-relaxed">
-                       in web-design and development in 2024 with a team of young, passionate creators. We transitioned into a full-time training and mentorship collective in 2025.
+                       SDEC Academy is an offline learning platform designed to build real-world tech skills with mentorship and community support.
                     </p>
                     
-                    <h4 className="text-xl font-bold text-white pt-2">Through hands-on:</h4>
+                    <h4 className="text-xl font-bold text-white pt-2">Our Mission</h4>
                     <p className="text-gray-400 text-sm leading-relaxed mb-6">
-                       project-based courses, our team simplifies challenging topics and makes them accessible to everyone.
+                       Through hands-on, project-based courses, our team simplifies challenging topics and makes them accessible to everyone.
                     </p>
 
                     <div className="flex gap-4 pt-4 border-t border-white/10">
@@ -115,7 +115,7 @@ export function Benefits() {
               </div>
               
               {/* Glow Effect */}
-              <div className="absolute -inset-4 bg-gradient-to-r from-electric-blue/20 to-purple-500/20 rounded-[40px] blur-2xl -z-10" />
+              <div className="absolute -inset-4 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-[40px] blur-2xl -z-10" />
            </motion.div>
 
            {/* Right Column */}

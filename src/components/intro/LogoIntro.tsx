@@ -40,7 +40,7 @@ export function LogoIntro({ onComplete }: { onComplete: () => void }) {
               transition={{ duration: 1.5, type: "spring" }}
               className="w-24 h-24 mb-6 rounded-full bg-gradient-to-tr from-electric-blue to-blue-600 flex items-center justify-center shadow-[0_0_50px_rgba(100,255,218,0.3)]"
             >
-              <span className="text-4xl font-bold text-navy">D</span>
+              <span className="text-4xl font-bold text-navy">S</span>
             </motion.div>
 
             {/* Text Reveal */}
@@ -51,26 +51,17 @@ export function LogoIntro({ onComplete }: { onComplete: () => void }) {
                 transition={{ delay: 0.5, duration: 0.8, ease: "easeOut" }}
                 className="text-4xl md:text-6xl font-bold text-white tracking-wider font-sans"
               >
-                DEVOPS <span className="text-electric-blue">HUB</span>
+                <span className="text-blue-500">SDEC Academy</span>
               </motion.h1>
             </div>
-            
-            <motion.p
-               initial={{ opacity: 0 }}
-               animate={{ opacity: 1 }}
-               transition={{ delay: 1.2, duration: 1 }}
-               className="text-white/60 mt-2 tracking-[0.5em] text-sm uppercase"
-            >
-              Academy
-            </motion.p>
           </div>
 
           {/* Rocket Animation */}
           <motion.div
             className="absolute"
-            initial={{ x: "-100vw", y: "100vh", rotate: 45 }}
-            animate={{ x: "100vw", y: "-100vh" }}
-            transition={{ delay: 1.6, duration: 2, ease: "easeInOut" }}
+            initial={{ x: "-100vw", y: 150, rotate: 45 }}
+            animate={{ x: "100vw", y: 150 }}
+            transition={{ delay: 1.0, duration: 4, ease: "linear" }}
           >
              <Rocket className="w-12 h-12 text-white/50" />
              <div className="absolute top-10 left-0 w-20 h-1 bg-gradient-to-l from-orange-500 to-transparent blur-sm rotate-45 origin-top-left" />

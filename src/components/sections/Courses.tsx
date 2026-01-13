@@ -28,14 +28,7 @@ export function Courses() {
           <div className="flex flex-wrap justify-center gap-3 mt-8">
             {[
               { name: "All", slug: "all" },
-              { name: "Web Development", slug: "web-development" },
-              { name: "Mobile App", slug: "mobile-app" },
-              { name: "UI/UX Design", slug: "ui-ux-design" },
-              { name: "DevOps", slug: "devops" },
-              { name: "Data Science", slug: "data-science" },
-              { name: "Business", slug: "business" },
-              { name: "Marketing", slug: "marketing" },
-              { name: "Career", slug: "career" }
+              { name: "Web Development", slug: "web-development" }
             ].map((topic, i) => (
               <a 
                 key={topic.slug}
@@ -53,7 +46,7 @@ export function Courses() {
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {courses.map((course, index) => (
+          {courses.filter(c => c.category === "Web Development").map((course, index) => (
             <CourseCard key={course.id} course={course} index={index} />
           ))}
         </div>

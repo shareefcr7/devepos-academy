@@ -196,9 +196,9 @@ const HackerBattle = () => {
 
 export function Community() {
   return (
-    <section id="community" className="py-24 relative overflow-hidden bg-[#0A192F]">
+    <section id="community" className="py-24 relative overflow-hidden bg-navy">
       {/* Background Ambience */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-900/20 via-[#0A192F] to-[#0A192F]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-900/20 via-navy to-navy" />
       <div className="absolute top-0 left-0 w-full h-full opacity-30 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] mix-blend-overlay" />
       
       {/* Code Running Animation */}
@@ -224,6 +224,7 @@ export function Community() {
           <span className="text-gray-300 text-xs font-semibold tracking-wider uppercase">24/7 Instant Help</span>
         </motion.div>
 
+
         {/* Orbital Hub Visual */}
         <div className="relative w-[300px] h-[300px] md:w-[400px] md:h-[400px] mb-16 flex items-center justify-center">
            
@@ -236,13 +237,12 @@ export function Community() {
 
            {/* Central Core */}
            <motion.div
-              animate={{ boxShadow: ["0 0 20px rgba(56,189,248,0.2)", "0 0 60px rgba(56,189,248,0.6)", "0 0 20px rgba(56,189,248,0.2)"] }}
+              animate={{ boxShadow: ["0 0 20px rgba(59, 130, 246, 0.2)", "0 0 60px rgba(59, 130, 246, 0.6)", "0 0 20px rgba(59, 130, 246, 0.2)"] }}
               transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-              className="w-32 h-32 md:w-40 md:h-40 bg-gradient-to-br from-blue-600 to-teal-500 rounded-full flex flex-col items-center justify-center z-20 relative shadow-2xl"
+              className="w-32 h-32 md:w-40 md:h-40 bg-gradient-to-br from-[#020617] to-[#1e3a8a] rounded-full flex flex-col items-center justify-center z-20 relative shadow-2xl border border-blue-500/30"
            >
-              <Users size={32} className="text-white mb-2" />
-              <span className="text-white font-bold text-sm tracking-widest">HUB</span>
-              <div className="absolute -inset-1 rounded-full border border-white/20 scale-110" />
+              <div className="absolute -inset-1 rounded-full border border-white/10 scale-110" />
+              <h3 className="text-3xl font-bold text-blue-500 tracking-widest z-10 relative">SDEC</h3>
            </motion.div>
 
            {/* Orbit Rings */}
@@ -252,13 +252,13 @@ export function Community() {
            {/* Orbiting Icons */}
            <motion.div
               animate={{ rotate: 360 }}
-              transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
               className="absolute inset-0 w-full h-full"
            >
               {avatars.map((avatar, i) => {
                  const angle = (i / avatars.length) * 360;
                  return (
-                   <div
+                     <div
                      key={i}
                      className="absolute top-1/2 left-1/2 w-12 h-12 -ml-6 -mt-6"
                      style={{
@@ -266,14 +266,16 @@ export function Community() {
                      }}
                    >
                      <motion.div 
+                        animate={{ rotate: -360 }}
+                        transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
                         whileHover={{ scale: 1.2 }}
-                        className={`relative group cursor-pointer`}
+                        className={`relative group cursor-pointer flex flex-col items-center`}
                      >
-                        <div className={`w-12 h-12 rounded-full border-2 ${avatar.color} bg-[#0A192F] flex items-center justify-center shadow-[0_0_15px_rgba(0,0,0,0.5)]`}>
+                        <div className={`w-12 h-12 rounded-full border-2 ${avatar.color} bg-[#0A192F] flex items-center justify-center shadow-[0_0_15px_rgba(0,0,0,0.5)] z-20 relative`}>
                            <avatar.icon size={20} className={avatar.text} />
                         </div>
-                        {/* Tooltip Label */}
-                        <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity bg-navy/90 text-white text-[10px] py-1 px-2 rounded whitespace-nowrap border border-white/10 backdrop-blur pointer-events-none z-10">
+                        {/* Label - Always visible now */}
+                        <div className="absolute top-full mt-2 bg-navy/90 text-white text-[10px] font-bold py-1 px-3 rounded-full border border-white/10 shadow-lg whitespace-nowrap z-10">
                            {avatar.role}
                         </div>
                      </motion.div>
@@ -282,37 +284,6 @@ export function Community() {
               })}
            </motion.div>
         </div>
-
-        {/* Content */}
-        <motion.div
-           initial={{ opacity: 0, y: 30 }}
-           whileInView={{ opacity: 1, y: 0 }}
-           viewport={{ once: true }}
-           transition={{ duration: 0.8 }}
-           className="text-center max-w-2xl"
-        >
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
-             Access to <span className="bg-clip-text text-transparent bg-gradient-to-r from-teal-400 to-blue-500">Exclusive Community</span>
-          </h2>
-          <p className="text-gray-400 text-lg mb-10 leading-relaxed">
-            Join thousands of developers, get code reviews, instant help, and find your next collaboration partner. 
-            <span className="text-white font-medium block mt-2">Never get stuck again.</span>
-          </p>
-
-          <div className="flex flex-col items-center gap-4">
-             <Button 
-                variant="ghost" 
-                className="bg-gradient-to-r from-teal-500 to-blue-600 hover:from-teal-400 hover:to-blue-500 text-white px-8 py-6 rounded-full text-lg font-bold shadow-[0_0_30px_rgba(45,212,191,0.3)] hover:shadow-[0_0_50px_rgba(45,212,191,0.5)] hover:scale-105 transition-all duration-300 border-none"
-             >
-                Join the Hub
-             </Button>
-             
-             <div className="flex items-center gap-2 text-sm text-gray-500 mt-2">
-               <div className="w-2 h-2 rounded-full bg-green-500" />
-               <span className="font-mono">12 mentors online now</span>
-             </div>
-          </div>
-        </motion.div>
 
       </div>
     </section>

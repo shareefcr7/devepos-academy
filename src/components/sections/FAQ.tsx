@@ -6,20 +6,20 @@ import { Plus, Minus } from "lucide-react"; // Keeping for types if needed, but 
 
 const faqs = [
   {
-    question: "Is this suitable for absolute beginners?",
-    answer: "Yes! We have dedicated tracks for those with zero coding experience. We start from the basics and guide you step-by-step."
+    question: "What is SDEC?",
+    answer: "SDEC is not just a teaching academy. It is a professional skill development and career enablement platform where individuals learn practical, industry-relevant skills, gain real-world experience, and earn while they learn—preparing them to succeed in today’s competitive workforce.."
   },
   {
-    question: "Do I get a certificate upon completion?",
-    answer: "Absolutely. You receive a verified certificate for each course you complete, which you can add to your LinkedIn profile and resume."
+    question: "Why choose a Software Engineer course?",
+    answer: "This course is more than learning technology—it’s about shaping your future. You build real projects for companies, develop your personal brand, and learn how to confidently communicate and deliver products to clients. With hands-on experience and industry-focused skills, you don’t just prepare for a job—you prepare for a career you can grow, earn, and believe in."
   },
   {
-    question: "What if I get stuck on a problem?",
-    answer: "Our community is active 24/7, and our mentors are available to help you unblock. You're never learning alone."
+    question: "Is the training curriculum suitable for beginners as well as professionals?",
+    answer: "Yes. SDEC’s curriculum is designed to support both beginners and working professionals, with step-by-step learning paths and advanced modules based on individual skill levels."
   },
   {
-    question: "Can I access the courses on mobile?",
-    answer: "Our platform is fully responsive. You can watch lessons and participate in quizzes from any device."
+    question: "Will I receive a certificate after completing the course at SDEC?",
+    answer: "Yes. Upon successful completion of the course, learners receive a recognized course completion certificate from SDEC, which helps strengthen resumes and improve job opportunities."
   }
 ];
 
@@ -51,8 +51,8 @@ export function FAQ() {
 
       <div className="container mx-auto px-6 max-w-3xl relative z-10">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            Frequently Asked Questions
+          <h2 className="text-4xl md:text-5xl font-bold mb-6">
+            <span className="bg-clip-text text-transparent bg-gradient-to-b from-white via-white to-white/60">Frequently Asked</span> <span className="bg-clip-text text-transparent bg-gradient-to-r from-electric-blue via-cyan-400 to-electric-blue">Questions</span>
           </h2>
           <p className="text-gray-400">Got questions? We've got answers.</p>
         </div>

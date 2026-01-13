@@ -2,6 +2,7 @@
 
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { Benefits } from "@/components/sections/Benefits";
 import { motion } from "framer-motion";
 import { Trophy, Target, Rocket, Lightbulb, TrendingUp, Star, Award, Zap } from "lucide-react";
 import { useState, useEffect } from "react";
@@ -81,8 +82,8 @@ export default function AboutPage() {
       <Navbar />
       
       <section className="pt-32 pb-20 relative overflow-hidden">
-        {/* Background Elements */}
-        <div className="absolute top-20 right-0 w-[500px] h-[500px] bg-electric-blue/5 rounded-full blur-[100px]" />
+        {/* Background Elements - Low Attraction */}
+        <div className="absolute top-20 right-0 w-[500px] h-[500px] bg-blue-900/10 rounded-full blur-[100px]" />
         <SuccessBackground />
 
         <div className="container mx-auto px-6 relative z-10">
@@ -93,7 +94,7 @@ export default function AboutPage() {
             className="text-center max-w-3xl mx-auto mb-20"
           >
             <h1 className="text-5xl md:text-6xl font-bold mb-6">
-              About <span className="text-transparent bg-clip-text bg-gradient-to-r from-electric-blue to-cyan-400">DEVOPS HUB</span>
+              <span className="bg-clip-text text-transparent bg-gradient-to-b from-white via-white to-white/60">About</span> <span className="text-blue-500">SDEC Academy</span>
             </h1>
             <p className="text-xl text-gray-400 font-light">
               We are on a mission to democratize elite tech education. We believe that top-tier engineering skills should be accessible to everyone, everywhere.
@@ -106,7 +107,7 @@ export default function AboutPage() {
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-24 p-8 rounded-3xl border border-white/5 bg-navy/50 backdrop-blur-sm relative overflow-hidden">
               {/* Premium Glow */}
-              <div className="absolute -top-40 -right-40 w-80 h-80 bg-electric-blue/10 rounded-full blur-[100px]" />
+              <div className="absolute -top-40 -right-40 w-80 h-80 bg-electric-blue/5 rounded-full blur-[100px]" />
               
               <motion.div
                  initial={{ opacity: 0, x: -50 }}
@@ -141,9 +142,10 @@ export default function AboutPage() {
                 Meet the <span className="text-electric-blue">Founder</span>
               </h2>
               
+              
               <h3 className="text-2xl font-bold text-white mb-2">SHAHI RAHMAN</h3>
               <p className="text-gray-400 text-sm mb-6 font-medium">
-                Founder of ShahiSolution Project Management & DEVEPOS HUB Academy
+                Founder of ShahiSolution Project Management & SDEC Academy
               </p>
 
               <div className="space-y-4 mb-8">
@@ -153,7 +155,7 @@ export default function AboutPage() {
               </div>
 
               <div className="flex flex-wrap gap-3">
-                 {['Software Engineering Educator', 'MERN Stack Expert', 'Mentored 100+ Students 👨‍🏫'].map((tag, i) => (
+                 {['Software Engineering Educator', 'MERN Stack Expert'].map((tag, i) => (
                    <span key={i} className="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-gray-300 text-sm font-medium hover:bg-white/10 transition-colors">
                      {tag}
                    </span>
@@ -165,6 +167,9 @@ export default function AboutPage() {
         </div>
       </section>
 
+
+
+      <Benefits />
       <Footer />
     </main>
   );

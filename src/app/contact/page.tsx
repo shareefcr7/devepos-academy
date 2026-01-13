@@ -54,9 +54,9 @@ export default function ContactPage() {
                  </div>
                  <div>
                    <h3 className="font-semibold text-lg">Phone / WhatsApp</h3>
-                   <p className="text-gray-400">+91 70123 13325 (Call)</p>
+                   <p className="text-gray-400">+91 73561 90621 (Call)</p>
                    <a 
-                     href="https://wa.me/917012313325" 
+                     href="https://wa.me/917356190621" 
                      target="_blank" 
                      rel="noopener noreferrer"
                      className="text-green-500 font-medium hover:underline inline-block mt-1"
@@ -71,9 +71,11 @@ export default function ContactPage() {
                    <MapPin size={24} />
                  </div>
                  <div>
-                   <h3 className="font-semibold text-lg">Visit Us</h3>
-                   <p className="text-gray-400">123 Tech Avenue,</p>
-                   <p className="text-gray-400">Silicon Valley, CA 94000</p>
+                   <h3 className="font-semibold text-lg">Address:</h3>
+                   <p className="text-gray-400">1422, F9, T1</p>
+                   <p className="text-gray-400">Hilite Business Park</p>
+                   <p className="text-gray-400">Palazhi, Calicut</p>
+                   <p className="text-gray-400">Kerala - 673016</p>
                  </div>
                </div>
             </motion.div>

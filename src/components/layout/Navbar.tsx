@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronRight, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
@@ -18,7 +18,7 @@ export function Navbar() {
 
   const navLinks = [
     { name: "Home", href: "/" },
-    { name: "Courses", href: "/#courses" },
+    { name: "Courses", href: "/courses" },
     { name: "About Us", href: "/about" },
     { name: "Contact", href: "/contact" },
   ];
@@ -37,12 +37,10 @@ export function Navbar() {
     >
       <div className="container mx-auto px-6 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2 group">
-          <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-electric-blue to-blue-600 flex items-center justify-center text-navy font-bold text-xl group-hover:rotate-12 transition-transform">
-            D
+          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 to-cyan-500 flex items-center justify-center shadow-lg group-hover:shadow-electric-blue/25 transition-all duration-300">
+            <Zap className="text-white fill-white" size={20} />
           </div>
-          <span className="text-xl font-bold text-white tracking-wide">
-            DEVOPS <span className="text-electric-blue">HUB</span>
-          </span>
+          <span className="font-bold text-xl text-blue-500">SDEC Academy</span>
         </Link>
 
         {/* Desktop Nav */}
@@ -51,11 +49,12 @@ export function Navbar() {
             <Link
               key={link.name}
               href={link.href}
-              className="text-white/80 hover:text-electric-blue transition-colors text-sm font-medium tracking-wide"
+              className="text-gray-300 hover:text-electric-blue transition-colors text-sm font-medium tracking-wide"
             >
               {link.name}
             </Link>
           ))}
+          
           <Link href="/#courses">
             <Button variant="primary" size="sm">
               Get Started
@@ -63,13 +62,16 @@ export function Navbar() {
           </Link>
         </div>
 
-        {/* Mobile Toggle */}
-        <button
-          className="md:hidden text-white hover:text-electric-blue"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-        >
-          {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+        {/* Mobile Actions */}
+        <div className="flex items-center gap-4 md:hidden">
+          {/* Mobile Toggle */}
+          <button
+            className="text-white hover:text-electric-blue"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Menu */}
@@ -85,7 +87,7 @@ export function Navbar() {
               <Link
                 key={link.name}
                 href={link.href}
-                className="text-white/80 hover:text-electric-blue py-2 block"
+                className="text-gray-300 hover:text-electric-blue py-2 block"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 {link.name}

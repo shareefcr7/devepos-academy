@@ -9,7 +9,7 @@ import Image from "next/image";
 // Code Rain Component
 const CodeRain = () => {
   const rainIcons = [Code, Terminal, Laptop, Zap, Users, Database, Cloud, Server, Shield];
-  const keywords = ["DEVOPS", "HUB", "CLOUD", "AWS", "DOCKER", "K8S", "CI/CD", "GIT", "LINUX"];
+  const keywords = ["SDEC", "ACADEMY", "CLOUD", "AWS", "DOCKER", "K8S", "CI/CD", "GIT", "LINUX"];
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -116,14 +116,23 @@ export function AboutSummary() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <span className="text-electric-blue font-bold tracking-wider uppercase text-sm mb-2 block">Who We Are</span>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-              Building the Next Generation of <span className="bg-clip-text text-transparent bg-gradient-to-r from-electric-blue to-cyan-400">Tech Leaders</span>
-            </h2>
-            <p className="text-gray-400 leading-relaxed mb-6">
-              DEVOPS HUB Academy is an online learning platform designed to build real-world tech skills with mentorship and community support. We bridge the gap between theoretical knowledge and industry demands.
-            </p>
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 font-medium text-sm mb-6">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+              </span>
+              Who We Are
+            </div>
             
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 leading-tight">
+              <span className="bg-clip-text text-transparent bg-gradient-to-b from-white via-white to-white/60">Premier</span> <span className="bg-clip-text text-transparent bg-gradient-to-r from-electric-blue via-cyan-400 to-electric-blue">Offline</span> <span className="bg-clip-text text-transparent bg-gradient-to-b from-white via-white to-white/60">Tech Training & Career Development</span>
+            </h2>
+            
+            <p className="text-gray-400 text-lg mb-6 leading-relaxed">
+              SDEC Academy is a leading offline destination for aspiring developers and tech enthusiasts. 
+              We bridge the gap between academic learning and industry requirements through 
+              hands-on, project-based training.
+            </p>
             <div className="space-y-4 mb-8">
               {[
                 "Designed for Students, Freelancers & Aspiring Engineers",
@@ -145,18 +154,19 @@ export function AboutSummary() {
             transition={{ duration: 0.6 }}
             className="relative"
           >
-            <div className="relative h-[400px] w-full rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
+            <div className="relative h-[400px] w-full rounded-2xl overflow-hidden border border-gray-200 dark:border-white/10 shadow-2xl">
               <Image 
                 src="/images/IMAGE6.avif"
-                alt="About DEVOPS HUB"
+                alt="About SDEC Academy"
                 fill
                 className="object-cover"
               />
-              <div className="absolute inset-0 bg-navy/30 mix-blend-multiply" />
+              <div className="absolute inset-0 bg-white/10 dark:bg-navy/30 mix-blend-multiply" />
             </div>
             {/* Decorative blob */}
-            <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-electric-blue/20 rounded-full blur-3xl" />
+            <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-blue-400/20 dark:bg-electric-blue/20 rounded-full blur-3xl" />
           </motion.div>
+
 
         </div>
       </div>

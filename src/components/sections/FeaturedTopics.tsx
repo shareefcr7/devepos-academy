@@ -5,10 +5,9 @@ import { motion } from "framer-motion";
 import { Sparkles } from "lucide-react";
 
 const topics = [
-  "Web Development", "JavaScript", "TypeScript", "Web Design", "CSS", "Tailwind", "Bootstrap",
-  "UI/UX Design", "Figma", "React", "Next.js", "Node.js", "Express.js", "Git", "GitHub",
-  "REST APIs", "MongoDB", "MySQL", "PostgreSQL", "Docker", "CI/CD", "Jest", "Cypress",
-  "SEO Optimization", "Vite", "Webpack", "Microservices"
+  "Web Development", "JavaScript", "Web Design", "CSS", "Tailwind", "Bootstrap",
+  "Figma", "React", "Next.js", "Node.js", "Express.js", "Git", "GitHub",
+  "REST APIs", "MongoDB", "MySQL", "Vite"
 ];
 
 const slugify = (text: string) => text.toLowerCase().replace(/\//g, "-").replace(/\s+/g, "-");
@@ -33,8 +32,8 @@ export function FeaturedTopics() {
             <span>Featured Topics</span>
           </div>
 
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            Courses <span className="text-gradient">Topics</span>
+          <h2 className="text-4xl md:text-5xl font-bold mb-6">
+            <span className="bg-clip-text text-transparent bg-gradient-to-b from-white via-white to-white/60">Courses</span> <span className="text-blue-500">Topics</span>
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto text-lg">
             Explore the key topics covered in our courses, designed to equip you with the skills

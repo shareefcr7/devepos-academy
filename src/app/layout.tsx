@@ -8,8 +8,8 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
-  title: "DEVOPS HUB Academy",
-  description: "Premium Online Tech Academy",
+  title: "SDEC Academy",
+  description: "Premium Offline Tech Academy",
 };
 
 export default function RootLayout({
@@ -20,7 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${outfit.variable} antialiased bg-[#0A192F] text-white`}
+        className={`${outfit.variable} antialiased bg-[#0A192F] text-white selection:bg-electric-blue/30`}
       >
         {children}
       </body>

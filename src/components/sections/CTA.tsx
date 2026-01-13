@@ -6,8 +6,8 @@ import { Button } from "@/components/ui/button";
 
 export function CTA() {
   return (
-    <section className="py-24 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-r from-blue-900/40 to-teal-900/40" />
+    <section className="py-24 relative overflow-hidden bg-transparent">
+      <div className="absolute inset-0 bg-gradient-to-r from-blue-900/40 to-teal-900/40 opacity-80" />
       
       <div className="container mx-auto px-6 relative z-10 text-center">
         <motion.div
@@ -25,12 +25,12 @@ export function CTA() {
           
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
             <Link href="/contact">
-              <Button variant="ghost" className="text-electric-blue hover:text-white text-lg font-bold">
-                Join DEVOPS HUB
+              <Button variant="ghost" className="text-electric-blue hover:bg-white/5 hover:text-white text-lg font-bold">
+                Join SDEC Academy
               </Button>
             </Link>
             <Link href="/categories/all">
-              <Button variant="secondary" className="text-white border border-white/20 hover:bg-white/10 text-lg px-8 py-6 rounded-full font-bold">
+              <Button variant="secondary" className="text-white bg-white/10 border border-white/20 hover:bg-white/20 text-lg px-8 py-6 rounded-full font-bold shadow-lg">
                 Become a Developer Today
               </Button>
             </Link>

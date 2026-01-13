@@ -74,7 +74,7 @@ export function Hero() {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.4 }}
         >
-          Find what fascinates you as you explore these online courses.
+          Find what fascinates you as you explore these offline courses.
           Join a community of ambitious developers building the next generation of the web.
         </motion.p>
 

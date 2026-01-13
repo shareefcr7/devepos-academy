@@ -43,6 +43,8 @@
 :root {
   --background: #0A192F;
   --foreground: #ffffff;
+  --card-bg: #112240;
+  --card-border: rgba(255, 255, 255, 0.1);
 }
 
 body {
@@ -57,7 +59,8 @@ body {
 .glass-panel {
   background: rgba(10, 25, 47, 0.7);
   backdrop-filter: blur(12px);
-  border: 1px solid rgba(229, 228, 226, 0.15); /* Platinum border */
+  border: 1px solid rgba(229, 228, 226, 0.15);
+  /* Platinum border */
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
 }
 
