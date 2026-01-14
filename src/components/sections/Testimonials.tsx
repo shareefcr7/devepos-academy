@@ -2,7 +2,9 @@
 
 import { motion } from "framer-motion";
 import { Star, Linkedin } from "lucide-react";
+import Link from "next/link";
 import Image from "next/image";
+import { SectionHeading } from "@/components/ui/section-heading";
 
 const testimonials = [
   {
@@ -99,13 +101,18 @@ export function Testimonials() {
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#0b1021] pointer-events-none opacity-100" />
 
       <div className="container mx-auto px-6 relative z-10">
-        <div className="text-center mb-16">
-
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            <span className="bg-clip-text text-transparent bg-gradient-to-b from-white via-white to-white/60">Success</span> <span className="text-blue-500">Stories</span>
-          </h2>
-          <p className="text-gray-400 text-lg">See what our students are achieving.</p>
-        </div>
+        <SectionHeading 
+           badge="TESTIMONIALS"
+           title={
+             <>
+               <span className="text-white drop-shadow-2xl">Success</span>
+               <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-blue-500 to-blue-600 drop-shadow-lg">
+                 Stories
+               </span>
+             </>
+           }
+           description="See what our students are achieving."
+         />
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {testimonials.map((t, i) => (

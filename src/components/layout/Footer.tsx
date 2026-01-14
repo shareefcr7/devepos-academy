@@ -1,106 +1,205 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { Github, Twitter, Linkedin, Youtube } from "lucide-react";
+import { Instagram } from "lucide-react";
+import { useState, useEffect } from "react";
+
+import { cn } from "@/lib/utils";
+
+// --- 3D Cube Network Background ---
+
+const CubeNetworkBackground = () => {
+  const [cubes, setCubes] = useState<{ x: number; y: number; z: number; delay: number; duration: number }[]>([]);
+  const [lines, setLines] = useState<{ top: number; left: number; duration: number }[]>([]);
+
+  useEffect(() => {
+    // Generate random values only on client side to avoid hydration mismatch
+    setCubes(Array.from({ length: 15 }).map(() => ({
+       x: Math.random() * 100,
+       y: Math.random() * 100,
+       z: Math.random() * 500 - 250,
+       delay: Math.random() * 5,
+       duration: Math.random() * 10 + 20
+    })));
+
+    setLines(Array.from({ length: 10 }).map(() => ({
+       top: Math.random() * 100,
+       left: Math.random() * 100,
+       duration: Math.random() * 5 + 5
+    })));
+  }, []);
+
+  return (
+    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      {/* Deep Blue Background matching the 'Digital Wave' image */}
+      <div className="absolute inset-0 bg-gradient-to-b from-blue-950 via-[#0a192f] to-[#020617]" />
+      
+      {/* 3D Perspective Container */}
+      <div className="absolute inset-0 perspective-[2000px]">
+        
+        {/* Animated Cubes */}
+        {cubes.map((cube, i) => (
+             <motion.div
+               key={i}
+               className="absolute w-20 h-20 preserve-3d"
+               style={{
+                 left: `${cube.x}%`,
+                 top: `${cube.y}%`,
+               }}
+               initial={{ 
+                 transform: `translateZ(${cube.z}px) rotateX(0deg) rotateY(0deg)`,
+                 opacity: 0 
+               }}
+               animate={{ 
+                 transform: [
+                    `translateZ(${cube.z}px) rotateX(0deg) rotateY(0deg)`,
+                    `translateZ(${cube.z + 100}px) rotateX(360deg) rotateY(180deg)`,
+                    `translateZ(${cube.z}px) rotateX(720deg) rotateY(360deg)`
+                 ],
+                 opacity: [0, 0.7, 0]
+               }}
+               transition={{
+                 duration: cube.duration,
+                 repeat: Infinity,
+                 ease: "linear",
+                 delay: cube.delay
+               }}
+             >
+                {/* Cube Faces - Updated to Blue/White Theme */}
+                <div className="absolute inset-0 border border-blue-400/40 bg-blue-600/20 backdrop-blur-sm shadow-[0_0_20px_rgba(59,130,246,0.3)] translate-z-[40px]" /> {/* Front */}
+                <div className="absolute inset-0 border border-blue-400/40 bg-blue-600/20 backdrop-blur-sm shadow-[0_0_20px_rgba(59,130,246,0.3)] translate-z-[-40px]" /> {/* Back */}
+                <div className="absolute inset-0 border border-blue-400/40 bg-blue-600/20 backdrop-blur-sm shadow-[0_0_20px_rgba(59,130,246,0.3)] rotate-y-90 translate-z-[40px]" /> {/* Right */}
+                <div className="absolute inset-0 border border-blue-400/40 bg-blue-600/20 backdrop-blur-sm shadow-[0_0_20px_rgba(59,130,246,0.3)] rotate-y-[-90deg] translate-z-[40px]" /> {/* Left */}
+                <div className="absolute inset-0 border border-blue-400/40 bg-blue-600/20 backdrop-blur-sm shadow-[0_0_20px_rgba(59,130,246,0.3)] rotate-x-90 translate-z-[40px]" /> {/* Top */}
+                <div className="absolute inset-0 border border-blue-400/40 bg-blue-600/20 backdrop-blur-sm shadow-[0_0_20px_rgba(59,130,246,0.3)] rotate-x-[-90deg] translate-z-[40px]" /> {/* Bottom */}
+                
+                {/* Glowing Core - Pure White/Blue */}
+                <div className="absolute inset-4 bg-white/30 blur-md rounded-full translate-z-0 animate-pulse" />
+             </motion.div>
+        ))}
+
+        {/* Connection Lines - Electric Blue */}
+        {lines.map((line, i) => (
+           <motion.div 
+             key={`line-${i}`}
+             className="absolute h-[1px] bg-gradient-to-r from-transparent via-blue-400/60 to-transparent w-[300px]"
+             style={{
+                top: `${line.top}%`,
+                left: `${line.left}%`,
+             }}
+             animate={{
+                opacity: [0, 0.6, 0],
+                rotate: [0, 45, 90],
+                scaleX: [0.5, 1.5, 0.5]
+             }}
+             transition={{
+                duration: line.duration,
+                repeat: Infinity,
+             }}
+           />
+        ))}
+
+        {/* Global Glow Overlay - Deep Blue Wash */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#020617] via-blue-900/10 to-blue-900/20 pointer-events-none" />
+      </div>
+    </div>
+  );
+};
 
 export function Footer() {
+  const logoText = "SDEC Academy";
+
   return (
-    <footer className="relative bg-navy pt-32 pb-10 overflow-hidden">
-      {/* Wave SVG */}
-      <div className="absolute top-0 left-0 right-0 w-full overflow-hidden leading-none rotate-180">
-        <svg
-          data-name="Layer 1"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 1200 120"
-          preserveAspectRatio="none"
-          className="relative block w-[calc(100%+1.3px)] h-[100px] fill-navy"
-        >
-          <path
-             d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
-             className="fill-electric-blue/5"
-          ></path>
-        </svg>
-      </div>
+    <footer className="relative pt-32 pb-10 overflow-hidden font-sans">
+      <CubeNetworkBackground />
+      {/* ... Wave SVG Removed ... */}
 
       <div className="container mx-auto px-6 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
-          <div className="col-span-1 md:col-span-1">
-            <h2 className="text-2xl font-bold mb-4">
-              <span className="text-blue-500">SDEC Academy</span>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 gap-y-12 mb-16">
+          <div className="col-span-1">
+            <h2 className="text-2xl font-bold mb-4 flex items-center perspective-[1000px] group cursor-default relative w-fit">
+              {/* Glossy Sheen Overlay */}
+               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12 translate-x-[-150%] group-hover:translate-x-[150%] transition-transform duration-700 ease-in-out pointer-events-none z-20" />
+               
+               {logoText.split("").map((char, i) => (
+                 <motion.span
+                   key={i}
+                   className={cn(
+                     "inline-block origin-bottom relative z-10",
+                     char === " " ? "mr-2" : "",
+                     "text-transparent bg-clip-text bg-gradient-to-br from-white via-blue-100 to-blue-400 font-bold tracking-tight drop-shadow-lg"
+                   )}
+                   initial={{ y: 0, rotateX: 0, scale: 1 }}
+                   whileHover={{ 
+                     y: -6,
+                     rotateX: 15,
+                     scale: 1.1,
+                     color: "#22d3ee", // Cyan-400
+                     textShadow: "0px 0px 15px rgba(34,211,238,0.8)"
+                   }}
+                   transition={{ 
+                     type: "spring", 
+                     stiffness: 400, 
+                     damping: 15,
+                     mass: 0.8,
+                     delay: i * 0.02 
+                   }}
+                 >
+                   {char}
+                 </motion.span>
+               ))}
             </h2>
-            <p className="text-gray-400 leading-relaxed">
+            <p className="text-blue-200/60 leading-relaxed font-medium opacity-90">
               Empowering the next generation of developers with skills that matter.
             </p>
           </div>
 
-          <div>
-            <h3 className="text-lg font-semibold text-white mb-4">Platform</h3>
-            <ul className="space-y-2">
-              <li>
-                <Link href="/categories/all" className="text-gray-400 hover:text-electric-blue transition-colors">
-                  Courses
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="text-gray-400 hover:text-electric-blue transition-colors">
-                  Mentorship
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="text-gray-400 hover:text-electric-blue transition-colors">
-                  Community
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="text-gray-400 hover:text-electric-blue transition-colors">
-                  Pricing
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-semibold text-white mb-4">Company</h3>
-            <ul className="space-y-2">
-              <li>
-                 <Link href="/about" className="text-gray-400 hover:text-electric-blue transition-colors">
-                   About Us
-                 </Link>
-              </li>
-              <li>
-                 <Link href="#" className="text-gray-400 hover:text-electric-blue transition-colors">
-                   Careers
-                 </Link>
-              </li>
-              <li>
-                 <Link href="#" className="text-gray-400 hover:text-electric-blue transition-colors">
-                   Blog
-                 </Link>
-              </li>
-              <li>
-                 <Link href="/contact" className="text-gray-400 hover:text-electric-blue transition-colors">
-                   Contact
-                 </Link>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-             <h3 className="text-lg font-semibold text-white mb-4">Connect</h3>
-             <div className="flex space-x-4">
-                {[Github, Twitter, Linkedin, Youtube].map((Icon, i) => (
-                  <Link key={i} href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-electric-blue/20 text-white hover:text-electric-blue transition-all">
-                    <Icon size={20} />
+          {/* Quick Links - Center */}
+          <div className="flex flex-col md:items-center md:text-center">
+            <div className="text-left">
+              <h3 className="text-lg font-semibold text-white mb-4">Quick Links</h3>
+              <ul className="space-y-2">
+                <li>
+                  <Link href="/" className="text-gray-400 hover:text-cyan-400 transition-colors">
+                    Home
                   </Link>
-                ))}
+                </li>
+                <li>
+                  <Link href="/courses" className="text-gray-400 hover:text-cyan-400 transition-colors">
+                    Courses
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/about" className="text-gray-400 hover:text-cyan-400 transition-colors">
+                    About Us
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/contact" className="text-gray-400 hover:text-cyan-400 transition-colors">
+                    Contact
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          {/* Social Connect - Right */}
+          <div className="flex flex-col md:items-end">
+             <div className="text-left">
+                <h3 className="text-lg font-semibold text-white mb-4">Connect</h3>
+                <div className="flex space-x-4">
+                    <Link href="https://www.instagram.com/troll.sdec?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-gradient-to-tr hover:from-purple-500 hover:to-orange-500 text-white transition-all shadow-lg hover:shadow-orange-500/20 group">
+                      <Instagram size={20} className="group-hover:scale-110 transition-transform" />
+                    </Link>
+                </div>
              </div>
           </div>
         </div>
 
-        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center bg-navy">
-           <p className="text-gray-500 text-sm bg-transparent">© 2024 SDEC Academy. All rights reserved.</p>
-           <div className="flex space-x-6 mt-4 md:mt-0 bg-transparent">
-              <Link href="#" className="text-gray-500 hover:text-white text-sm">Privacy Policy</Link>
-              <Link href="#" className="text-gray-500 hover:text-white text-sm">Terms of Service</Link>
+        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center bg-transparent relative z-10">
+           <p className="text-blue-200/40 text-sm">© 2024 SDEC Academy. All rights reserved.</p>
+           <div className="flex space-x-6 mt-4 md:mt-0">
+              <Link href="#" className="text-blue-200/40 hover:text-cyan-400 text-sm transition-colors">Privacy Policy</Link>
+              <Link href="#" className="text-blue-200/40 hover:text-cyan-400 text-sm transition-colors">Terms of Service</Link>
            </div>
         </div>
       </div>

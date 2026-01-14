@@ -36,11 +36,48 @@ export function Navbar() {
       transition={{ duration: 0.5 }}
     >
       <div className="container mx-auto px-6 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-2 group">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 to-cyan-500 flex items-center justify-center shadow-lg group-hover:shadow-electric-blue/25 transition-all duration-300">
-            <Zap className="text-white fill-white" size={20} />
+        <Link href="/" className="flex items-center gap-3 group perspective-text">
+          <motion.div 
+            whileHover={{ 
+              rotate: [0, -10, 10, -10, 10, 0],
+              scale: 1.1,
+              filter: "drop-shadow(0 0 8px rgba(59,130,246,0.6))" 
+            }}
+            transition={{ duration: 0.5 }}
+            className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 to-cyan-500 flex items-center justify-center shadow-lg group-hover:shadow-electric-blue/40 transition-all duration-300 relative overflow-hidden"
+          >
+            {/* Glossy sheen */}
+            <div className="absolute inset-0 bg-gradient-to-tr from-white/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <Zap className="text-white fill-white relative z-10" size={20} />
+          </motion.div>
+          
+          <div className="font-bold text-xl flex items-center perspective-[1000px]">
+            {"SDEC Academy".split("").map((char, i) => (
+              <motion.span
+                key={i}
+                className={cn(
+                  "inline-block origin-bottom",
+                  char === " " ? "mr-2" : "",
+                  "text-blue-500"
+                )}
+                initial={{ y: 0, rotateX: 0 }}
+                whileHover={{ 
+                  y: -4,
+                  rotateX: 20,
+                  color: "#22d3ee", // Cyan-400
+                  textShadow: "0px 10px 20px rgba(34,211,238,0.4)"
+                }}
+                transition={{ 
+                  type: "spring", 
+                  stiffness: 300, 
+                  damping: 10,
+                  delay: i * 0.03 // "Snake" ripple effect
+                }}
+              >
+                {char}
+              </motion.span>
+            ))}
           </div>
-          <span className="font-bold text-xl text-blue-500">SDEC Academy</span>
         </Link>
 
         {/* Desktop Nav */}

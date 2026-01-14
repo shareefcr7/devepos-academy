@@ -1,9 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { GraduationCap, Globe, BookOpen, MessageCircle, Github, Linkedin, Twitter } from "lucide-react";
+import { GraduationCap, Globe, BookOpen, MessageCircle } from "lucide-react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
+import { SectionHeading } from "@/components/ui/section-heading";
 
 const featuresLeft = [
   {
@@ -37,19 +38,20 @@ export function Benefits() {
       <div className="container mx-auto px-6 relative z-10">
         
         {/* Section Header */}
-        <motion.div 
-          initial={{ opacity: 0, y: -20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-20"
-        >
-           <h2 className="text-4xl md:text-5xl font-bold mb-6">
-             <span className="bg-clip-text text-transparent bg-gradient-to-b from-white via-white to-white/60">But Why</span> <span className="text-blue-500">SDEC Academy ?</span>
-           </h2>
-           <p className="text-gray-400 max-w-2xl mx-auto text-lg">
-             Explore the incredible advantages of enrolling in our courses and enhancing your skills for the ultimate career success.
-           </p>
-        </motion.div>
+
+
+        <SectionHeading
+          badge="Who We Are"
+          title={
+            <>
+              <span className="text-white drop-shadow-2xl block">Premier</span>
+              <span className="block mt-1 leading-tight bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-blue-500 to-blue-600 drop-shadow-lg font-bold">
+                Offline Tech Training & Career Development
+              </span>
+            </>
+          }
+          description="SDEC Academy is a leading offline destination for aspiring developers and tech enthusiasts. We bridge the gap between academic learning and industry requirements."
+        />
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-center">
            
@@ -96,7 +98,7 @@ export function Benefits() {
                  <div className="space-y-4">
                     <h4 className="text-xl font-bold text-white">About Us</h4>
                     <p className="text-gray-400 text-sm leading-relaxed">
-                       SDEC Academy is an offline learning platform designed to build real-world tech skills with mentorship and community support.
+                       SDEC Academy is an <span className="text-cyan-400 font-bold glow-sm">offline</span> learning platform designed to build real-world tech skills with mentorship and community support.
                     </p>
                     
                     <h4 className="text-xl font-bold text-white pt-2">Our Mission</h4>
@@ -104,13 +106,7 @@ export function Benefits() {
                        Through hands-on, project-based courses, our team simplifies challenging topics and makes them accessible to everyone.
                     </p>
 
-                    <div className="flex gap-4 pt-4 border-t border-white/10">
-                        {[Github, Linkedin, Twitter].map((Icon, i) => (
-                          <div key={i} className="w-10 h-10 rounded-lg bg-white/5 hover:bg-electric-blue/20 flex items-center justify-center cursor-pointer transition-colors text-gray-400 hover:text-white">
-                             <Icon size={18} />
-                          </div>
-                        ))}
-                    </div>
+
                  </div>
               </div>
               

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Plus, Minus } from "lucide-react"; // Keeping for types if needed, but not used in JSX anymore
+import { SectionHeading } from "@/components/ui/section-heading";
 
 const faqs = [
   {
@@ -50,12 +51,20 @@ export function FAQ() {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-blue-900/20 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="container mx-auto px-6 max-w-3xl relative z-10">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            <span className="bg-clip-text text-transparent bg-gradient-to-b from-white via-white to-white/60">Frequently Asked</span> <span className="bg-clip-text text-transparent bg-gradient-to-r from-electric-blue via-cyan-400 to-electric-blue">Questions</span>
-          </h2>
-          <p className="text-gray-400">Got questions? We've got answers.</p>
-        </div>
+
+
+        <SectionHeading
+          badge="FAQ"
+          title={
+            <>
+              <span className="text-white drop-shadow-2xl">Frequently Asked</span>
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-blue-500 to-blue-600 drop-shadow-lg">
+                Questions
+              </span>
+            </>
+          }
+          description="Got questions? We've got answers."
+        />
 
         <div className="space-y-4">
           {faqs.map((faq, index) => (

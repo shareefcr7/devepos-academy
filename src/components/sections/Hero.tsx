@@ -53,29 +53,34 @@ export function Hero() {
            animate={{ opacity: 1, y: 0 }}
            transition={{ duration: 0.8 }}
         >
-          <span className="inline-block py-1 px-3 rounded-full bg-electric-blue/10 text-electric-blue text-sm font-medium mb-6 border border-electric-blue/20">
-            🚀 Launch your career in tech
+          <span className="inline-flex items-center gap-2 py-2 px-6 rounded-full bg-white/5 text-white/90 text-sm font-medium mb-6 border border-white/20 backdrop-blur-sm shadow-lg">
+            <span className="text-lg">🚀</span> Launch your career in tech
           </span>
         </motion.div>
 
         <motion.h1
-          className="text-5xl md:text-7xl font-bold text-white mb-6 tracking-tight leading-tight"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
+          className="text-5xl md:text-7xl font-bold text-white mb-6 tracking-tight leading-tight perspective-[1000px]"
+          initial={{ opacity: 0, rotateX: -20, y: 50, scale: 0.9 }}
+          animate={{ opacity: 1, rotateX: 0, y: 0, scale: 1 }}
+          transition={{ duration: 0.8, type: "spring", bounce: 0.4, delay: 0.2 }}
         >
           Master the Future of <br className="hidden md:block" />
-          <span className="bg-clip-text text-transparent bg-gradient-to-r from-electric-blue via-cyan-400 to-electric-blue animate-gradient bg-300%">Web Development</span>
+          <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-blue-500 to-blue-600 animate-gradient bg-300% drop-shadow-lg">Web Development</span>
         </motion.h1>
 
         <motion.p
-          className="text-lg md:text-xl text-gray-400 mb-10 max-w-2xl mx-auto"
+          className="text-2xl md:text-3xl text-blue-100/80 mb-10 max-w-3xl mx-auto font-light leading-relaxed"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.4 }}
         >
-          Find what fascinates you as you explore these offline courses.
-          Join a community of ambitious developers building the next generation of the web.
+          <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-blue-500 to-blue-600 font-semibold drop-shadow-md">
+            Premier Offline Tech Training & Career Development.
+          </span>
+          <br className="hidden md:block" />
+          <span className="text-lg md:text-xl text-blue-200/60 block mt-4">
+            Join a community of ambitious developers building the next generation of the web.
+          </span>
         </motion.p>
 
         <motion.div

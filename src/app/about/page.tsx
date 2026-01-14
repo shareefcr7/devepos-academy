@@ -4,12 +4,13 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Benefits } from "@/components/sections/Benefits";
 import { motion } from "framer-motion";
-import { Trophy, Target, Rocket, Lightbulb, TrendingUp, Star, Award, Zap } from "lucide-react";
+import { Trophy, Target, Rocket, Lightbulb, TrendingUp, Star, Award, Zap, Crown, Medal, PartyPopper } from "lucide-react";
 import { useState, useEffect } from "react";
 
 // Success Animation Background
 const SuccessBackground = () => {
-    const icons = [Trophy, Target, Rocket, Lightbulb, TrendingUp, Star, Award, Zap];
+    // Winner/Celebration themed icons
+    const icons = [Trophy, Target, Rocket, Star, Award, Zap, Crown, Medal, PartyPopper];
     const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
@@ -20,58 +21,62 @@ const SuccessBackground = () => {
 
     return (
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
-            {/* Falling Confetti Rain */}
-            {[...Array(50)].map((_, i) => (
+             {/* Falling Icons Rain */}
+            {icons.map((Icon, i) => (
+                // Generate multiple instances of each icon for a "rain" effect
+                Array.from({ length: 3 }).map((_, j) => (
+                    <motion.div
+                        key={`${i}-${j}`}
+                        initial={{ y: -100, opacity: 0 }}
+                        animate={{ 
+                            y: "110vh",
+                            opacity: [0, 1, 1, 0],
+                            rotate: [0, 360]
+                        }}
+                        transition={{
+                            duration: Math.random() * 5 + 5, // Fall duration between 5-10s
+                            repeat: Infinity,
+                            delay: Math.random() * 10, // Random start delay
+                            ease: "linear",
+                            repeatDelay: Math.random() * 2
+                        }}
+                        className="absolute text-electric-blue/30"
+                        style={{
+                            left: `${Math.random() * 100}%`,
+                            // Randomize size for depth
+                            scale: Math.random() * 0.5 + 0.8 
+                        }}
+                    >
+                        <Icon size={Math.random() * 20 + 20} strokeWidth={1.5} />
+                    </motion.div>
+                ))
+            ))}
+            
+            {/* Confetti Particles */}
+            {[...Array(30)].map((_, i) => (
                 <motion.div
-                    key={`rain-${i}`}
-                    initial={{ y: -100, opacity: 0 }}
+                    key={`confetti-${i}`}
+                    initial={{ y: -50, opacity: 0 }}
                     animate={{ 
                         y: "100vh", 
-                        opacity: [0, 1, 1, 0],
-                        rotate: [0, 360],
+                        opacity: [0, 0.8, 0],
+                        rotateX: [0, 360],
+                        rotateY: [0, 360]
                     }}
                     transition={{
-                        duration: Math.random() * 5 + 5,
+                        duration: Math.random() * 3 + 4,
                         repeat: Infinity,
-                        delay: Math.random() * 10,
+                        delay: Math.random() * 5,
                         ease: "linear"
                     }}
-                    className={`absolute w-[2px] h-[10px] rounded-full ${
+                    className={`absolute w-2 h-2 rounded-[1px] ${
                         ['bg-electric-blue', 'bg-cyan-400', 'bg-purple-500', 'bg-yellow-400'][Math.floor(Math.random() * 4)]
                     }`}
                     style={{
                         left: `${Math.random() * 100}%`,
-                        opacity: 0.3
                     }}
                 />
              ))}
-             
-             {/* Floating Icons */}
-            {icons.map((Icon, i) => (
-                <motion.div
-                    key={i}
-                    initial={{ opacity: 0, scale: 0 }}
-                    animate={{ 
-                        opacity: [0, 0.4, 0], 
-                        scale: [0.5, 1.2, 0.5],
-                        y: [Math.random() * 100 - 50, Math.random() * -200 - 50],
-                        x: [Math.random() * 50 - 25, Math.random() * 50 - 25]
-                    }}
-                    transition={{
-                        duration: Math.random() * 5 + 5,
-                        repeat: Infinity,
-                        delay: i * 1.5,
-                        ease: "easeOut"
-                    }}
-                    className="absolute text-electric-blue/20"
-                    style={{
-                        top: `${Math.random() * 80 + 20}%`,
-                        left: `${Math.random() * 90 + 5}%`,
-                    }}
-                >
-                    <Icon size={Math.random() * 30 + 20} strokeWidth={1.5} />
-                </motion.div>
-            ))}
         </div>
     );
 };
@@ -94,7 +99,7 @@ export default function AboutPage() {
             className="text-center max-w-3xl mx-auto mb-20"
           >
             <h1 className="text-5xl md:text-6xl font-bold mb-6">
-              <span className="bg-clip-text text-transparent bg-gradient-to-b from-white via-white to-white/60">About</span> <span className="text-blue-500">SDEC Academy</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-electric-blue via-cyan-400 to-purple-400">About SDEC Academy</span>
             </h1>
             <p className="text-xl text-gray-400 font-light">
               We are on a mission to democratize elite tech education. We believe that top-tier engineering skills should be accessible to everyone, everywhere.

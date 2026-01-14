@@ -125,7 +125,7 @@ export function AboutSummary() {
             </div>
             
             <h2 className="text-3xl md:text-4xl font-bold mb-6 leading-tight">
-              <span className="bg-clip-text text-transparent bg-gradient-to-b from-white via-white to-white/60">Premier</span> <span className="bg-clip-text text-transparent bg-gradient-to-r from-electric-blue via-cyan-400 to-electric-blue">Offline</span> <span className="bg-clip-text text-transparent bg-gradient-to-b from-white via-white to-white/60">Tech Training & Career Development</span>
+              Premier <span className="text-transparent bg-clip-text bg-gradient-to-r from-electric-blue via-cyan-400 to-purple-400">Offline Tech Training</span> & Career Development
             </h2>
             
             <p className="text-gray-400 text-lg mb-6 leading-relaxed">

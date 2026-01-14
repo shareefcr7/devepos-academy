@@ -3,50 +3,47 @@
 import { motion } from "framer-motion";
 import { CourseCard } from "@/components/ui/course-card";
 import { courses } from "@/lib/data";
+import { Code, Database, Globe, Layers, Cpu, Sparkles, GraduationCap, Award, Briefcase, TrendingUp, BadgeCheck, FileText } from "lucide-react";
+import { IconRain } from "@/components/ui/icon-rain";
+import { SectionHeading } from "@/components/ui/section-heading";
 
 export function Courses() {
+  // Rain animation items - Mixed with Tech & Career/Certificate icons
+  const rainIcons = [GraduationCap, Award, Briefcase, TrendingUp, BadgeCheck, FileText, Code, Database, Globe, Layers, Cpu, Sparkles];
+
   return (
-    <section id="courses" className="py-24 relative bg-navy-light/30">
-       {/* Background Noise with different blend mode for variety */}
-       <div className="absolute inset-0 opacity-20 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] mix-blend-soft-light" />
+    <section id="courses" className="py-24 relative bg-navy overflow-hidden">
+       {/* Deep Space Background Gradient */}
+       <div className="absolute inset-0 bg-gradient-to-b from-navy via-navy-light to-navy pointer-events-none" />
+       
+       {/* Background Noise */}
+       <div className="absolute inset-0 opacity-30 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] mix-blend-soft-light pointer-events-none" />
+       
+       {/* Ambient Glows */}
+       <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-electric-blue/10 rounded-full blur-[120px] pointer-events-none" />
+       <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-purple-500/10 rounded-full blur-[120px] pointer-events-none" />
+
+       {/* Icon Rain Animation */}
+       <IconRain icons={rainIcons} count={25} />
       
       <div className="container mx-auto px-6 relative z-10">
-        <motion.div
-           initial={{ opacity: 0, y: 20 }}
-           whileInView={{ opacity: 1, y: 0 }}
-           viewport={{ once: true }}
-           transition={{ duration: 0.6 }}
-           className="text-center mb-16"
-        >
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-            Explore Our <span className="text-electric-blue">Premium Courses</span>
-          </h2>
-          <p className="text-gray-400 max-w-2xl mx-auto">
-            Curated learning paths designed to take you from beginner to industry-ready professional.
-          </p>
-          
-          <div className="flex flex-wrap justify-center gap-3 mt-8">
-            {[
-              { name: "All", slug: "all" },
-              { name: "Web Development", slug: "web-development" }
-            ].map((topic, i) => (
-              <a 
-                key={topic.slug}
-                href={`/categories/${topic.slug}`}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
-                  i === 0 
-                  ? "bg-electric-blue text-navy font-bold shadow-[0_0_15px_rgba(100,255,218,0.4)]" 
-                  : "bg-white/5 text-gray-300 hover:bg-white/10 hover:text-white border border-white/5"
-                }`}
-              >
-                {topic.name}
-              </a>
-            ))}
-          </div>
-        </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {courses.filter(c => c.category === "Web Development").map((course, index) => (
+
+        <SectionHeading
+          badge="LEARNING PATHS"
+          title={
+            <>
+              <span className="text-white drop-shadow-2xl">Our</span>
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-blue-500 to-blue-600 drop-shadow-lg">
+                Career Growth Layers
+              </span>
+            </>
+          }
+          description="A structured path from clarity to leadership. Choose the level that matches your current stage."
+        />
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {courses.map((course, index) => (
             <CourseCard key={course.id} course={course} index={index} />
           ))}
         </div>

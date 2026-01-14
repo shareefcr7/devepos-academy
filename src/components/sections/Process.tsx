@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { UserPlus, PlayCircle, Code2, MessageCircle, Award } from "lucide-react";
+import { SectionHeading } from "@/components/ui/section-heading";
 
 const steps = [
   { icon: UserPlus, title: "Enroll Course", desc: "Choose your path and join." },
@@ -15,12 +16,20 @@ export function Process() {
   return (
     <section className="py-24 bg-navy-light/10 relative">
       <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            How Learning Works
-          </h2>
-          <p className="text-gray-400">Your journey from beginner to pro in 5 simple steps.</p>
-        </div>
+
+
+        <SectionHeading
+          badge="OUR PROCESS"
+          title={
+            <>
+              <span className="text-white drop-shadow-2xl">How Learning</span>
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-blue-500 to-blue-600 drop-shadow-lg">
+                Works
+              </span>
+            </>
+          }
+          description="Your journey from beginner to pro in 5 simple steps."
+        />
 
         <div className="flex flex-wrap justify-center gap-8 relative z-10">
           {steps.map((step, index) => (

@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Users, GraduationCap, UserCheck, MonitorPlay, Briefcase, Rocket, Code, Laptop, Skull, Zap, RefreshCw, Terminal, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 const avatars = [
   { role: "Student", icon: GraduationCap, color: "border-blue-400", text: "text-blue-400" },
@@ -218,7 +219,7 @@ export function Community() {
            initial={{ y: -20, opacity: 0 }}
            whileInView={{ y: 0, opacity: 1 }}
            viewport={{ once: true }}
-           className="bg-white/5 border border-white/10 backdrop-blur-md px-4 py-2 rounded-full flex items-center gap-2 mb-12 shadow-[0_0_20px_rgba(56,189,248,0.2)]"
+           className="bg-white/5 border border-white/10 backdrop-blur-md px-4 py-2 rounded-full flex items-center gap-2 mb-24 md:mb-16 shadow-[0_0_20px_rgba(56,189,248,0.2)]"
         >
           <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
           <span className="text-gray-300 text-xs font-semibold tracking-wider uppercase">24/7 Instant Help</span>
@@ -242,7 +243,33 @@ export function Community() {
               className="w-32 h-32 md:w-40 md:h-40 bg-gradient-to-br from-[#020617] to-[#1e3a8a] rounded-full flex flex-col items-center justify-center z-20 relative shadow-2xl border border-blue-500/30"
            >
               <div className="absolute -inset-1 rounded-full border border-white/10 scale-110" />
-              <h3 className="text-3xl font-bold text-blue-500 tracking-widest z-10 relative">SDEC</h3>
+              <h3 className="text-3xl font-bold z-10 relative flex items-center justify-center cursor-default">
+                 {"SDEC".split("").map((char, i) => (
+                   <motion.span
+                     key={i}
+                     className={cn(
+                       "inline-block origin-bottom",
+                       "text-blue-500 tracking-widest"
+                     )}
+                     initial={{ y: 0, rotateX: 0 }}
+                     whileHover={{ 
+                       y: -4,
+                       rotateX: 20,
+                       scale: 1.1,
+                       color: "#22d3ee", // Cyan-400
+                       textShadow: "0px 0px 8px rgba(34,211,238,0.6)"
+                     }}
+                     transition={{ 
+                       type: "spring", 
+                       stiffness: 300, 
+                       damping: 10,
+                       delay: i * 0.05 
+                     }}
+                   >
+                     {char}
+                   </motion.span>
+                 ))}
+              </h3>
            </motion.div>
 
            {/* Orbit Rings */}
