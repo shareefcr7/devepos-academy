@@ -3,6 +3,9 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Code, Database, Server, GitBranch, Terminal } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 
 const FloatingIcon = ({ icon: Icon, delay, x, y, color }: any) => (
   <motion.div
@@ -28,90 +31,172 @@ const FloatingIcon = ({ icon: Icon, delay, x, y, color }: any) => (
 );
 
 export function Hero() {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
-      {/* Background Gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-navy via-navy to-navy-light z-0" />
-      
-      {/* Cosmic Overlay */}
-      <div className="absolute inset-0 opacity-30 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] z-0 mix-blend-overlay" />
-      
-      {/* Gradient Blob */}
-      <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-electric-blue/10 rounded-full blur-[100px]" />
-      <div className="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-purple-500/10 rounded-full blur-[100px]" />
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 bg-[#03041a]">
+      {/* --- CINEMATIC FLOWING BACKGROUND --- */}
+      <div className="absolute inset-0 z-0">
+        <motion.div
+          className="absolute inset-x-[-20%] inset-y-[-20%] w-[140%] h-[140%]"
+          initial={{ scale: 1.1, rotate: 0 }}
+          animate={{ 
+            scale: [1.1, 1.2, 1.1],
+            x: ["-3%", "3%", "-3%"],
+            y: ["-2%", "2%", "-2%"],
+            rotate: [0, 2, -2, 0]
+          }}
+          transition={{ 
+            duration: 15, // Faster movement
+            repeat: Infinity, 
+            ease: "easeInOut" 
+          }}
+        >
+          <Image 
+            src="/images/hero_particles.png"
+            alt="Cinematic Flowing Particles"
+            fill
+            className="object-cover opacity-70 mix-blend-screen scale-110"
+            priority
+          />
+        </motion.div>
+
+        {/* Dynamic Light Streaks */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          {[...Array(6)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute h-px bg-gradient-to-r from-transparent via-cyan-400/50 to-transparent"
+              style={{ 
+                width: "40%",
+                top: `${20 + i * 15}%`,
+                left: "-50%" 
+              }}
+              animate={{ left: "120%" }}
+              transition={{ 
+                duration: 4 + i, 
+                repeat: Infinity, 
+                delay: i * 2,
+                ease: "linear" 
+              }}
+            />
+          ))}
+        </div>
+
+        {/* Extra Active Stardust - Only rendered on client to avoid hydration mismatch */}
+        {mounted && (
+          <div className="absolute inset-0 pointer-events-none">
+            {[...Array(50)].map((_, i) => (
+              <motion.div
+                key={i}
+                className="absolute w-1 h-1 bg-white rounded-full blur-[1px]"
+                initial={{ 
+                  x: `${Math.random() * 100}%`, 
+                  y: `${Math.random() * 100}%`,
+                  opacity: 0,
+                  scale: 0
+                }}
+                animate={{ 
+                  x: [`${Math.random() * 100}%`, `${Math.random() * 100 + (Math.random() - 0.5) * 10}%`],
+                  y: [`${Math.random() * 100}%`, `${Math.random() * 100 + (Math.random() - 0.5) * 10}%`],
+                  opacity: [0, 0.6, 0],
+                  scale: [0, 1.5, 0]
+                }}
+                transition={{ 
+                  duration: Math.random() * 5 + 3,
+                  repeat: Infinity, 
+                  ease: "easeInOut",
+                  delay: Math.random() * i
+                }}
+              />
+            ))}
+          </div>
+        )}
+
+        {/* Cinematic Vignette */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#03041a]/95 via-transparent to-[#03041a]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_transparent_30%,_rgba(3,4,26,0.95)_100%)]" />
+      </div>
+
+      {/* --- BACKGROUND DECORATION LAYER (Behind Text) --- */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <FloatingIcon icon={Code} delay={0} x={-550} y={-250} color="text-blue-500/30" />
+        <FloatingIcon icon={Server} delay={1} x={550} y={-200} color="text-green-500/30" />
+        <FloatingIcon icon={Database} delay={0.5} x={-600} y={300} color="text-yellow-500/30" />
+        <FloatingIcon icon={GitBranch} delay={1.5} x={600} y={350} color="text-orange-500/30" />
+        <FloatingIcon icon={Terminal} delay={2} x={0} y={-450} color="text-gray-500/30" />
+      </div>
 
       <div className="container mx-auto px-6 relative z-10 text-center">
-        {/* Floating Icons */}
-        <FloatingIcon icon={Code} delay={0} x={-300} y={-100} color="text-blue-400" />
-        <FloatingIcon icon={Server} delay={1} x={350} y={-50} color="text-green-400" />
-        <FloatingIcon icon={Database} delay={0.5} x={-350} y={150} color="text-yellow-400" />
-        <FloatingIcon icon={GitBranch} delay={1.5} x={300} y={200} color="text-orange-400" />
-        <FloatingIcon icon={Terminal} delay={2} x={0} y={-250} color="text-gray-300" />
-
         <motion.div
-           initial={{ opacity: 0, y: 30 }}
+           initial={{ opacity: 0, y: 20 }}
            animate={{ opacity: 1, y: 0 }}
            transition={{ duration: 0.8 }}
         >
-          <span className="inline-flex items-center gap-2 py-2 px-6 rounded-full bg-white/5 text-white/90 text-sm font-medium mb-6 border border-white/20 backdrop-blur-sm shadow-lg">
-            <span className="text-lg">🚀</span> Launch your career in tech
-          </span>
+          <div className="inline-flex items-center gap-3 py-2.5 px-10 rounded-full bg-white/5 text-white/70 text-[10px] font-black uppercase tracking-[0.4em] mb-12 border border-white/10 backdrop-blur-3xl shadow-[0_0_40px_rgba(0,210,255,0.1)]">
+            <div className="w-2 h-2 rounded-full bg-electric-blue animate-ping shadow-[0_0_15px_#00d2ff]" />
+            Launch your career in tech
+          </div>
         </motion.div>
 
-        <motion.h1
-          className="text-5xl md:text-7xl font-bold text-white mb-6 tracking-tight leading-tight perspective-[1000px]"
-          initial={{ opacity: 0, rotateX: -20, y: 50, scale: 0.9 }}
-          animate={{ opacity: 1, rotateX: 0, y: 0, scale: 1 }}
-          transition={{ duration: 0.8, type: "spring", bounce: 0.4, delay: 0.2 }}
+        <motion.div
+          className="flex flex-col items-center justify-center mb-14"
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
         >
-          Master the Future of <br className="hidden md:block" />
-          <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-blue-500 to-blue-600 animate-gradient bg-300% drop-shadow-lg">Web Development</span>
-        </motion.h1>
+          <h1 className="text-5xl md:text-8xl lg:text-9xl font-black tracking-tighter leading-[1] uppercase flex flex-col items-center">
+            <span className="text-white/20 mb-4 select-none filter blur-[0.5px]">Master the Future</span>
+            <span className="text-white mb-4 text-6xl md:text-9xl tracking-[0.1em]">of</span>
+            <span className="text-gradient animate-gradient bg-300% drop-shadow-[0_0_60px_rgba(34,211,238,0.4)] relative">
+              Web Development
+              <div className="absolute -inset-4 bg-cyan-400/5 blur-[40px] -z-10 rounded-full" />
+            </span>
+          </h1>
+        </motion.div>
 
         <motion.p
-          className="text-2xl md:text-3xl text-blue-100/80 mb-10 max-w-3xl mx-auto font-light leading-relaxed"
+          className="text-lg md:text-2xl text-blue-100/20 mb-16 max-w-4xl mx-auto font-light leading-relaxed tracking-[0.3em] uppercase"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
+          transition={{ duration: 1, delay: 0.7 }}
         >
-          <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-blue-500 to-blue-600 font-semibold drop-shadow-md">
-            Premier Offline Tech Training & Career Development.
-          </span>
-          <br className="hidden md:block" />
-          <span className="text-lg md:text-xl text-blue-200/60 block mt-4">
-            Join a community of ambitious developers building the next generation of the web.
-          </span>
+          <span className="text-white/50 font-black">Premier Offline Tech Training</span> & Career Development.
         </motion.p>
 
         <motion.div
-          className="flex flex-col md:flex-row items-center justify-center gap-4"
+          className="flex flex-col md:flex-row items-center justify-center gap-8"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
+          transition={{ duration: 0.8, delay: 0.7 }}
         >
-          <a href="#courses" className="w-full md:w-auto">
-            <Button variant="primary" size="lg" className="w-full">
-              Start Learning Now
+          <Link href="#courses" className="w-full md:w-auto">
+            <Button size="lg" className="w-full h-16 px-16 text-[10px] font-black uppercase tracking-[0.3em] rounded-2xl bg-white text-navy hover:scale-105 shadow-2xl transition-all">
+              Start Now
             </Button>
-          </a>
-          <a href="#courses" className="w-full md:w-auto">
-            <Button variant="secondary" size="lg" className="w-full">
-              Explore Courses
+          </Link>
+          <Link href="/courses" className="w-full md:w-auto">
+            <Button variant="secondary" size="lg" className="w-full h-16 px-16 text-[10px] font-black uppercase tracking-[0.3em] rounded-2xl border-white/10 hover:bg-white/5 text-white transition-all">
+              Explore
             </Button>
-          </a>
+          </Link>
         </motion.div>
       </div>
 
        {/* Scroll Indicator */}
        <motion.div
-        className="absolute bottom-10 left-1/2 transform -translate-x-1/2"
+        className="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-4 opacity-40"
         animate={{ y: [0, 10, 0] }}
-        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+        transition={{ duration: 2, repeat: Infinity }}
       >
-        <div className="w-6 h-10 border-2 border-white/20 rounded-full flex justify-center p-1">
-          <div className="w-1 h-3 bg-electric-blue rounded-full" />
-        </div>
+        <span className="text-[10px] uppercase tracking-[0.4em] text-white/50 font-black">Scroll</span>
+        <div className="w-px h-10 bg-gradient-to-b from-electric-blue to-transparent" />
       </motion.div>
     </section>
   );
 }
+

@@ -66,11 +66,11 @@ export default function CourseDetail() {
               <div className="flex gap-8 mt-12 pt-8 border-t border-white/10 text-gray-400 text-sm font-medium">
                  <div className="flex items-center gap-2">
                     <Clock size={18} className="text-electric-blue" />
-                    <span>3-6 Months Duration</span>
+                    <span>{course.duration} Duration</span>
                  </div>
                  <div className="flex items-center gap-2">
                     <Globe size={18} className="text-electric-blue" />
-                    <span>100% Online</span>
+                    <span>{course.mode}</span>
                  </div>
                  <div className="flex items-center gap-2">
                     <Award size={18} className="text-electric-blue" />
@@ -100,31 +100,73 @@ export default function CourseDetail() {
         </div>
       </section>
 
+      {/* Narrative Section */}
+      <section className="py-20 relative bg-navy overflow-hidden">
+        <div className="container mx-auto px-6 relative z-10">
+           <div className="max-w-4xl">
+              <h2 className="text-2xl font-bold mb-6 text-electric-blue flex items-center gap-3">
+                 <Shield size={24} /> The Journey Ahead
+              </h2>
+              <div className="text-xl md:text-2xl text-white leading-relaxed font-light italic opacity-90 border-l-4 border-electric-blue/30 pl-8">
+                 "{course.story}"
+              </div>
+           </div>
+        </div>
+        {/* Background Accent */}
+        <div className="absolute top-1/2 right-0 w-[500px] h-[500px] bg-electric-blue/5 rounded-full blur-[120px] -z-0" />
+      </section>
+
       {/* Curriculum Preview / details */}
-      <section className="py-20 bg-navy-light/10">
+      <section className="py-20 bg-navy-light/10 relative">
         <div className="container mx-auto px-6">
-           <h2 className="text-3xl font-bold mb-12 flex items-center gap-3">
-             <Shield className="text-electric-blue" /> What You Will Learn
-           </h2>
+           <div className="flex flex-col md:flex-row md:items-center justify-between gap-8 mb-16">
+              <div>
+                 <h2 className="text-4xl font-bold text-white mb-4">Curriculum Overview</h2>
+                 <p className="text-gray-400 text-lg">Master these key modules and skills throughout the program.</p>
+              </div>
+              <div className="px-6 py-3 rounded-2xl bg-white/5 border border-white/10 text-white font-bold">
+                 {course.topics.length} Key Modules
+              </div>
+           </div>
            
-           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {[
-                "Industry-Standard Curriculum designed by experts",
-                "Hands-on Projects to build your portfolio",
-                "1-on-1 Mentorship support",
-                "Career Guidance & Resume Building",
-                "Lifetime Access to course materials",
-                "Dedicated Community Support"
-              ].map((item, i) => (
-                <div key={i} className="flex items-start gap-4 p-6 rounded-2xl bg-white/5 border border-white/5 hover:border-electric-blue/30 transition-colors">
-                   <div className="mt-1 bg-electric-blue/20 p-1 rounded-full">
-                     <CheckCircle size={16} className="text-electric-blue" />
+           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {course.topics.map((item, i) => (
+                <motion.div 
+                  key={i} 
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.05 }}
+                  className="flex items-start gap-4 p-8 rounded-3xl bg-[#0a0a1a]/60 backdrop-blur-xl border border-white/5 hover:border-electric-blue/30 transition-all duration-300 group shadow-lg"
+                >
+                   <div className="mt-1 bg-electric-blue/10 p-2 rounded-xl group-hover:bg-electric-blue/20 transition-colors">
+                     <CheckCircle size={20} className="text-electric-blue" />
                    </div>
-                   <span className="text-gray-300 font-medium">{item}</span>
-                </div>
+                   <div>
+                      <span className="text-white text-lg font-bold block mb-1">{item}</span>
+                      <span className="text-gray-500 text-sm">Comprehensive module covering industry standards.</span>
+                   </div>
+                </motion.div>
               ))}
            </div>
         </div>
+      </section>
+
+      {/* Outcome Section */}
+      <section className="py-20 bg-gradient-to-t from-navy-dark to-navy">
+         <div className="container mx-auto px-6">
+            <div className="bg-electric-blue/5 border border-electric-blue/20 rounded-[3rem] p-12 text-center">
+               <h2 className="text-3xl font-bold text-white mb-8">What You'll Achieve</h2>
+               <div className="flex flex-wrap justify-center gap-8">
+                  {course.outcome.map((out, i) => (
+                    <div key={i} className="flex items-center gap-3 px-6 py-3 rounded-full bg-white/5 border border-white/5 text-gray-300">
+                       <Award size={18} className="text-electric-blue" />
+                       <span className="font-semibold">{out}</span>
+                    </div>
+                  ))}
+               </div>
+            </div>
+         </div>
       </section>
 
       <Footer />

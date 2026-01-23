@@ -95,7 +95,7 @@ const testimonials = [
 
 export function Testimonials() {
   return (
-    <section className="py-24 bg-navy relative overflow-hidden">
+    <section className="py-24 bg-transparent relative overflow-hidden">
       
       {/* Background Gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#0b1021] pointer-events-none opacity-100" />
@@ -106,7 +106,7 @@ export function Testimonials() {
            title={
              <>
                <span className="text-white drop-shadow-2xl">Success</span>
-               <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-blue-500 to-blue-600 drop-shadow-lg">
+               <span className="bg-clip-text text-transparent bg-gradient-to-r from-violet-400 via-blue-400 to-cyan-400 drop-shadow-lg">
                  Stories
                </span>
              </>
@@ -122,7 +122,7 @@ export function Testimonials() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1, duration: 0.5 }}
-              className="bg-[#112240] p-8 rounded-3xl shadow-xl hover:shadow-2xl hover:bg-[#162a4d] transition-all duration-300 border border-white/5"
+              className="bg-navy-light/40 backdrop-blur-md p-8 rounded-3xl shadow-xl hover:shadow-2xl hover:bg-navy-light/60 transition-all duration-300 border border-white/5"
             >
               <div className="flex gap-1 mb-6">
                 {[...Array(5)].map((_, i) => (

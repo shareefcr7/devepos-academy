@@ -12,7 +12,7 @@ export function Courses() {
   const rainIcons = [GraduationCap, Award, Briefcase, TrendingUp, BadgeCheck, FileText, Code, Database, Globe, Layers, Cpu, Sparkles];
 
   return (
-    <section id="courses" className="py-24 relative bg-navy overflow-hidden">
+    <section id="courses" className="py-24 relative bg-transparent overflow-hidden">
        {/* Deep Space Background Gradient */}
        <div className="absolute inset-0 bg-gradient-to-b from-navy via-navy-light to-navy pointer-events-none" />
        
@@ -34,7 +34,7 @@ export function Courses() {
           title={
             <>
               <span className="text-white drop-shadow-2xl">Our</span>
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-blue-500 to-blue-600 drop-shadow-lg">
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-violet-400 via-blue-400 to-cyan-400 drop-shadow-lg">
                 Career Growth Layers
               </span>
             </>
@@ -42,7 +42,7 @@ export function Courses() {
           description="A structured path from clarity to leadership. Choose the level that matches your current stage."
         />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {courses.map((course, index) => (
             <CourseCard key={course.id} course={course} index={index} />
           ))}

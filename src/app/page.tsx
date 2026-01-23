@@ -26,6 +26,7 @@ export default function Home() {
       <div className={`transition-opacity duration-1000 ${introComplete ? "opacity-100" : "opacity-0"}`}>
         <Navbar />
         <Stars />
+        <div className="glow-mesh" />
         
         {/* 1. Hero Section (Trust + Interest) */}
         <Hero />

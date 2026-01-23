@@ -13,7 +13,7 @@ const CubeNetworkBackground = () => {
 
   useEffect(() => {
     // Generate random values only on client side to avoid hydration mismatch
-    setCubes(Array.from({ length: 15 }).map(() => ({
+    setCubes(Array.from({ length: 8 }).map(() => ({
        x: Math.random() * 100,
        y: Math.random() * 100,
        z: Math.random() * 500 - 250,
@@ -21,7 +21,7 @@ const CubeNetworkBackground = () => {
        duration: Math.random() * 10 + 20
     })));
 
-    setLines(Array.from({ length: 10 }).map(() => ({
+    setLines(Array.from({ length: 6 }).map(() => ({
        top: Math.random() * 100,
        left: Math.random() * 100,
        duration: Math.random() * 5 + 5
@@ -30,8 +30,8 @@ const CubeNetworkBackground = () => {
 
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      {/* Deep Blue Background matching the 'Digital Wave' image */}
-      <div className="absolute inset-0 bg-gradient-to-b from-blue-950 via-[#0a192f] to-[#020617]" />
+      {/* Extremely Deep Blue Background */}
+      <div className="absolute inset-0 bg-gradient-to-b from-navy-dark via-[#020617] to-black" />
       
       {/* 3D Perspective Container */}
       <div className="absolute inset-0 perspective-[2000px]">
@@ -99,7 +99,7 @@ const CubeNetworkBackground = () => {
         ))}
 
         {/* Global Glow Overlay - Deep Blue Wash */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#020617] via-blue-900/10 to-blue-900/20 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-navy-dark/10 to-transparent pointer-events-none" />
       </div>
     </div>
   );

@@ -13,36 +13,39 @@ interface SectionHeadingProps {
 
 export function SectionHeading({ badge, title, description, className }: SectionHeadingProps) {
   return (
-    <div className={cn("relative perspective-[1000px] text-center mb-16", className)}>
-      {/* Center Spotlight Glow - Cyan/Blue Ambience */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[100px] bg-cyan-500/10 blur-[100px] rounded-full pointer-events-none" />
+    <div className={cn("relative text-center mb-20", className)}>
+      {/* 3D Atmosphere Glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-electric/5 blur-[120px] rounded-full pointer-events-none opacity-50" />
 
       <motion.div
-        initial={{ opacity: 0, rotateX: -20, y: 50, scale: 0.9 }}
-        whileInView={{ opacity: 1, rotateX: 0, y: 0, scale: 1 }}
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.8, type: "spring", bounce: 0.4 }}
+        transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
         className="relative z-10"
       >
-        {/* Floating Badge - Matches Explore Skills Style */}
+        {/* Futuristic Badge */}
         {badge && (
           <motion.div
-            className="inline-flex items-center gap-3 px-5 py-2 rounded-full bg-[#0A1A2F] border border-blue-500/30 mb-8 shadow-[0_0_15px_rgba(59,130,246,0.15)]"
+            initial={{ scale: 0.8, opacity: 0 }}
+            whileInView={{ scale: 1, opacity: 1 }}
+            viewport={{ once: true }}
+            className="inline-flex items-center gap-3 px-6 py-2 rounded-full bg-navy-light/50 border border-white/10 mb-8 backdrop-blur-xl shadow-2xl"
           >
-            <div className="w-2.5 h-2.5 rounded-full bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.8)]" />
-            <span className="text-blue-400 font-semibold tracking-wide uppercase text-xs">
+            <div className="w-2 h-2 rounded-full bg-electric-blue animate-pulse shadow-[0_0_10px_#00d2ff]" />
+            <span className="text-blue-300 font-black tracking-[0.3em] uppercase text-[10px]">
               {badge}
             </span>
           </motion.div>
         )}
 
-        {/* 3D Main Title */}
-        <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6 leading-tight flex flex-wrap justify-center gap-x-3 items-center">
+        {/* Cinematic Title */}
+        <h2 className="text-5xl md:text-7xl font-black tracking-tighter mb-8 leading-[0.9] flex flex-wrap justify-center gap-x-4 items-center uppercase">
           {title}
         </h2>
 
         {description && (
-          <p className="text-blue-200/60 max-w-2xl mx-auto text-lg md:text-xl font-light leading-relaxed">
+          <p className="text-blue-100/40 max-w-2xl mx-auto text-lg md:text-xl font-light leading-relaxed tracking-wide">
             {description}
           </p>
         )}

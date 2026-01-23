@@ -8,7 +8,7 @@ import { Mail, MapPin, Phone } from "lucide-react";
 
 export default function ContactPage() {
   return (
-    <main className="min-h-screen bg-navy text-white">
+    <main className="min-h-screen bg-transparent text-white">
       <Navbar />
 
       <section className="pt-32 pb-20 relative">
@@ -54,7 +54,7 @@ export default function ContactPage() {
                  </div>
                  <div>
                    <h3 className="font-semibold text-lg">Phone / WhatsApp</h3>
-                   <p className="text-gray-400">+91 73561 90621 (Call)</p>
+                   <p className="text-gray-400">73561 90621 (Call)</p>
                    <a 
                      href="https://wa.me/917356190621" 
                      target="_blank" 
@@ -72,7 +72,7 @@ export default function ContactPage() {
                  </div>
                  <div>
                    <h3 className="font-semibold text-lg">Address:</h3>
-                   <p className="text-gray-400">1422, F9, T1</p>
+                   <p className="text-gray-400">1422, F4, T1</p>
                    <p className="text-gray-400">Hilite Business Park</p>
                    <p className="text-gray-400">Palazhi, Calicut</p>
                    <p className="text-gray-400">Kerala - 673016</p>

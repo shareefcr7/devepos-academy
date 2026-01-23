@@ -14,7 +14,7 @@ const steps = [
 
 export function Process() {
   return (
-    <section className="py-24 bg-navy-light/10 relative">
+    <section className="py-24 bg-transparent relative">
       <div className="container mx-auto px-6">
 
 

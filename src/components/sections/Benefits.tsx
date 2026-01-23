@@ -34,7 +34,7 @@ const featuresRight = [
 
 export function Benefits() {
   return (
-    <section className="py-24 relative bg-navy overflow-hidden">
+    <section className="py-24 relative bg-transparent overflow-hidden">
       <div className="container mx-auto px-6 relative z-10">
         
         {/* Section Header */}
@@ -45,7 +45,7 @@ export function Benefits() {
           title={
             <>
               <span className="text-white drop-shadow-2xl block">Premier</span>
-              <span className="block mt-1 leading-tight bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-blue-500 to-blue-600 drop-shadow-lg font-bold">
+              <span className="block mt-1 leading-tight bg-clip-text text-transparent bg-gradient-to-r from-violet-400 via-blue-400 to-cyan-400 drop-shadow-lg font-bold">
                 Offline Tech Training & Career Development
               </span>
             </>
@@ -98,12 +98,12 @@ export function Benefits() {
                  <div className="space-y-4">
                     <h4 className="text-xl font-bold text-white">About Us</h4>
                     <p className="text-gray-400 text-sm leading-relaxed">
-                       SDEC Academy is an <span className="text-cyan-400 font-bold glow-sm">offline</span> learning platform designed to build real-world tech skills with mentorship and community support.
+                       Our academy is built on the belief that learning should create confidence and clarity. We follow a student-first approach, where every learner is treated as a professional from day one. Our focus is on building strong fundamentals, real skills, and a growth-oriented mindset that prepares learners for real-world challenges.
                     </p>
                     
-                    <h4 className="text-xl font-bold text-white pt-2">Our Mission</h4>
+                    <h4 className="text-xl font-bold text-white pt-2">What Makes Us Different</h4>
                     <p className="text-gray-400 text-sm leading-relaxed mb-6">
-                       Through hands-on, project-based courses, our team simplifies challenging topics and makes them accessible to everyone.
+                       We go beyond course completion. Our learners work on real projects, receive personal mentoring and continuous guidance, and gain real company exposure through Shahi Solution. We provide free training and paid internship opportunities. Once a learner joins us, we treat them as a professional developer, not just a student. We also support learners with career guidance, resume preparation, and interview support.
                     </p>
 
 

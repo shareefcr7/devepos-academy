@@ -21,7 +21,7 @@ const CodeRain = () => {
   return (
     <div className="absolute inset-0 overflow-hidden opacity-10 pointer-events-none">
       <div className="flex justify-between">
-        {[...Array(12)].map((_, i) => {
+        {[...Array(8)].map((_, i) => {
            const Icon = rainIcons[Math.floor(Math.random() * rainIcons.length)];
            const keyword = keywords[Math.floor(Math.random() * keywords.length)];
            return (
@@ -50,7 +50,7 @@ const CodeRain = () => {
 
 // Tech Icons Crash/Float Animation
 const TechIcons = () => {
-    const icons = [Database, Cloud, Server, Shield, Terminal, Code];
+    const icons = [Database, Cloud, Server, Shield];
     const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
@@ -72,9 +72,9 @@ const TechIcons = () => {
                         y: [Math.random() * 100 - 50, Math.random() * 100 - 50]
                     }}
                     transition={{
-                        duration: 4,
+                        duration: 8,
                         repeat: Infinity,
-                        delay: i * 0.8,
+                        delay: i * 2,
                         ease: "easeInOut"
                     }}
                     className="absolute"
@@ -92,7 +92,7 @@ const TechIcons = () => {
 
 export function AboutSummary() {
   return (
-    <section className="py-20 relative bg-navy overflow-hidden">
+    <section className="py-20 relative bg-transparent overflow-hidden">
       {/* Background Ambience */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-900/10 via-navy to-navy pointer-events-none" />
       

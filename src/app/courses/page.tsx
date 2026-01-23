@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 
 export default function CoursesPage() {
   return (
-    <main className="min-h-screen bg-navy text-white font-outfit">
+    <main className="min-h-screen bg-transparent text-white font-outfit">
       <Navbar />
       
       {/* Spacer for fixed navbar */}
