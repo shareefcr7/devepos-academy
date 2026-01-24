@@ -32,7 +32,7 @@ const TopicCard = ({ topic }: { topic: typeof topicData[0] }) => (
       href={topic.url}
       target="_blank"
       rel="noopener noreferrer"
-      className="group relative flex items-center gap-4 px-8 py-5 rounded-3xl bg-white/[0.02] border border-white/5 hover:bg-white/[0.08] hover:border-blue-500/40 hover:shadow-[0_20px_40px_rgba(59,130,246,0.1)] transition-all duration-500 min-w-[200px] backdrop-blur-3xl overflow-hidden"
+      className="group relative flex items-center gap-4 px-8 py-5 rounded-3xl bg-white/[0.02] border border-white/5 md:hover:bg-white/[0.08] md:hover:border-blue-500/40 md:hover:shadow-[0_20px_40px_rgba(59,130,246,0.1)] transition-all duration-500 min-w-[200px] backdrop-blur-md md:backdrop-blur-3xl overflow-hidden"
     >
       {/* Glossy Sheen Overlay */}
       <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />

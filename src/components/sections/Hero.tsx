@@ -90,7 +90,7 @@ export function Hero() {
         {/* Extra Active Stardust - Only rendered on client to avoid hydration mismatch */}
         {mounted && (
           <div className="absolute inset-0 pointer-events-none">
-            {[...Array(50)].map((_, i) => (
+            {[...Array(window.innerWidth < 768 ? 15 : 50)].map((_, i) => (
               <motion.div
                 key={i}
                 className="absolute w-1 h-1 bg-white rounded-full blur-[1px]"

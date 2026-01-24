@@ -15,7 +15,10 @@ export function IconRain({ icons, className, count = 12 }: IconRainProps) {
 
   useEffect(() => {
     // Generate random rain items on client-side only to avoid hydration mismatch
-    const newItems = Array.from({ length: count }).map(() => ({
+    const isMobile = window.innerWidth < 768;
+    const finalCount = isMobile ? Math.min(count, 8) : count;
+    
+    const newItems = Array.from({ length: finalCount }).map(() => ({
       Icon: icons[Math.floor(Math.random() * icons.length)],
       x: `${Math.random() * 100}%`,
       delay: Math.random() * 10,

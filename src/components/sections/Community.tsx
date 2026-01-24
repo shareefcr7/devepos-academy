@@ -152,7 +152,7 @@ const CodingPerson = () => {
 // Hacker Battle Component
 const HackerBattle = () => {
   return (
-    <div className="absolute top-20 right-10 md:right-20 pointer-events-none z-0 opacity-40 md:opacity-100">
+    <div className="absolute top-20 right-10 md:right-20 pointer-events-none z-0 opacity-40 md:opacity-100 hidden md:block">
        <div className="relative w-64 h-32 flex items-center justify-center">
           {/* Laptop Side (Defender) */}
           <motion.div
