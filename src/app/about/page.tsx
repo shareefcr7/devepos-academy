@@ -121,12 +121,12 @@ export default function AboutPage() {
                  transition={{ duration: 0.8 }}
                  className="order-2 md:order-1 relative"
               >
-                <div className="relative h-[450px] w-[350px] mx-auto md:mx-0 rounded-3xl overflow-hidden shadow-2xl border border-white/10 group">
+                <div className="relative w-full max-w-[400px] h-auto mx-auto md:mx-0 rounded-3xl overflow-hidden shadow-2xl border border-white/10 group">
                  {/* Image */}
                  <img 
-                   src="/images/shahi-rahman.png"
+                   src="/images/shahi-rahman-full.png"
                    alt="Shahi Rahman - Founder"
-                   className="w-full h-full object-cover object-top grayscale group-hover:grayscale-0 transition-all duration-700"
+                   className="w-full h-full object-cover object-top"
                  />
                  {/* Overlay Gradient */}
                  <div className="absolute inset-0 bg-gradient-to-t from-navy via-transparent to-transparent opacity-60" />

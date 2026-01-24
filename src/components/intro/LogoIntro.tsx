@@ -81,8 +81,8 @@ export function LogoIntro({ onComplete }: { onComplete: () => void }) {
           <div className="absolute inset-0 flex items-center justify-center opacity-30 pointer-events-none">
              <motion.div
                className="w-[800px] h-[800px] rounded-full bg-gradient-radial from-blue-600/20 to-transparent"
-               animate={{ rotate: 360, scale: [1, 1.2, 1] }}
-               transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+               animate={{ rotate: 360, scale: [1, 1.1, 1] }}
+               transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
              />
           </div>
 
