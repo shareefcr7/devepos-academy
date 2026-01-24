@@ -42,7 +42,7 @@ export function Benefits() {
           badge="Who We Are"
           title={
             <>
-              <span className="text-white drop-shadow-2xl block"></span>
+              <span className="text-white drop-shadow-2xl block">-</span>
               <span className="block mt-1 leading-tight bg-clip-text text-transparent bg-gradient-to-r from-violet-400 via-blue-400 to-cyan-400 drop-shadow-lg font-bold">
                  Tech Training & Career Development
               </span>
@@ -60,7 +60,6 @@ export function Benefits() {
                   key={i}
                   initial={{ opacity: 0, x: -30 }}
                   whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
                   transition={{ delay: i * 0.2 }}
                   className="flex flex-col gap-4 text-center lg:text-left items-center lg:items-start group"
                 >
@@ -83,13 +82,15 @@ export function Benefits() {
               className="relative"
            >
               <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-6 shadow-2xl relative z-10 group">
-                 <div className="relative h-[300px] md:h-[500px] w-full rounded-2xl overflow-hidden mb-8 bg-navy-dark/50">
+                 <div className="relative w-full rounded-2xl overflow-hidden mb-8 border border-white/10 shadow-lg group-hover:shadow-electric-blue/20 transition-all duration-500">
                     <Image 
-                      src="/images/team-photo-new.png"
+                      src="/images/team-premium.jpg"
                       alt="SDEC Academy Team"
-                      fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                      width={1200}
+                      height={800}
+                      className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105"
                     />
+                    <div className="absolute inset-0 bg-gradient-to-t from-navy/80 via-transparent to-transparent opacity-60" />
                  </div>
                  
                  <div className="space-y-4 text-center">

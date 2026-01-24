@@ -158,38 +158,128 @@ export default function CourseDetail() {
 
       {/* Learning Assets Section */}
       <section className="py-24 relative overflow-hidden">
-         <div className="container mx-auto px-6">
-            <div className="text-center mb-16">
+         <div className="container mx-auto px-6 relative z-10">
+            <div className="text-center mb-20">
                <h2 className="text-4xl md:text-5xl font-black text-white mb-4 uppercase tracking-tighter">What's <span className="text-gradient">Included</span></h2>
                <p className="text-gray-500 text-lg uppercase tracking-widest font-bold">Comprehensive learning ecosystem for your success</p>
             </div>
             
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
-               {[
-                 { icon: Video, title: "Online/Offline", desc: "Flexible learning modes" },
-                 { icon: BookOpen, title: "Extensive Resources", desc: "Curated learning materials" },
-                 { icon: Code, title: "Real Projects", desc: "Hands-on implementation" },
-                 { icon: FileText, title: "Assignments", desc: "Weekly skill validation" },
-                 { icon: Users, title: "Q&A Support", desc: "Direct mentor access" },
-                 { icon: Smartphone, title: "LMS Access", desc: "24/7 Learning portal" },
-                 { icon: Globe, title: "Networking", desc: "Peer group community" },
-                 { icon: Award, title: "Case Studies", desc: "Real industry scenarios" }
-               ].map((asset, i) => (
-                 <motion.div 
-                   key={i}
-                   initial={{ opacity: 0, scale: 0.9 }}
-                   whileInView={{ opacity: 1, scale: 1 }}
-                   viewport={{ once: true }}
-                   transition={{ delay: i * 0.05 }}
-                   className="p-8 rounded-[2.5rem] bg-navy-light/20 border border-white/5 hover:border-white/10 transition-all text-center group"
-                 >
-                    <div className="w-16 h-16 rounded-2xl bg-gradient-to-tr from-electric-blue/20 to-cyan-400/20 flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-500">
-                       <asset.icon size={30} className="text-electric-blue" />
-                    </div>
-                    <h3 className="text-white font-bold text-lg mb-2">{asset.title}</h3>
-                    <p className="text-gray-500 text-xs leading-relaxed uppercase tracking-widest">{asset.desc}</p>
-                 </motion.div>
-               ))}
+            <div className="relative max-w-6xl mx-auto">
+                {/* Desktop Snake Line Animation */}
+                <div className="hidden lg:block absolute inset-0 -top-8 -z-10 w-full h-full pointer-events-none">
+                   <svg className="w-full h-full visible" viewBox="0 0 1200 400" fill="none" preserveAspectRatio="none">
+                     <defs>
+                       <linearGradient id="assetLineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                         <stop offset="0%" stopColor="#7000ff" stopOpacity="0.1" />
+                         <stop offset="50%" stopColor="#00d2ff" stopOpacity="0.3" />
+                         <stop offset="100%" stopColor="#7000ff" stopOpacity="0.1" />
+                       </linearGradient>
+                       <linearGradient id="assetActiveGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                         <stop offset="0%" stopColor="#7000ff" />
+                         <stop offset="100%" stopColor="#00d2ff" />
+                       </linearGradient>
+                       <filter id="assetGlow" x="-50%" y="-50%" width="200%" height="200%">
+                         <feGaussianBlur stdDeviation="4" result="coloredBlur" />
+                         <feMerge>
+                           <feMergeNode in="coloredBlur" />
+                           <feMergeNode in="SourceGraphic" />
+                         </feMerge>
+                       </filter>
+                     </defs>
+
+                     {/* Background Track */}{/* Path Logic: 4 items top, 4 items bottom. 
+                         Grid cols 4. Center points approx: 
+                         12.5% (150), 37.5% (450), 62.5% (750), 87.5% (1050)
+                         Height gap approx 200 units.
+                     */}
+                     <motion.path 
+                       d="M 150 50 L 1050 50 A 100 100 0 0 1 1050 250 L 150 250"
+                       stroke="url(#assetLineGradient)"
+                       strokeWidth="2"
+                       strokeDasharray="8 8"
+                       strokeLinecap="round"
+                       initial={{ opacity: 0.2 }}
+                       animate={{ opacity: [0.2, 0.4, 0.2] }}
+                       transition={{ duration: 3, repeat: Infinity }}
+                     />
+
+                     {/* Active Line */}
+                     <path
+                       d="M 150 50 L 1050 50 A 100 100 0 0 1 1050 250 L 150 250"
+                       stroke="url(#assetActiveGradient)"
+                       strokeWidth="2"
+                       strokeLinecap="round"
+                       className="opacity-40"
+                     />
+                     
+                     {/* Moving Particle */}
+                     <circle r="4" fill="#00d2ff" filter="url(#assetGlow)">
+                       <animateMotion 
+                         dur="10s" 
+                         repeatCount="indefinite" 
+                         path="M 150 50 L 1050 50 A 100 100 0 0 1 1050 250 L 150 250"
+                       />
+                     </circle>
+                   </svg>
+                </div>
+
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-y-16 gap-x-8">
+                   {[
+                     { icon: Video, title: "Online/Offline", desc: "Flexible learning modes" },
+                     { icon: BookOpen, title: "Extensive Resources", desc: "Curated learning materials" },
+                     { icon: Code, title: "Real Projects", desc: "Hands-on implementation" },
+                     { icon: FileText, title: "Assignments", desc: "Weekly skill validation" },
+                     // Second Row (Visual Order 8->5 for Snake, but DOM order 5->8)
+                     // To match the snake line (Right to Left), we need to display them in reverse order visually?
+                     // No, standard grid is Left to Right.
+                     // The line goes 1050 (Right) -> 150 (Left).
+                     // So item 5 (first in row 2) should be at 1050? No, that's complex CSS.
+                     // Let's keep standard LTR grid, but the LINE goes Right->Left.
+                     // So logically the flow is: 1->2->3->4 (Right) ... curve ... 8->7->6->5 (Left).
+                     // So we should map the data so it matches the line flow?
+                     // Let's just render them standard grid, and the line connects them visually.
+                     // 5(Left) <--- 8 (Right).
+                     // Wait, user said "2 line pass aavanam orderil".
+                     // If I draw line Right->Left, it passes 8,7,6,5.
+                     // So 5th item in grid (first in row 2) is "Q&A Support".
+                     // 8th item in grid (last in row 2) is "Case Studies".
+                     // Path M 1050 250 L 150 250 goes Right to Left.
+                     // So it touches Case Studies -> Networking -> LMS -> Q&A.
+                     // That seems fine for a visual loop.
+                     
+                     { icon: Users, title: "Q&A Support", desc: "Direct mentor access" },
+                     { icon: Smartphone, title: "LMS Access", desc: "24/7 Learning portal" },
+                     { icon: Globe, title: "Networking", desc: "Peer group community" },
+                     { icon: Award, title: "Case Studies", desc: "Real industry scenarios" }
+                   ].map((asset, i) => (
+                     <motion.div 
+                       key={i}
+                       initial={{ opacity: 0, scale: 0.9 }}
+                       whileInView={{ opacity: 1, scale: 1 }}
+                       viewport={{ once: true }}
+                       transition={{ delay: i * 0.1 }}
+                       className={`flex flex-col items-center text-center group relative z-10 ${i >= 4 ? 'lg:flex-col-reverse lg:pb-0' : ''}`}
+                     >
+                       {/* The condition above pushes the text above icon for bottom row? maybe not needed if standard align */}
+                       
+                        {/* Glowing Orbit Ring */}
+                        <div className="relative mb-6 group cursor-pointer bg-navy rounded-full">
+                           <div className="absolute inset-0 rounded-full bg-electric-blue/20 blur-xl group-hover:bg-electric-blue/40 transition-all duration-500" />
+                           <div className="w-24 h-24 rounded-full bg-navy border border-white/10 flex items-center justify-center relative z-10 group-hover:scale-110 transition-transform duration-500 group-hover:border-electric-blue/50">
+                              <asset.icon size={32} className="text-electric-blue" />
+                           </div>
+                           {/* Orbit Dot */}
+                           <motion.div 
+                             className="absolute -inset-2 border border-dashed border-white/20 rounded-full"
+                             animate={{ rotate: 360 }}
+                             transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+                           />
+                        </div>
+                        <h3 className="text-white font-bold text-lg mb-2">{asset.title}</h3>
+                        <p className="text-gray-500 text-xs leading-relaxed uppercase tracking-widest">{asset.desc}</p>
+                     </motion.div>
+                   ))}
+                </div>
             </div>
          </div>
       </section>

@@ -1,23 +1,21 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { UserPlus, PlayCircle, Code2, MessageCircle, Award } from "lucide-react";
+import { UserPlus, PlayCircle, Code2, MessageCircle, Award, Star, Rocket } from "lucide-react";
 import { SectionHeading } from "@/components/ui/section-heading";
 
 const steps = [
   { icon: UserPlus, title: "Enroll Course", desc: "Choose your path and join." },
   { icon: PlayCircle, title: "Access Content", desc: "Watch high-quality videos." },
   { icon: Code2, title: "Practice Projects", desc: "Build real-world apps." },
-  { icon: MessageCircle, title: "Get Mentorship", desc: "24/7 expert guidance." },
+  { icon: MessageCircle, title: "Internship with Stipend", desc: "Internship with stipend." },
   { icon: Award, title: "Earn Certificate", desc: "Showcase your skills." },
 ];
 
 export function Process() {
   return (
-    <section className="py-24 bg-transparent relative">
-      <div className="container mx-auto px-6">
-
-
+    <section className="py-24 bg-transparent relative overflow-hidden">
+      <div className="container mx-auto px-6 relative z-10">
         <SectionHeading
           badge="OUR PROCESS"
           title={
@@ -31,30 +29,208 @@ export function Process() {
           description="Your journey from beginner to pro in 5 simple steps."
         />
 
-        <div className="flex flex-wrap justify-center gap-8 relative z-10">
-          {steps.map((step, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1, duration: 0.5 }}
-              className="flex flex-col items-center text-center max-w-[180px]"
-            >
-              <div className="w-16 h-16 rounded-full bg-white/5 border border-white/10 flex items-center justify-center mb-4 text-electric-blue shadow-[0_0_15px_rgba(45,212,191,0.2)]">
-                <step.icon size={28} />
-              </div>
-              <h3 className="text-white font-bold mb-2">{step.title}</h3>
-              <p className="text-sm text-gray-400">{step.desc}</p>
-              
-              {/* Connector Line (except last item) - Desktop Only */}
-              {index < steps.length - 1 && (
-                <div className="hidden lg:block absolute top-8 left-1/2 w-full h-[1px] bg-gradient-to-r from-electric-blue/50 to-transparent -z-10 translate-x-12" 
-                     style={{ width: '100px' }} 
-                />
-              )}
-            </motion.div>
-          ))}
+        <div className="relative max-w-5xl mx-auto mt-20">
+          
+          {/* ================= MOBILE / TABLET VERTICAL LINE (Visible < lg) ================= */}
+          <div className="lg:hidden absolute left-1/2 top-0 bottom-0 -ml-[1px] w-[2px] h-full pointer-events-none z-0">
+             <svg className="w-full h-full overflow-visible" preserveAspectRatio="none">
+               <defs>
+                 <linearGradient id="mobileLineGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                   <stop offset="0%" stopColor="#7000ff" stopOpacity="0" />
+                   <stop offset="10%" stopColor="#7000ff" stopOpacity="0.5" />
+                   <stop offset="90%" stopColor="#00d2ff" stopOpacity="0.5" />
+                   <stop offset="100%" stopColor="#00d2ff" stopOpacity="0" />
+                 </linearGradient>
+               </defs>
+               {/* Background Track */}
+               <path 
+                 d="M 1 0 V 1000" 
+                 stroke="url(#mobileLineGradient)" 
+                 strokeWidth="2" 
+                 strokeDasharray="8 8" 
+                 className="opacity-30" 
+               />
+               {/* Moving Particle - Vertical - ROCKET */}
+               <g filter="url(#glow)">
+                 <animateMotion 
+                   dur="6s" 
+                   repeatCount="indefinite" 
+                   path="M 1 0 V 1000"
+                   rotate="auto"
+                 />
+                 <circle r="4" fill="#00d2ff" />
+                 <foreignObject width="40" height="40" x="-20" y="-20">
+                    <div className="w-full h-full flex items-center justify-center transform rotate-45">
+                       <Rocket className="text-electric-blue fill-navy w-6 h-6 animate-pulse" />
+                    </div>
+                 </foreignObject>
+               </g>
+             </svg>
+          </div>
+
+          {/* ================= DESKTOP SNAKE LINE (Visible >= lg) ================= */}
+          <div className="hidden lg:block absolute inset-0 -top-8 -z-10 w-full h-full pointer-events-none">
+             <svg className="w-full h-full visible" viewBox="0 0 1000 300" fill="none" preserveAspectRatio="none">
+               {/* Definitions for Glow & Gradients */}
+               <defs>
+                 <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+                   <feGaussianBlur stdDeviation="4" result="coloredBlur" />
+                   <feMerge>
+                     <feMergeNode in="coloredBlur" />
+                     <feMergeNode in="SourceGraphic" />
+                   </feMerge>
+                 </filter>
+                 <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                   <stop offset="0%" stopColor="#7000ff" stopOpacity="0.2" />
+                   <stop offset="50%" stopColor="#00d2ff" stopOpacity="0.5" />
+                   <stop offset="100%" stopColor="#7000ff" stopOpacity="0.2" />
+                 </linearGradient>
+                 <linearGradient id="activeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                   <stop offset="0%" stopColor="#7000ff" />
+                   <stop offset="100%" stopColor="#00d2ff" />
+                 </linearGradient>
+               </defs>
+
+               {/* Background Track */}
+               <motion.path 
+                 d="M 166 50 L 833 50 A 100 100 0 0 1 833 250 L 333 250"
+                 stroke="url(#lineGradient)"
+                 strokeWidth="4"
+                 strokeDasharray="10 10"
+                 strokeLinecap="round"
+                 initial={{ opacity: 0.2 }}
+                 animate={{ opacity: [0.2, 0.4, 0.2] }}
+                 transition={{ duration: 3, repeat: Infinity }}
+               />
+
+               {/* Active Line - Fully Drawn Track */}
+               <path
+                 d="M 166 50 L 833 50 A 100 100 0 0 1 833 250 L 333 250"
+                 stroke="url(#activeGradient)"
+                 strokeWidth="2"
+                 strokeLinecap="round"
+                 className="opacity-50"
+               />
+
+               {/* Continuous Moving Particle - ROCKET */}
+               <g filter="url(#glow)">
+                 <animateMotion 
+                   dur="8s" 
+                   repeatCount="indefinite" 
+                   path="M 166 50 L 833 50 A 100 100 0 0 1 833 250 L 333 250"
+                   rotate="auto"
+                 />
+                 <circle r="4" fill="#00d2ff" />
+                 
+                 {/* Rocket Icon following the path */}
+                 <foreignObject width="40" height="40" x="-20" y="-20">
+                    <div className="w-full h-full flex items-center justify-center transform rotate-45"> {/* Adjust rotation for icon orientation */}
+                       <Rocket className="text-electric-blue fill-navy w-6 h-6 animate-pulse" />
+                    </div>
+                 </foreignObject>
+               </g>
+             </svg>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-y-16 lg:gap-y-20 gap-x-8">
+            {/* Steps 0, 1, 2 */}
+            {steps.slice(0, 3).map((step, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.2 }}
+                className="flex flex-col items-center text-center relative z-10"
+              >
+                  {/* Glowing Orbit Ring */}
+                  <div className="relative mb-6 group cursor-pointer bg-navy rounded-full">
+                     <div className="absolute inset-0 rounded-full bg-electric-blue/20 blur-xl group-hover:bg-electric-blue/40 transition-all duration-500" />
+                     <div className="w-24 h-24 rounded-full bg-navy border border-white/10 flex items-center justify-center relative z-10 group-hover:scale-110 transition-transform duration-500 group-hover:border-electric-blue/50">
+                        <step.icon size={32} className="text-electric-blue" />
+                     </div>
+                     {/* Orbit Dot */}
+                     <motion.div 
+                       className="absolute -inset-2 border border-dashed border-white/20 rounded-full"
+                       animate={{ rotate: 360 }}
+                       transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+                     />
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-2">{step.title}</h3>
+                  <p className="text-gray-400 text-sm max-w-[200px]">{step.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-y-16 lg:gap-y-20 gap-x-8 mt-16 lg:mt-20 lg:w-2/3 lg:mx-auto lg:flex-row-reverse relative">
+             
+             {/* Step 3 (Mentorship) */}
+             <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 3 * 0.2 }}
+                className="flex flex-col items-center text-center relative z-10 lg:order-2"
+              >
+                  <div className="relative mb-6 group bg-navy rounded-full">
+                     <div className="absolute inset-0 rounded-full bg-cyan-400/20 blur-xl group-hover:bg-cyan-400/40 transition-all duration-500" />
+                     <div className="w-24 h-24 rounded-full bg-navy border border-white/10 flex items-center justify-center relative z-10 group-hover:scale-110 transition-transform duration-500 group-hover:border-cyan-400/50">
+                        <MessageCircle size={32} className="text-cyan-400" />
+                     </div>
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-2">{steps[3].title}</h3>
+                  <p className="text-gray-400 text-sm max-w-[200px]">{steps[3].desc}</p>
+              </motion.div>
+
+              {/* Step 4 (Certificate) - With Celebration */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 4 * 0.2 }}
+                className="flex flex-col items-center text-center relative z-10 lg:order-1"
+              >
+                  <div className="relative mb-6 group bg-navy rounded-full">
+                     <div className="absolute inset-0 rounded-full bg-purple-500/20 blur-xl group-hover:bg-purple-500/40 transition-all duration-500" />
+                     {/* Pulse Effect for End Goal */}
+                     <div className="absolute inset-0 rounded-full border-2 border-purple-500 animate-ping opacity-20" />
+                     
+                     <div className="w-24 h-24 rounded-full bg-navy border border-white/10 flex items-center justify-center relative z-10 group-hover:scale-110 transition-transform duration-500 group-hover:border-purple-500/50">
+                        <Award size={32} className="text-purple-500" />
+                     </div>
+                     
+                     {/* Celebration Stars */}
+                     <div className="absolute inset-0 overflow-visible pointer-events-none">
+                        {[...Array(12)].map((_, i) => (
+                           <motion.div
+                              key={i}
+                              className="absolute left-1/2 top-1/2"
+                              initial={{ x: 0, y: 0, scale: 0, opacity: 0 }}
+                              animate={{ 
+                                 x: ((i % 2 === 0 ? 1 : -1) * (i * 10 + 20)), 
+                                 y: ((i % 3 === 0 ? 1 : -1) * (i * 10 + 20)),
+                                 scale: [0, 1, 0],
+                                 opacity: [0, 1, 0],
+                                 rotate: [0, 180]
+                              }}
+                              transition={{ 
+                                 duration: 2, 
+                                 repeat: Infinity, 
+                                 repeatDelay: (i % 3) + 1,
+                                 delay: (i % 5) * 0.2,
+                                 ease: "easeOut" 
+                              }}
+                           >
+                              <Star 
+                                size={i % 2 === 0 ? 12 : 8} 
+                                className="fill-yellow-400 text-yellow-400" 
+                              />
+                           </motion.div>
+                        ))}
+                     </div>
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-2">{steps[4].title}</h3>
+                  <p className="text-gray-400 text-sm max-w-[200px]">{steps[4].desc}</p>
+              </motion.div>
+
+          </div>
         </div>
       </div>
     </section>
