@@ -102,25 +102,27 @@ export function CourseCard({ course, index }: { course: Course; index: number })
       </div>
 
       {/* IMAGE CONTAINER */}
-      <div className="relative h-60 w-full mb-6 rounded-[2rem] overflow-hidden border border-white/10 shadow-2xl">
-        <Image
-          src={course.image}
-          alt={course.title}
-          fill
-          sizes="(max-width: 768px) 100vw, 33vw"
-          className="object-cover group-hover:scale-110 transition-transform duration-1000 ease-out"
-        />
-        {/* Cinematic Gradient Overlays */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#03041a]/80 via-transparent to-transparent opacity-60" />
-        <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/10 to-transparent mix-blend-overlay" />
-        
-        {/* Floating Tag */}
-        <div className="absolute top-4 right-4 z-20">
-          <div className="px-4 py-1.5 rounded-full bg-navy/60 backdrop-blur-md border border-white/20 text-white font-bold text-xs tracking-wider">
-            {course.price}
+      <Link href={`/courses/${course.id}`}>
+        <div className="relative h-60 w-full mb-6 rounded-[2rem] overflow-hidden border border-white/10 shadow-2xl cursor-pointer">
+          <Image
+            src={course.image}
+            alt={course.title}
+            fill
+            sizes="(max-width: 768px) 100vw, 33vw"
+            className="object-cover group-hover:scale-110 transition-transform duration-1000 ease-out"
+          />
+          {/* Cinematic Gradient Overlays */}
+          <div className="absolute inset-0 bg-gradient-to-t from-[#03041a]/80 via-transparent to-transparent opacity-60" />
+          <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/10 to-transparent mix-blend-overlay" />
+          
+          {/* Floating Tag */}
+          <div className="absolute top-4 right-4 z-20">
+            <div className="px-4 py-1.5 rounded-full bg-navy/60 backdrop-blur-md border border-white/20 text-white font-bold text-xs tracking-wider">
+              {course.price}
+            </div>
           </div>
         </div>
-      </div>
+      </Link>
 
       {/* CONTENT */}
       <div className="px-4 pb-4 flex flex-col flex-1">
@@ -138,21 +140,25 @@ export function CourseCard({ course, index }: { course: Course; index: number })
           </div>
         </div>
 
-        <h3 className="text-2xl font-black text-white mb-2 leading-tight tracking-tight group-hover:text-electric-blue transition-colors">
-          {course.title}
-        </h3>
+        <Link href={`/courses/${course.id}`}>
+          <h3 className="text-2xl font-black text-white mb-2 leading-tight tracking-tight group-hover:text-electric-blue transition-colors cursor-pointer">
+            {course.title}
+          </h3>
+        </Link>
 
         <p className="text-blue-100/40 text-sm leading-relaxed mb-8 line-clamp-3 font-light">
           {course.description}
         </p>
 
-        <Link href="/contact" className="mt-auto">
+        <Link href={`/courses/${course.id}`} className="mt-auto">
           <Button 
-            className="w-full h-14 rounded-2xl bg-white/5 border-white/10 hover:bg-white hover:text-navy group/btn relative overflow-hidden transition-all duration-500"
+            className="w-full h-14 rounded-2xl bg-[#1a1c3a]/80 border border-white/10 hover:border-electric-blue/50 group/btn relative overflow-hidden transition-all duration-500 shadow-2xl"
           >
-            <span className="relative z-10 font-bold uppercase tracking-wider text-xs">Enroll Now</span>
-            <ArrowRight size={16} className="relative z-10 ml-2 group-hover/btn:translate-x-1 transition-transform" />
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-cyan-400 opacity-0 group-hover:opacity-10 Transition-opacity" />
+            <span className="relative z-10 font-black uppercase tracking-[0.3em] text-[10px] text-white group-hover:text-electric-blue transition-colors">View Details</span>
+            <ArrowRight size={14} className="relative z-10 ml-2 text-white group-hover/btn:translate-x-1 transition-transform group-hover:text-electric-blue" />
+            
+            {/* Animated Glow on Hover */}
+            <div className="absolute inset-0 bg-gradient-to-r from-electric-blue/0 via-electric-blue/5 to-electric-blue/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
           </Button>
         </Link>
       </div>

@@ -149,10 +149,10 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
         >
-          <h1 className="text-5xl md:text-8xl lg:text-9xl font-black tracking-tighter leading-[1] uppercase flex flex-col items-center">
-            <span className="text-white/20 mb-4 select-none filter blur-[0.5px]">Master the Future</span>
-            <span className="text-white mb-4 text-6xl md:text-9xl tracking-[0.1em]">of</span>
-            <span className="text-gradient animate-gradient bg-300% drop-shadow-[0_0_60px_rgba(34,211,238,0.4)] relative">
+          <h1 className="text-4xl md:text-8xl lg:text-9xl font-black tracking-tighter leading-[1] uppercase flex flex-col items-center px-4">
+            <span className="text-white/20 mb-4 select-none filter blur-[0.5px] text-center">Master the Future</span>
+            <span className="text-white mb-4 text-3xl md:text-9xl tracking-[0.1em]">of</span>
+            <span className="text-gradient animate-gradient bg-300% drop-shadow-[0_0_60px_rgba(34,211,238,0.4)] relative text-4xl md:text-8xl lg:text-9xl text-center">
               Web Development
               <div className="absolute -inset-4 bg-cyan-400/5 blur-[40px] -z-10 rounded-full" />
             </span>

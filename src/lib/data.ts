@@ -216,7 +216,6 @@ export const courses: Course[] = [
       "Full Stack System Architecture",
       "Advanced State Management (Redux/Zustand)",
       "Real-time Data with WebSockets",
-      "Microservices & Event-Driven Logic",
       "CI/CD Pipelines & DevOps Basics",
       "Enterprise Grade Security Patterns"
     ],

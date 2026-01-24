@@ -35,7 +35,7 @@ export function CTA() {
               </span>
             </div>
 
-            <h2 className="text-5xl md:text-8xl font-black text-white mb-10 tracking-tighter leading-[0.85] uppercase">
+            <h2 className="text-4xl md:text-8xl font-black text-white mb-10 tracking-tighter leading-[0.85] uppercase">
               Ready to claim <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">Your Future?</span>
             </h2>

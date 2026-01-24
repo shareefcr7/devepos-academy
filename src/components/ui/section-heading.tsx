@@ -40,7 +40,7 @@ export function SectionHeading({ badge, title, description, className }: Section
         )}
 
         {/* Cinematic Title */}
-        <h2 className="text-5xl md:text-7xl font-black tracking-tighter mb-8 leading-[0.9] flex flex-wrap justify-center gap-x-4 items-center uppercase">
+        <h2 className="text-3xl md:text-7xl font-black tracking-tighter mb-8 leading-[0.9] flex flex-wrap justify-center gap-x-4 items-center uppercase px-4">
           {title}
         </h2>
 

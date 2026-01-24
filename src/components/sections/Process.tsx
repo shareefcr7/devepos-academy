@@ -47,13 +47,10 @@ export function Process() {
               <h3 className="text-white font-bold mb-2">{step.title}</h3>
               <p className="text-sm text-gray-400">{step.desc}</p>
               
-              {/* Connector Line (except last item) */}
+              {/* Connector Line (except last item) - Desktop Only */}
               {index < steps.length - 1 && (
-                <div className="hidden md:block absolute top-8 left-1/2 w-full h-0.5 bg-white/5 -z-10" 
-                     style={{ 
-                       left: `calc(50% + ${ (index - 2) * 220 + 90 }px)`, 
-                       width: '130px' 
-                     }} 
+                <div className="hidden lg:block absolute top-8 left-1/2 w-full h-[1px] bg-gradient-to-r from-electric-blue/50 to-transparent -z-10 translate-x-12" 
+                     style={{ width: '100px' }} 
                 />
               )}
             </motion.div>

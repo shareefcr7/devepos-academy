@@ -56,9 +56,9 @@ const TopicCard = ({ topic }: { topic: typeof topicData[0] }) => (
 
 const MarqueeRow = ({ items, direction = "left", speed = 40 }: { items: typeof topicData, direction?: "left" | "right", speed?: number }) => {
   return (
-    <div className="flex overflow-hidden relative w-full py-4 px-2">
+    <div className="flex overflow-hidden relative w-full py-4 px-2 max-w-full">
       <motion.div
-        className="flex gap-8 min-w-max"
+        className="flex gap-4 md:gap-8 min-w-max"
         animate={{ x: direction === "left" ? ["0%", "-50%"] : ["-50%", "0%"] }}
         transition={{ duration: speed, ease: "linear", repeat: Infinity }}
       >
@@ -94,18 +94,18 @@ export function FeaturedTopics() {
             </span>
           </motion.div>
 
-          <h2 className="text-5xl md:text-8xl font-black text-white tracking-tighter mb-10 leading-[0.85] uppercase max-w-4xl">
+          <h2 className="text-4xl md:text-8xl font-black text-white tracking-tighter mb-10 leading-[0.85] uppercase max-w-4xl px-4">
              Explore <span className="text-gradient animate-gradient bg-300% filter brightness-125">Core Modules</span>
           </h2>
-          <p className="text-white/20 max-w-2xl mx-auto text-lg md:text-xl font-light leading-relaxed tracking-[0.2em] uppercase">
+          <p className="text-white/20 max-w-2xl mx-auto text-lg md:text-xl font-light leading-relaxed tracking-[0.2em] uppercase px-6">
             Official tools & technologies integrated into the <span className="text-white font-bold">SDEC Curriculum</span>.
           </p>
         </div>
 
         <div className="flex flex-col gap-10 relative">
            {/* Cinematic Side Masks */}
-           <div className="absolute left-0 top-0 bottom-0 w-32 md:w-80 z-20 bg-gradient-to-r from-[#010208] to-transparent pointer-events-none" />
-           <div className="absolute right-0 top-0 bottom-0 w-32 md:w-80 z-20 bg-gradient-to-l from-[#010208] to-transparent pointer-events-none" />
+           <div className="absolute left-0 top-0 bottom-0 w-16 md:w-80 z-20 bg-gradient-to-r from-[#010208] to-transparent pointer-events-none" />
+           <div className="absolute right-0 top-0 bottom-0 w-16 md:w-80 z-20 bg-gradient-to-l from-[#010208] to-transparent pointer-events-none" />
            
            <MarqueeRow items={row1} direction="left" speed={45} />
            <MarqueeRow items={row2} direction="right" speed={55} />

@@ -124,7 +124,7 @@ export function AboutSummary() {
               Who We Are
             </div>
             
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 leading-tight">
+            <h2 className="text-3xl md:text-5xl font-black mb-6 leading-tight uppercase tracking-tighter">
               Premier <span className="text-transparent bg-clip-text bg-gradient-to-r from-electric-blue via-cyan-400 to-purple-400">Offline Tech Training</span> & Career Development
             </h2>
             

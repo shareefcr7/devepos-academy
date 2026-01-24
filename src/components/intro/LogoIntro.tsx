@@ -113,7 +113,7 @@ export function LogoIntro({ onComplete }: { onComplete: () => void }) {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.5 }}
-                  className="text-4xl md:text-6xl font-bold text-white tracking-wider font-mono relative z-10 min-w-[300px] text-center"
+                  className="text-3xl md:text-6xl font-black text-white tracking-wider font-mono relative z-10 text-center px-4"
                 >
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">
                     {displayText}

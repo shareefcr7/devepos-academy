@@ -38,15 +38,13 @@ export function Benefits() {
       <div className="container mx-auto px-6 relative z-10">
         
         {/* Section Header */}
-
-
         <SectionHeading
           badge="Who We Are"
           title={
             <>
-              <span className="text-white drop-shadow-2xl block">Premier</span>
+              <span className="text-white drop-shadow-2xl block"></span>
               <span className="block mt-1 leading-tight bg-clip-text text-transparent bg-gradient-to-r from-violet-400 via-blue-400 to-cyan-400 drop-shadow-lg font-bold">
-                Offline Tech Training & Career Development
+                 Tech Training & Career Development
               </span>
             </>
           }
@@ -85,28 +83,25 @@ export function Benefits() {
               className="relative"
            >
               <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-6 shadow-2xl relative z-10 group">
-                 <div className="relative h-[400px] w-full rounded-2xl overflow-hidden mb-8">
+                 <div className="relative h-[300px] md:h-[500px] w-full rounded-2xl overflow-hidden mb-8 bg-navy-dark/50">
                     <Image 
-                      src="/images/journey-team.jpg"
+                      src="/images/team-update.jpg"
                       alt="SDEC Academy Team"
                       fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-110"
+                      className="object-contain transition-transform duration-700 group-hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                  </div>
                  
-                 <div className="space-y-4">
-                    <h4 className="text-xl font-bold text-white">About Us</h4>
+                 <div className="space-y-4 text-center">
+                    <h4 className="text-xl font-bold text-white uppercase tracking-wider">About Us</h4>
                     <p className="text-gray-400 text-sm leading-relaxed">
                        Our academy is built on the belief that learning should create confidence and clarity. We follow a student-first approach, where every learner is treated as a professional from day one. Our focus is on building strong fundamentals, real skills, and a growth-oriented mindset that prepares learners for real-world challenges.
                     </p>
                     
-                    <h4 className="text-xl font-bold text-white pt-2">What Makes Us Different</h4>
+                    <h4 className="text-xl font-bold text-white pt-2 uppercase tracking-wider">What Makes Us Different</h4>
                     <p className="text-gray-400 text-sm leading-relaxed mb-6">
                        We go beyond course completion. Our learners work on real projects, receive personal mentoring and continuous guidance, and gain real company exposure through Shahi Solution. We provide free training and paid internship opportunities. Once a learner joins us, we treat them as a professional developer, not just a student. We also support learners with career guidance, resume preparation, and interview support.
                     </p>
-
-
                  </div>
               </div>
               
@@ -118,12 +113,12 @@ export function Benefits() {
            <div className="space-y-12">
               {featuresRight.map((feature, i) => (
                 <motion.div 
-                  key={i}
-                  initial={{ opacity: 0, x: 30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.2 }}
-                  className="flex flex-col gap-4 text-center lg:text-left items-center lg:items-start group"
+                   key={i}
+                   initial={{ opacity: 0, x: 30 }}
+                   whileInView={{ opacity: 1, x: 0 }}
+                   viewport={{ once: true }}
+                   transition={{ delay: i * 0.2 }}
+                   className="flex flex-col gap-4 text-center lg:text-left items-center lg:items-start group"
                 >
                    <div className="p-4 rounded-2xl bg-white/5 border border-white/10 group-hover:bg-electric-blue/10 group-hover:border-electric-blue/30 transition-all duration-300">
                       <feature.icon className="text-white w-8 h-8" />

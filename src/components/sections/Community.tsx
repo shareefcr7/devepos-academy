@@ -249,7 +249,7 @@ export function Community() {
                      key={i}
                      className={cn(
                        "inline-block origin-bottom",
-                       "text-blue-500 tracking-widest"
+                       "text-transparent bg-clip-text bg-gradient-to-tr from-blue-400 to-cyan-400 tracking-widest font-black"
                      )}
                      initial={{ y: 0, rotateX: 0 }}
                      whileHover={{ 

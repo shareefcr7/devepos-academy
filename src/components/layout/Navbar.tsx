@@ -35,22 +35,22 @@ export function Navbar() {
       animate={{ y: 0 }}
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
     >
-      <div className="container mx-auto px-8 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-4 group">
+      <div className="container mx-auto px-6 flex items-center justify-between">
+        <Link href="/" className="flex items-center gap-3 md:gap-4 group">
           <motion.div 
             whileHover={{ scale: 1.05 }}
-            className="w-12 h-12 rounded-2xl bg-gradient-to-br from-electric to-electric-blue flex items-center justify-center shadow-[0_0_30px_rgba(112,0,255,0.3)] relative overflow-hidden group"
+            className="w-10 h-10 md:w-12 md:h-12 rounded-xl md:rounded-2xl bg-gradient-to-br from-electric to-electric-blue flex items-center justify-center shadow-[0_0_30px_rgba(112,0,255,0.3)] relative overflow-hidden"
           >
             <div className="absolute inset-0 bg-gradient-to-tr from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-            <Zap className="text-white fill-white relative z-10" size={24} />
+            <Zap className="text-white fill-white relative z-10" size={20} />
           </motion.div>
           
-          <div className="flex flex-col">
+          <div className="flex flex-col justify-center -space-y-1">
             <div className="flex">
               {"SDEC".split("").map((char, i) => (
                 <motion.span
                   key={i}
-                  className="text-xl font-black text-white tracking-[0.2em] uppercase leading-none"
+                  className="text-lg md:text-xl font-black text-white tracking-[0.2em] uppercase leading-none"
                   animate={{ 
                     y: [0, -3, 0],
                   }}
@@ -69,7 +69,7 @@ export function Navbar() {
               {"ACADEMY".split("").map((char, i) => (
                 <motion.span
                   key={i}
-                  className="text-[10px] font-bold text-electric-blue tracking-[0.4em] uppercase opacity-80"
+                  className="text-[8px] md:text-[10px] font-bold text-electric-blue tracking-[0.4em] uppercase opacity-80"
                   animate={{ 
                     y: [0, -2, 0],
                     opacity: [0.6, 1, 0.6]
@@ -121,27 +121,45 @@ export function Navbar() {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="md:hidden absolute top-full left-0 right-0 bg-navy-dark/95 backdrop-blur-3xl border-b border-white/5 p-8"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            className="md:hidden fixed inset-0 top-[72px] bg-navy-dark/98 backdrop-blur-3xl z-40 overflow-y-auto"
           >
-            <div className="flex flex-col gap-6">
-              {navLinks.map((link) => (
-                <Link
+            <div className="flex flex-col items-center justify-center min-h-[calc(100vh-72px)] p-12 gap-8 text-center">
+              {navLinks.map((link, i) => (
+                <motion.div
                   key={link.name}
-                  href={link.href}
-                  className="text-lg font-bold text-white/70 hover:text-white uppercase tracking-widest"
-                  onClick={() => setIsMobileMenuOpen(false)}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.1 }}
                 >
-                  {link.name}
-                </Link>
+                  <Link
+                    href={link.href}
+                    className="text-4xl font-black text-white/70 hover:text-white uppercase tracking-[0.2em] transition-all hover:scale-110 block"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    {link.name}
+                  </Link>
+                </motion.div>
               ))}
-              <Link href="/#courses" onClick={() => setIsMobileMenuOpen(false)}>
-                <Button className="w-full h-14 bg-white text-navy font-black uppercase tracking-widest">
-                  Join Elite
-                </Button>
-              </Link>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: navLinks.length * 0.1 }}
+                className="w-full max-w-xs mt-8"
+              >
+                <Link href="/#courses" onClick={() => setIsMobileMenuOpen(false)}>
+                  <Button className="w-full h-16 bg-white text-navy font-black uppercase tracking-widest text-sm rounded-2xl shadow-2xl">
+                    Join Elite
+                  </Button>
+                </Link>
+              </motion.div>
+            </div>
+            
+            {/* Decoration in Mobile Menu */}
+            <div className="absolute bottom-0 left-0 right-0 p-12 flex justify-center opacity-20">
+               <Zap size={100} className="text-electric-blue blur-2xl animate-pulse" />
             </div>
           </motion.div>
         )}
