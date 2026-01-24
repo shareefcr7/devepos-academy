@@ -85,10 +85,10 @@ export function Benefits() {
               <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-6 shadow-2xl relative z-10 group">
                  <div className="relative h-[300px] md:h-[500px] w-full rounded-2xl overflow-hidden mb-8 bg-navy-dark/50">
                     <Image 
-                      src="/images/team-update.jpg"
+                      src="/images/team-photo-new.png"
                       alt="SDEC Academy Team"
                       fill
-                      className="object-contain transition-transform duration-700 group-hover:scale-105"
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
                     />
                  </div>
                  
