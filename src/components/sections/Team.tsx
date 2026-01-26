@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useInView } from "framer-motion";
 import Image from "next/image";
 import { Quote, Star, Terminal, Zap, Code, Shield, Cpu, Volume2, VolumeX } from "lucide-react";
 import { useState, useEffect, useCallback, memo, useRef } from "react";
@@ -159,6 +159,8 @@ export function Team() {
   const [isFinished, setIsFinished] = useState(false);
   const [mounted, setMounted] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const sectionRef = useRef(null);
+  const isInView = useInView(sectionRef, { amount: 0.3 });
 
   useEffect(() => {
     setMounted(true);
@@ -187,15 +189,18 @@ export function Team() {
   // Audio Playback Logic - Automatic Play from 1st to 8th
   useEffect(() => {
     if (audioRef.current) {
-      if (!isMuted && !isFinished) {
+      if (!isMuted && !isFinished && isInView) {
         // Attempt to play (browser might block until first click)
-        audioRef.current.play().catch(() => {
-          // If blocked, we'll wait for user to toggle mute or click restart
-          console.log("Autoplay blocked - awaiting user interaction");
-        });
+        const playPromise = audioRef.current.play();
+        if (playPromise !== undefined) {
+          playPromise.catch(() => {
+            // If blocked, we'll wait for user to toggle mute or click restart
+            console.log("Autoplay blocked - awaiting user interaction");
+          });
+        }
         audioRef.current.volume = 0.5;
-      } else if (isFinished) {
-        // Fade out transition at the 8th member
+      } else if (isFinished || !isInView) {
+        // Fade out transition
         let vol = 0.5;
         const fadeOut = setInterval(() => {
           if (vol > 0) {
@@ -210,7 +215,7 @@ export function Team() {
         audioRef.current.pause();
       }
     }
-  }, [isMuted, isFinished]);
+  }, [isMuted, isFinished, isInView]);
 
   useEffect(() => {
     if (isFinished) return;
@@ -272,7 +277,7 @@ export function Team() {
   };
 
   return (
-    <section className="py-32 relative overflow-hidden bg-[#010208] perspective-[3500px]">
+    <section ref={sectionRef} className="py-32 relative overflow-hidden bg-[#010208] perspective-[3500px]">
       {/* Audio Control Toggle */}
       <div className="absolute top-12 right-12 z-[100] flex items-center gap-4">
         {isFinished && (
