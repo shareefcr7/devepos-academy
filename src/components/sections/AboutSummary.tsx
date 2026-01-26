@@ -1,15 +1,15 @@
 "use client";
 
-import { useState, useEffect } from "react";
-
-import { motion } from "framer-motion";
-import { CheckCircle, Code, Terminal, Laptop, Zap, Users, Database, Cloud, Server, Shield } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { CheckCircle, Code, Terminal, Laptop, Zap, Users, Database, Cloud, Server, Shield, Cpu, Activity } from "lucide-react";
 import Image from "next/image";
 
-// Code Rain Component
+// --- Enhanced Background Elements ---
+
 const CodeRain = () => {
   const rainIcons = [Code, Terminal, Laptop, Zap, Users, Database, Cloud, Server, Shield];
-  const keywords = ["SDEC", "ACADEMY", "CLOUD", "AWS", "DOCKER", "K8S", "CI/CD", "GIT", "LINUX"];
+  const keywords = ["SYSTEM", "CORE", "SDEC", "NODE", "REACT", "NEXT", "DEPLOY", "AWS", "LINUX"];
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -19,26 +19,26 @@ const CodeRain = () => {
   if (!mounted) return null;
   
   return (
-    <div className="absolute inset-0 overflow-hidden opacity-10 pointer-events-none">
-      <div className="flex justify-between px-2">
-        {[...Array(window.innerWidth < 768 ? 4 : 8)].map((_, i) => {
+    <div className="absolute inset-0 overflow-hidden opacity-[0.03] pointer-events-none">
+      <div className="flex justify-between px-4">
+        {[...Array(12)].map((_, i) => {
            const Icon = rainIcons[Math.floor(Math.random() * rainIcons.length)];
            const keyword = keywords[Math.floor(Math.random() * keywords.length)];
            return (
             <motion.div
               key={i}
-              initial={{ y: -100, opacity: 0 }}
-              animate={{ y: "100vh", opacity: [0, 1, 0] }}
+              initial={{ y: -200, opacity: 0 }}
+              animate={{ y: "120vh", opacity: [0, 1, 0] }}
               transition={{
-                duration: Math.random() * 5 + 5,
+                duration: Math.random() * 8 + 8,
                 repeat: Infinity,
                 ease: "linear",
-                delay: Math.random() * 5,
+                delay: Math.random() * 10,
               }}
-              className="text-electric-blue/40 text-[10px] font-mono writing-vertical flex flex-col items-center gap-4 font-bold tracking-widest"
+              className="text-cyan-500 font-mono writing-vertical flex flex-col items-center gap-6 text-[10px] tracking-[0.5em] font-black"
               style={{ writingMode: "vertical-rl" }}
             >
-              {Math.random() > 0.5 && <Icon size={12} className="mb-2 rotate-90 text-teal-400" />}
+              <Icon size={14} className="mb-4 rotate-90" />
               {keyword}
             </motion.div>
           );
@@ -48,126 +48,167 @@ const CodeRain = () => {
   );
 };
 
-// Tech Icons Crash/Float Animation
-const TechIcons = () => {
-    const icons = [Database, Cloud, Server, Shield];
-    const [mounted, setMounted] = useState(false);
-
-    useEffect(() => {
-      setMounted(true);
-    }, []);
-
-    if (!mounted) return null;
-
-    return (
-        <div className="absolute inset-0 pointer-events-none overflow-hidden">
-            {icons.map((Icon, i) => (
-                <motion.div
-                    key={i}
-                    initial={{ opacity: 0, scale: 0 }}
-                    animate={{ 
-                        opacity: [0, 0.3, 0], 
-                        scale: [0.5, 1.5, 0.5],
-                        x: [Math.random() * 100 - 50, Math.random() * 100 - 50],
-                        y: [Math.random() * 100 - 50, Math.random() * 100 - 50]
-                    }}
-                    transition={{
-                        duration: 8,
-                        repeat: Infinity,
-                        delay: i * 2,
-                        ease: "easeInOut"
-                    }}
-                    className="absolute"
-                    style={{
-                        top: `${Math.random() * 80 + 10}%`,
-                        left: `${Math.random() * 80 + 10}%`,
-                    }}
-                >
-                    <Icon size={40} className="text-electric-blue/20" />
-                </motion.div>
-            ))}
-        </div>
-    );
-};
+// --- Main Component ---
 
 export function AboutSummary() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  });
+
+  const y1 = useTransform(scrollYProgress, [0, 1], [100, -100]);
+  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
+
   return (
-    <section className="py-16 md:py-20 relative bg-transparent overflow-hidden">
-      {/* Background Ambience */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-900/10 via-navy to-navy pointer-events-none" />
+    <section ref={containerRef} className="py-32 relative bg-[#010208] overflow-hidden perspective-[2000px]">
       
-      {/* Animations */}
+      {/* Cinematic Lighting & Atmosphere */}
+      <div className="absolute inset-0 pointer-events-none">
+         <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-blue-500/5 rounded-full blur-[150px] opacity-60" />
+         <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-cyan-500/5 rounded-full blur-[120px] opacity-40" />
+         <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10 mix-blend-overlay" />
+      </div>
+
       <CodeRain />
-      <TechIcons />
-      
-      {/* Crash/Pulse Background */}
-      <motion.div 
-         animate={{ opacity: [0.05, 0.1, 0.05], scale: [1, 1.1, 1] }}
-         transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-electric-blue/10 rounded-full blur-[100px] pointer-events-none"
-      />
 
       <div className="container mx-auto px-6 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
           
+          {/* Text Content */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
+            initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="relative"
           >
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 font-medium text-sm mb-4 md:mb-6">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+            {/* Identity Badge */}
+            <motion.div 
+               initial={{ opacity: 0, y: 10 }}
+               whileInView={{ opacity: 1, y: 0 }}
+               transition={{ delay: 0.2 }}
+               className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-md mb-8 group cursor-cell"
+            >
+              <div className="relative flex items-center justify-center w-5 h-5">
+                 <div className="absolute inset-0 bg-cyan-500/20 rounded-full animate-ping" />
+                 <Cpu size={12} className="text-cyan-400 relative z-10" />
+              </div>
+              <span className="text-[10px] font-black tracking-[0.3em] uppercase text-cyan-400/80 group-hover:text-cyan-400 transition-colors">
+                System Identity: SDEC
               </span>
-              Who We Are
-            </div>
+            </motion.div>
             
-            <h2 className="text-[clamp(1.8rem,8vw,3.5rem)] font-black mb-6 md:mb-8 leading-[1.1] uppercase tracking-tighter">
-              Premier <span className="text-transparent bg-clip-text bg-gradient-to-r from-electric-blue via-cyan-400 to-purple-400">Offline Tech Training</span> & Career Development
+            <h2 className="text-[clamp(2.5rem,5vw,4.5rem)] font-black leading-[0.9] text-white uppercase tracking-tighter mb-8 bg-clip-text">
+               Forging The <br />
+               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-white animate-text-shimmer bg-[length:200%_auto]">
+                 Digital Elite
+               </span>
             </h2>
             
-            <p className="text-gray-400 text-lg mb-4 md:mb-6 leading-relaxed">
-              SDEC Academy is a leading offline destination for aspiring developers and tech enthusiasts. 
-              We bridge the gap between academic learning and industry requirements through 
-              hands-on, project-based training.
+            <p className="text-white/40 text-lg md:text-xl font-light leading-relaxed mb-12 max-w-xl border-l-2 border-white/10 pl-6">
+              Processing raw talent into high-performance <span className="text-white">engineering architects</span>. 
+              Bridging the void between theoretical data and deployed reality through intense, project-rooted protocols.
             </p>
-            <div className="space-y-4 mb-8">
+
+            <div className="space-y-6">
               {[
-                "Designed for Students, Freelancers & Aspiring Engineers",
-                "Focus on Practical, Industry-Oriented Learning",
-                "Mentorship directly from Industry Experts"
+                { label: "Protocol: Industry-Grade Mentorship", icon: Users },
+                { label: "Target: Full-Stack Architecture", icon: Server },
+                { label: "Status: Live Project Deployment", icon: Zap }
               ].map((item, i) => (
-                <div key={i} className="flex items-center gap-3">
-                  <CheckCircle className="text-electric-blue flex-shrink-0" size={20} />
-                  <span className="text-gray-300">{item}</span>
-                </div>
+                <motion.div 
+                  key={i}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.4 + (i * 0.1) }}
+                  className="group relative h-16 bg-white/[0.02] border border-white/5 rounded-xl overflow-hidden flex items-center px-6 gap-5 hover:bg-white/[0.05] transition-colors"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 to-transparent translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-700" />
+                  
+                  <div className="w-8 h-8 rounded-lg bg-black flex items-center justify-center border border-white/10 group-hover:border-cyan-500/50 transition-colors">
+                    <item.icon size={16} className="text-white/40 group-hover:text-cyan-400 transition-colors" />
+                  </div>
+                  
+                  <span className="font-mono text-xs tracking-[0.1em] uppercase text-white/60 group-hover:text-white transition-colors">
+                    {item.label}
+                  </span>
+
+                  <div className="ml-auto flex items-center gap-2">
+                    <div className="w-1.5 h-1.5 rounded-full bg-cyan-500/20 group-hover:bg-cyan-400 group-hover:shadow-[0_0_10px_#22d3ee] transition-all" />
+                  </div>
+                </motion.div>
               ))}
             </div>
           </motion.div>
 
+          {/* Viz Content */}
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
-            className="relative"
+            initial={{ opacity: 0, scale: 0.9, rotateY: 30 }}
+            whileInView={{ opacity: 1, scale: 1, rotateY: 0 }}
+            transition={{ duration: 1.2, ease: "easeOut" }}
+            style={{ y: y1, opacity }}
+            className="relative h-[600px] w-full hidden lg:block"
           >
-            <div className="relative h-[300px] md:h-[450px] w-full rounded-2xl overflow-hidden border border-gray-200 dark:border-white/10 shadow-2xl">
-              <Image 
-                src="/images/IMAGE6.avif"
-                alt="About SDEC Academy"
-                fill
-                className="object-cover object-center"
-              />
-              <div className="absolute inset-0 bg-white/10 dark:bg-navy/30 mix-blend-multiply" />
-            </div>
-            {/* Decorative blob */}
-            <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-blue-400/20 dark:bg-electric-blue/20 rounded-full blur-3xl" />
-          </motion.div>
+             {/* Holographic Frame */}
+             <div className="absolute inset-0 z-20 border border-white/10 rounded-[2rem] pointer-events-none">
+                {/* Tech Corners */}
+                <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-cyan-500/50 rounded-tl-[1.8rem]" />
+                <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-cyan-500/50 rounded-tr-[1.8rem]" />
+                <div className="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-cyan-500/50 rounded-bl-[1.8rem]" />
+                <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-cyan-500/50 rounded-br-[1.8rem]" />
+                
+                {/* Scanning Line */}
+                <motion.div 
+                   animate={{ top: ["0%", "100%", "0%"] }}
+                   transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+                   className="absolute left-0 right-0 h-px bg-gradient-to-r from-transparent via-cyan-400 to-transparent opacity-50 blur-[2px]"
+                />
+             </div>
 
+             {/* Main Image Container */}
+             <div className="relative w-full h-full rounded-[2rem] overflow-hidden filter grayscale brightness-[0.8] hover:grayscale-0 hover:brightness-100 transition-all duration-700 bg-black">
+                <Image 
+                  src="/images/IMAGE6.avif"
+                  alt="SDEC Facility"
+                  fill
+                  className="object-cover"
+                />
+                
+                {/* Digital Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/40 opacity-80" />
+                <div className="absolute inset-0 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] z-10 bg-[length:100%_4px,6px_100%] pointer-events-none" />
+
+                <div className="absolute bottom-10 left-10 z-20">
+                   <div className="flex items-center gap-4 mb-2">
+                      <Activity className="text-cyan-400" size={24} />
+                      <span className="text-3xl font-black text-white tracking-widest">LIVE</span>
+                   </div>
+                   <p className="font-mono text-[10px] text-cyan-400/60 uppercase tracking-[0.2em]">
+                      // Academy_Floor_Cam_01 <br />
+                      // Sector: Kerala, India
+                   </p>
+                </div>
+             </div>
+             
+             {/* Floating Elements */}
+             <motion.div 
+               animate={{ y: [-10, 10, -10] }}
+               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+               className="absolute -right-10 top-1/2 -translate-y-1/2 bg-black/90 backdrop-blur-xl border border-white/10 p-6 rounded-2xl z-30 shadow-2xl"
+             >
+                <div className="flex items-center gap-4 mb-4">
+                   <div className="w-3 h-3 rounded-full bg-green-500 animate-pulse" />
+                   <span className="text-[10px] font-bold text-white/60 tracking-widest uppercase">System Status</span>
+                </div>
+                <div className="text-2xl font-black text-white mb-1">98.9%</div>
+                <div className="text-[10px] text-white/40 uppercase tracking-wider">Placement Rate Effect</div>
+             </motion.div>
+
+          </motion.div>
 
         </div>
       </div>
     </section>
   );
 }
+
