@@ -12,7 +12,7 @@ export function Courses() {
   const rainIcons = [GraduationCap, Award, Briefcase, TrendingUp, BadgeCheck, FileText, Code, Database, Globe, Layers, Cpu, Sparkles];
 
   return (
-    <section id="courses" className="py-24 relative bg-transparent overflow-hidden">
+    <section id="courses" className="py-16 md:py-20 relative bg-transparent overflow-hidden">
        {/* Deep Space Background Gradient */}
        <div className="absolute inset-0 bg-gradient-to-b from-navy via-navy-light to-navy pointer-events-none" />
        

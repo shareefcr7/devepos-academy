@@ -95,7 +95,7 @@ const testimonials = [
 
 export function Testimonials() {
   return (
-    <section className="py-24 bg-transparent relative overflow-hidden">
+    <section className="py-16 md:py-20 bg-transparent relative overflow-hidden">
       
       {/* Background Gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#0b1021] pointer-events-none opacity-100" />

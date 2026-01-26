@@ -3,6 +3,7 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Benefits } from "@/components/sections/Benefits";
+import { Team } from "@/components/sections/Team";
 import { motion } from "framer-motion";
 import { Trophy, Target, Rocket, Lightbulb, TrendingUp, Star, Award, Zap, Crown, Medal, PartyPopper } from "lucide-react";
 import { useState, useEffect } from "react";
@@ -86,7 +87,7 @@ export default function AboutPage() {
     <main className="min-h-screen bg-navy text-white selection:bg-electric-blue/30">
       <Navbar />
       
-      <section className="pt-32 pb-20 relative overflow-hidden">
+      <section className="pt-32 pb-16 relative overflow-hidden">
         {/* Background Elements - Low Attraction */}
         <div className="absolute top-20 right-0 w-[500px] h-[500px] bg-blue-900/10 rounded-full blur-[100px]" />
         <SuccessBackground />
@@ -110,37 +111,42 @@ export default function AboutPage() {
           <div className="relative isolate">
             <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent rounded-3xl -z-10 blur-2xl opacity-50" />
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-24 p-8 rounded-3xl border border-white/5 bg-navy/50 backdrop-blur-sm relative overflow-hidden">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-16 p-8 rounded-3xl border border-white/5 bg-navy/50 backdrop-blur-sm relative overflow-hidden">
               {/* Premium Glow */}
               <div className="absolute -top-40 -right-40 w-80 h-80 bg-electric-blue/5 rounded-full blur-[100px]" />
               
-              <motion.div
-                 initial={{ opacity: 0, x: -50 }}
-                 whileInView={{ opacity: 1, x: 0 }}
-                 transition={{ duration: 0.8 }}
-                 className="order-2 md:order-1 relative"
-              >
-                <div className="relative w-full max-w-[400px] h-auto mx-auto md:mx-0 rounded-3xl overflow-hidden shadow-2xl border border-white/10 group">
-                 {/* Image */}
-                 <img 
-                   src="/images/shahi-rahman-full.png"
-                   alt="Shahi Rahman - Founder"
-                   className="w-full h-full object-cover object-top"
-                 />
-                 {/* Overlay Gradient */}
-                 <div className="absolute inset-0 bg-gradient-to-t from-navy via-transparent to-transparent opacity-60" />
-               </div>
-               {/* Decorative Element */}
-               <div className="absolute -bottom-6 -left-6 w-full h-full border-2 border-electric-blue/30 rounded-2xl -z-10" />
-            </motion.div>
+                <motion.div
+                   initial={{ opacity: 0, scale: 0.9 }}
+                   whileInView={{ opacity: 1, scale: 1 }}
+                   transition={{ duration: 0.8 }}
+                   className="order-1 md:order-1 relative"
+                >
+                  <div className="relative w-full max-w-[450px] md:max-w-[400px] aspect-[4/5] mx-auto md:mx-0 rounded-[2.5rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)] border border-white/10 group">
+                   {/* Image */}
+                   <img 
+                     src="/images/shahi-rahman-full.png"
+                     alt="Shahi Rahman - Founder"
+                     className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                   />
+                   {/* Overlay Gradient */}
+                   <div className="absolute inset-0 bg-gradient-to-t from-navy/80 via-transparent to-transparent opacity-60" />
+                   
+                   {/* Premium Border Glow */}
+                   <div className="absolute inset-0 rounded-[2.5rem] border border-white/20 group-hover:border-electric-blue/50 transition-colors pointer-events-none" />
+                 </div>
+                 
+                 {/* Decorative Floating Element */}
+                 <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-electric-blue/20 rounded-full blur-3xl -z-10 animate-pulse" />
+                 <div className="absolute -top-6 -left-6 w-24 h-24 bg-cyan-400/10 rounded-full blur-2xl -z-10" />
+              </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="order-1 md:order-2"
-            >
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+                className="order-2 md:order-2 text-center md:text-left"
+              >
               <span className="text-electric-blue font-bold tracking-wider uppercase text-sm mb-2 block">Visionary Leader</span>
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
                 Meet the <span className="text-electric-blue">Founder</span>
@@ -159,11 +165,11 @@ export default function AboutPage() {
               </div>
 
               <div className="flex flex-wrap gap-3">
-                 {['Software Engineering Educator', 'MERN Stack Expert'].map((tag, i) => (
-                   <span key={i} className="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-gray-300 text-sm font-medium hover:bg-white/10 transition-colors">
-                     {tag}
-                   </span>
-                 ))}
+                {['Software Engineering Educator', 'MERN Stack Expert'].map((tag, i) => (
+                  <span key={i} className="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-gray-300 text-sm font-medium hover:bg-white/10 transition-colors">
+                    {tag}
+                  </span>
+                ))}
               </div>
             </motion.div>
           </div>
@@ -171,9 +177,8 @@ export default function AboutPage() {
         </div>
       </section>
 
-
-
       <Benefits />
+      <Team />
       <Footer />
     </main>
   );

@@ -1,9 +1,9 @@
 @import "tailwindcss";
 
 @theme {
-  --color-navy: #03041a;
-  --color-navy-dark: #010208;
-  --color-navy-light: #0d0f2b;
+  --color-navy: #010208;
+  --color-navy-dark: #000000;
+  --color-navy-light: #050614;
   --color-electric: #7000ff;
   --color-electric-blue: #00d2ff;
   --color-accent-purple: #8b5cf6;
@@ -15,6 +15,23 @@
   --animate-pulse-glow: pulse-glow 3s infinite;
   --animate-shimmer: shimmer 2.5s infinite linear;
   --animate-tilt: tilt 10s infinite linear;
+  --animate-grid-fade: grid-fade 8s linear infinite;
+
+  @keyframes grid-fade {
+    0% {
+      opacity: 0.1;
+      transform: translateY(0) rotateX(60deg);
+    }
+
+    50% {
+      opacity: 0.3;
+    }
+
+    100% {
+      opacity: 0.1;
+      transform: translateY(50px) rotateX(60deg);
+    }
+  }
 
   @keyframes float {
 
@@ -68,13 +85,14 @@
 }
 
 :root {
-  --background: #03041a;
+  --background: #010208;
   --foreground: #f8fafc;
-  --card-bg: rgba(13, 15, 43, 0.7);
-  --card-border: rgba(255, 255, 255, 0.08);
+  --card-bg: rgba(13, 15, 43, 0.4);
+  --card-border: rgba(255, 255, 255, 0.05);
 }
 
-html, body {
+html,
+body {
   max-width: 100vw;
   overflow-x: hidden;
   scroll-behavior: smooth;
@@ -85,9 +103,8 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans), sans-serif;
   background-image:
-    radial-gradient(circle at 40% 0%, #0d0f2b 0%, #03041a 100%),
+    radial-gradient(circle at 50% 0%, #0d0f2b 0%, #010208 100%),
     url("https://grainy-gradients.vercel.app/noise.svg");
-  /* background-attachment: fixed; - REMOVED for mobile performance */
   -webkit-font-smoothing: antialiased;
   -webkit-tap-highlight-color: transparent;
 }

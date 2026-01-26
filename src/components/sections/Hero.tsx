@@ -38,7 +38,7 @@ export function Hero() {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 bg-[#03041a]">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 bg-[#010208]">
       {/* --- CINEMATIC FLOWING BACKGROUND --- */}
       <div className="absolute inset-0 z-0">
         <motion.div
@@ -118,8 +118,8 @@ export function Hero() {
         )}
 
         {/* Cinematic Vignette */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#03041a]/95 via-transparent to-[#03041a]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_transparent_30%,_rgba(3,4,26,0.95)_100%)]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#010208]/95 via-transparent to-[#010208]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_transparent_30%,_rgba(1,2,8,0.95)_100%)]" />
       </div>
 
       {/* --- BACKGROUND DECORATION LAYER (Behind Text) --- */}
@@ -137,30 +137,32 @@ export function Hero() {
            animate={{ opacity: 1, y: 0 }}
            transition={{ duration: 0.8 }}
         >
-          <div className="inline-flex items-center gap-3 py-2.5 px-10 rounded-full bg-white/5 text-white/70 text-[10px] font-black uppercase tracking-[0.4em] mb-12 border border-white/10 backdrop-blur-3xl shadow-[0_0_40px_rgba(0,210,255,0.1)]">
+          <div className="inline-flex items-center gap-3 py-2.5 px-10 rounded-full bg-white/5 text-white/70 text-[10px] font-black uppercase tracking-[0.4em] mb-8 md:mb-12 border border-white/10 backdrop-blur-3xl shadow-[0_0_40px_rgba(0,210,255,0.1)]">
             <div className="w-2 h-2 rounded-full bg-electric-blue animate-ping shadow-[0_0_15px_#00d2ff]" />
             Launch your career in tech
           </div>
         </motion.div>
 
         <motion.div
-          className="flex flex-col items-center justify-center mb-14"
+          className="flex flex-col items-center justify-center mb-10 md:mb-14"
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
         >
-          <h1 className="text-4xl md:text-8xl lg:text-9xl font-black tracking-tighter leading-[1] uppercase flex flex-col items-center px-4">
-            <span className="text-white/20 mb-4 select-none filter blur-[0.5px] text-center">Master the Future</span>
-            <span className="text-white mb-4 text-3xl md:text-9xl tracking-[0.1em]">of</span>
-            <span className="text-gradient animate-gradient bg-300% drop-shadow-[0_0_60px_rgba(34,211,238,0.4)] relative text-4xl md:text-8xl lg:text-9xl text-center">
+          <h1 className="flex flex-col items-center gap-3 md:gap-4 px-4 text-center">
+            <span className="text-3xl md:text-7xl font-light text-white/40 tracking-[0.3em] md:tracking-[0.4em] uppercase mb-2">Master the Future</span>
+            <span className="text-white/20 text-xl md:text-4xl font-black uppercase tracking-[0.6em] md:tracking-[0.8em] mb-4">Of</span>
+            <span className="relative text-4xl md:text-9xl font-black uppercase tracking-tighter leading-tight md:leading-none
+                           text-transparent bg-clip-text bg-gradient-to-b from-white to-white/10 px-4"
+                  style={{ WebkitTextStroke: '0.5px rgba(255,255,255,0.15)' }}>
               Web Development
-              <div className="absolute -inset-4 bg-cyan-400/5 blur-[40px] -z-10 rounded-full" />
+              <div className="absolute -inset-10 bg-electric-blue/10 blur-[60px] -z-10 rounded-full animate-pulse opacity-50 md:opacity-100" />
             </span>
           </h1>
         </motion.div>
 
         <motion.p
-          className="text-lg md:text-2xl text-blue-100/20 mb-16 max-w-4xl mx-auto font-light leading-relaxed tracking-[0.3em] uppercase"
+          className="text-base md:text-2xl text-blue-100/20 mb-10 md:mb-16 max-w-4xl mx-auto font-light leading-relaxed tracking-[0.2em] md:tracking-[0.3em] uppercase px-4"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 0.7 }}
@@ -169,18 +171,18 @@ export function Hero() {
         </motion.p>
 
         <motion.div
-          className="flex flex-col md:flex-row items-center justify-center gap-8"
+          className="flex flex-col sm:flex-row items-center justify-center gap-6 md:gap-8 px-4"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.7 }}
         >
-          <Link href="#courses" className="w-full md:w-auto">
-            <Button size="lg" className="w-full h-16 px-16 text-[10px] font-black uppercase tracking-[0.3em] rounded-2xl bg-white text-navy hover:scale-105 shadow-2xl transition-all">
+          <Link href="#courses" className="w-full sm:w-auto">
+            <Button size="lg" className="w-full h-14 md:h-16 px-10 md:px-16 text-[9px] md:text-[10px] font-black uppercase tracking-[0.3em] rounded-2xl bg-white text-navy hover:scale-105 shadow-2xl transition-all">
               Start Now
             </Button>
           </Link>
-          <Link href="/courses" className="w-full md:w-auto">
-            <Button variant="secondary" size="lg" className="w-full h-16 px-16 text-[10px] font-black uppercase tracking-[0.3em] rounded-2xl border-white/10 hover:bg-white/5 text-white transition-all">
+          <Link href="/courses" className="w-full sm:w-auto">
+            <Button variant="secondary" size="lg" className="w-full h-14 md:h-16 px-10 md:px-16 text-[9px] md:text-[10px] font-black uppercase tracking-[0.3em] rounded-2xl border-white/10 hover:bg-white/5 text-white transition-all">
               Explore
             </Button>
           </Link>

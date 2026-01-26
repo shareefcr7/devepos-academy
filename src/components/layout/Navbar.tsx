@@ -26,9 +26,9 @@ export function Navbar() {
   return (
     <motion.nav
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
+        "fixed top-0 left-0 right-0 z-[9999] transition-all duration-500",
         isScrolled
-          ? "bg-navy-dark/80 backdrop-blur-2xl border-b border-white/5 py-4 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.5)]"
+          ? "bg-[#010208]/90 backdrop-blur-2xl border-b border-white/5 py-4 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.5)]"
           : "bg-transparent py-8"
       )}
       initial={{ y: -100 }}
@@ -36,6 +36,7 @@ export function Navbar() {
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
     >
       <div className="container mx-auto px-6 flex items-center justify-between">
+        {/* ... Logo Section ... */}
         <Link href="/" className="flex items-center gap-3 md:gap-4 group">
           <motion.div 
             whileHover={{ scale: 1.05 }}
@@ -51,15 +52,8 @@ export function Navbar() {
                 <motion.span
                   key={i}
                   className="text-lg md:text-xl font-black text-white tracking-[0.2em] uppercase leading-none"
-                  animate={{ 
-                    y: [0, -3, 0],
-                  }}
-                  transition={{ 
-                    duration: 2, 
-                    repeat: Infinity, 
-                    delay: i * 0.1,
-                    ease: "easeInOut"
-                  }}
+                  animate={{ y: [0, -3, 0] }}
+                  transition={{ duration: 2, repeat: Infinity, delay: i * 0.1 }}
                 >
                   {char}
                 </motion.span>
@@ -70,16 +64,8 @@ export function Navbar() {
                 <motion.span
                   key={i}
                   className="text-[8px] md:text-[10px] font-bold text-electric-blue tracking-[0.4em] uppercase opacity-80"
-                  animate={{ 
-                    y: [0, -2, 0],
-                    opacity: [0.6, 1, 0.6]
-                  }}
-                  transition={{ 
-                    duration: 3, 
-                    repeat: Infinity, 
-                    delay: i * 0.1 + 0.5,
-                    ease: "easeInOut"
-                  }}
+                  animate={{ y: [0, -2, 0], opacity: [0.6, 1, 0.6] }}
+                  transition={{ duration: 3, repeat: Infinity, delay: i * 0.1 + 0.5 }}
                 >
                   {char}
                 </motion.span>
@@ -87,17 +73,23 @@ export function Navbar() {
             </div>
           </div>
         </Link>
-
-        {/* Desktop Nav */}
+ 
+        {/* Desktop Nav - High Visibility Update */}
         <div className="hidden md:flex items-center gap-10">
           {navLinks.map((link) => (
             <Link
               key={link.name}
               href={link.href}
-              className="relative text-[10px] font-black uppercase tracking-[0.2em] text-white/50 hover:text-white transition-colors group/nav"
+              className={cn(
+                "relative text-[10px] font-black uppercase tracking-[0.2em] transition-all duration-300 group/nav",
+                isScrolled ? "text-white" : "text-white/50 hover:text-white"
+              )}
             >
               {link.name}
-              <span className="absolute -bottom-2 left-0 w-0 h-px bg-electric-blue transition-all duration-300 group-hover/nav:w-full" />
+              <span className={cn(
+                "absolute -bottom-2 left-0 h-px bg-cyan-400 transition-all duration-300",
+                isScrolled ? "w-full" : "w-0 group-hover/nav:w-full"
+              )} />
             </Link>
           ))}
           
@@ -107,59 +99,77 @@ export function Navbar() {
             </Button>
           </Link>
         </div>
-
+ 
         {/* Mobile Toggle */}
-        <button
-          className="md:hidden text-white/70 hover:text-white p-2 transition-colors"
+        <motion.button
+          whileTap={{ scale: 0.9 }}
+          whileHover={{ scale: 1.1 }}
+          className="md:hidden text-white/70 hover:text-white p-2 transition-colors bg-white/5 rounded-xl border border-white/10"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
           {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
-        </button>
+        </motion.button>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu Overlay - Premium Glass Version */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.95 }}
-            className="md:hidden fixed inset-0 top-[72px] bg-navy-dark/98 backdrop-blur-3xl z-40 overflow-y-auto"
+            initial={{ opacity: 0, backdropFilter: "blur(0px)" }}
+            animate={{ opacity: 1, backdropFilter: "blur(40px)" }}
+            exit={{ opacity: 0, backdropFilter: "blur(0px)" }}
+            transition={{ duration: 0.5 }}
+            className="md:hidden fixed inset-0 bg-black/80 z-[10000] flex flex-col"
           >
-            <div className="flex flex-col items-center justify-center min-h-[calc(100vh-72px)] p-12 gap-8 text-center">
-              {navLinks.map((link, i) => (
-                <motion.div
-                  key={link.name}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: i * 0.1 }}
-                >
-                  <Link
-                    href={link.href}
-                    className="text-4xl font-black text-white/70 hover:text-white uppercase tracking-[0.2em] transition-all hover:scale-110 block"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    {link.name}
-                  </Link>
-                </motion.div>
-              ))}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: navLinks.length * 0.1 }}
-                className="w-full max-w-xs mt-8"
+            {/* Minimalist Header */}
+            <div className="flex items-center justify-between px-8 py-10 shrink-0 border-b border-white/5">
+              <Link href="/" className="flex items-center gap-3" onClick={() => setIsMobileMenuOpen(false)}>
+                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-electric to-electric-blue flex items-center justify-center">
+                  <Zap className="text-white fill-white" size={20} />
+                </div>
+                <span className="text-xl font-black text-white tracking-widest uppercase">SDEC</span>
+              </Link>
+              <button 
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="p-3 rounded-xl bg-white/5 border border-white/10 text-white"
               >
-                <Link href="/#courses" onClick={() => setIsMobileMenuOpen(false)}>
-                  <Button className="w-full h-16 bg-white text-navy font-black uppercase tracking-widest text-sm rounded-2xl shadow-2xl">
-                    Join Elite
-                  </Button>
-                </Link>
-              </motion.div>
+                <X size={24} />
+              </button>
             </div>
-            
-            {/* Decoration in Mobile Menu */}
-            <div className="absolute bottom-0 left-0 right-0 p-12 flex justify-center opacity-20">
-               <Zap size={100} className="text-electric-blue blur-2xl animate-pulse" />
+
+            <div className="flex-1 overflow-y-auto px-6 py-12 relative z-10 custom-scrollbar">
+              <div className="flex flex-col gap-6">
+                <span className="text-white/20 text-[10px] font-black tracking-[0.5em] uppercase mb-4 ml-4">Navigation Index</span>
+                {navLinks.map((link, i) => (
+                  <motion.div
+                    key={link.name}
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: i * 0.1 }}
+                  >
+                    <Link
+                      href={link.href}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className="group w-full py-8 px-10 rounded-[2rem] bg-white/[0.03] border border-white/5 transition-all hover:bg-white/[0.08] hover:border-cyan-500/30 flex items-center justify-between"
+                    >
+                      <span 
+                        className="text-4xl md:text-5xl font-black tracking-tighter uppercase transition-all duration-500
+                                   text-transparent bg-clip-text bg-gradient-to-b from-white to-white/10 group-hover:text-white group-hover:tracking-normal"
+                        style={{ WebkitTextStroke: '1px rgba(255,255,255,0.15)' }}
+                      >
+                        {link.name}
+                      </span>
+                      <div className="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center border border-white/10 transition-all group-hover:bg-cyan-500 group-hover:border-transparent">
+                        <ChevronRight className="text-white/30 group-hover:text-white" size={20} />
+                      </div>
+                    </Link>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+
+            <div className="p-10 text-center border-t border-white/5 bg-black/40">
+               <p className="text-white/10 text-[9px] font-bold tracking-[0.3em] uppercase italic">PIONEER. INNOVATE. SCALE. © 2026 SDEC ACADEMY</p>
             </div>
           </motion.div>
         )}

@@ -20,8 +20,8 @@ const CodeRain = () => {
   
   return (
     <div className="absolute inset-0 overflow-hidden opacity-10 pointer-events-none">
-      <div className="flex justify-between">
-        {[...Array(8)].map((_, i) => {
+      <div className="flex justify-between px-2">
+        {[...Array(typeof window === 'undefined' ? 8 : (window.innerWidth < 768 ? 4 : 8))].map((_, i) => {
            const Icon = rainIcons[Math.floor(Math.random() * rainIcons.length)];
            const keyword = keywords[Math.floor(Math.random() * keywords.length)];
            return (
@@ -92,7 +92,7 @@ const TechIcons = () => {
 
 export function AboutSummary() {
   return (
-    <section className="py-20 relative bg-transparent overflow-hidden">
+    <section className="py-16 md:py-20 relative bg-transparent overflow-hidden">
       {/* Background Ambience */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-900/10 via-navy to-navy pointer-events-none" />
       
@@ -115,7 +115,7 @@ export function AboutSummary() {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 font-medium text-sm mb-6">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 font-medium text-sm mb-4 md:mb-6">
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
@@ -123,11 +123,11 @@ export function AboutSummary() {
               Who We Are
             </div>
             
-            <h2 className="text-3xl md:text-5xl font-black mb-6 leading-tight uppercase tracking-tighter">
+            <h2 className="text-[clamp(1.8rem,8vw,3.5rem)] font-black mb-6 md:mb-8 leading-[1.1] uppercase tracking-tighter">
               Premier <span className="text-transparent bg-clip-text bg-gradient-to-r from-electric-blue via-cyan-400 to-purple-400">Offline Tech Training</span> & Career Development
             </h2>
             
-            <p className="text-gray-400 text-lg mb-6 leading-relaxed">
+            <p className="text-gray-400 text-lg mb-4 md:mb-6 leading-relaxed">
               SDEC Academy is a leading offline destination for aspiring developers and tech enthusiasts. 
               We bridge the gap between academic learning and industry requirements through 
               hands-on, project-based training.
@@ -152,12 +152,12 @@ export function AboutSummary() {
             transition={{ duration: 0.6 }}
             className="relative"
           >
-            <div className="relative h-[400px] w-full rounded-2xl overflow-hidden border border-gray-200 dark:border-white/10 shadow-2xl">
+            <div className="relative h-[300px] md:h-[450px] w-full rounded-2xl overflow-hidden border border-gray-200 dark:border-white/10 shadow-2xl">
               <Image 
                 src="/images/IMAGE6.avif"
                 alt="About SDEC Academy"
                 fill
-                className="object-cover"
+                className="object-cover object-center"
               />
               <div className="absolute inset-0 bg-white/10 dark:bg-navy/30 mix-blend-multiply" />
             </div>

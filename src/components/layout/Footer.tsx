@@ -109,7 +109,7 @@ export function Footer() {
   const logoText = "SDEC Academy";
 
   return (
-    <footer className="relative pt-32 pb-10 overflow-hidden font-sans">
+    <footer className="relative pt-20 pb-10 overflow-hidden font-sans">
       <CubeNetworkBackground />
       {/* ... Wave SVG Removed ... */}
 

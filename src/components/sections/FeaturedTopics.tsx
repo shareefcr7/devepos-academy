@@ -75,34 +75,34 @@ export function FeaturedTopics() {
   const row2 = topicData.slice(Math.ceil(topicData.length / 2));
 
   return (
-    <section id="featured-topics" className="py-40 relative bg-[#010208] overflow-hidden">
+    <section id="featured-topics" className="py-20 md:py-32 relative bg-[#010208] overflow-hidden">
       {/* 3D Depth Lights */}
       <div className="absolute top-0 left-1/4 w-[800px] h-[800px] bg-blue-600/5 rounded-full blur-[160px] pointer-events-none" />
       <div className="absolute bottom-0 right-1/4 w-[800px] h-[800px] bg-cyan-600/5 rounded-full blur-[160px] pointer-events-none" />
 
       <div className="container mx-auto px-6 relative z-10">
-        <div className="flex flex-col items-center text-center mb-24">
+        <div className="flex flex-col items-center text-center mb-10 md:mb-24">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="inline-flex items-center gap-3 px-6 py-2 rounded-full bg-white/5 border border-white/10 mb-10 backdrop-blur-2xl"
+            className="inline-flex items-center gap-2 md:gap-3 px-4 md:px-6 py-1.5 md:py-2 rounded-full bg-white/5 border border-white/10 mb-6 md:mb-10 backdrop-blur-2xl"
           >
-            <div className="w-2 h-2 rounded-full bg-blue-400 animate-ping shadow-[0_0_15px_#3b82f6]" />
-            <span className="text-blue-300 font-black tracking-[0.4em] uppercase text-[10px]">
+            <div className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-ping shadow-[0_0_12px_#3b82f6]" />
+            <span className="text-blue-300 font-black tracking-[0.3em] md:tracking-[0.4em] uppercase text-[9px] md:text-[10px]">
               Ecosystem Mastery
             </span>
           </motion.div>
 
-          <h2 className="text-4xl md:text-8xl font-black text-white tracking-tighter mb-10 leading-[0.85] uppercase max-w-4xl px-4">
+          <h2 className="text-[clamp(2.5rem,12vw,6rem)] font-black text-white tracking-tighter mb-6 md:mb-10 leading-[0.9] uppercase max-w-4xl px-4">
              Explore <span className="text-gradient animate-gradient bg-300% filter brightness-125">Core Modules</span>
           </h2>
-          <p className="text-white/20 max-w-2xl mx-auto text-lg md:text-xl font-light leading-relaxed tracking-[0.2em] uppercase px-6">
+          <p className="text-white/20 max-w-xl mx-auto text-sm md:text-xl font-light leading-relaxed tracking-[0.15em] md:tracking-[0.2em] uppercase px-6">
             Official tools & technologies integrated into the <span className="text-white font-bold">SDEC Curriculum</span>.
           </p>
         </div>
 
-        <div className="flex flex-col gap-10 relative">
+        <div className="flex flex-col gap-6 md:gap-10 relative">
            {/* Cinematic Side Masks */}
            <div className="absolute left-0 top-0 bottom-0 w-16 md:w-80 z-20 bg-gradient-to-r from-[#010208] to-transparent pointer-events-none" />
            <div className="absolute right-0 top-0 bottom-0 w-16 md:w-80 z-20 bg-gradient-to-l from-[#010208] to-transparent pointer-events-none" />

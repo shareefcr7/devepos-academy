@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 
 export function CTA() {
   return (
-    <section className="py-40 relative overflow-hidden bg-[#010208]">
+    <section className="py-20 md:py-32 relative overflow-hidden bg-[#010208]">
       {/* Cinematic Atmosphere */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[600px] bg-electric/10 rounded-full blur-[160px] pointer-events-none" />
       <div className="absolute top-0 left-0 w-full h-full bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 pointer-events-none mix-blend-overlay" />
@@ -16,7 +16,7 @@ export function CTA() {
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          className="relative bg-white/[0.03] backdrop-blur-3xl border border-white/5 rounded-[40px] p-16 md:p-32 max-w-6xl mx-auto shadow-[0_40px_100px_rgba(0,0,0,0.8)] overflow-hidden group"
+          className="relative bg-white/[0.03] backdrop-blur-3xl border border-white/5 rounded-[40px] p-8 md:p-32 max-w-6xl mx-auto shadow-[0_40px_100px_rgba(0,0,0,0.8)] overflow-hidden group"
         >
           {/* Subtle Inner Glow */}
           <div className="absolute -inset-2 bg-gradient-to-tr from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
@@ -35,23 +35,23 @@ export function CTA() {
               </span>
             </div>
 
-            <h2 className="text-4xl md:text-8xl font-black text-white mb-10 tracking-tighter leading-[0.85] uppercase">
+            <h2 className="text-[clamp(2rem,10vw,6rem)] font-black text-white mb-8 md:mb-12 tracking-tighter leading-[0.9] uppercase">
               Ready to claim <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">Your Future?</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400 px-4">Your Future?</span>
             </h2>
             
-            <p className="text-xl md:text-2xl text-white/30 mb-20 max-w-3xl mx-auto font-light leading-relaxed tracking-wide">
+            <p className="text-lg md:text-2xl text-white/30 mb-14 md:mb-20 max-w-3xl mx-auto font-light leading-relaxed tracking-wide px-4">
               Join the elite ecosystem of developers building the next generation of digital infrastructure.
             </p>
             
-            <div className="flex flex-col md:flex-row gap-10 justify-center items-center">
+            <div className="flex flex-col md:flex-row gap-6 md:gap-10 justify-center items-center px-4">
               <Link href="/contact" className="w-full md:w-auto">
-                <Button className="w-full h-20 px-16 text-[10px] font-black uppercase tracking-[0.3em] rounded-2xl bg-white text-navy hover:scale-105 shadow-2xl transition-all">
+                <Button className="w-full h-16 md:h-20 px-10 md:px-16 text-[9px] md:text-[10px] font-black uppercase tracking-[0.3em] rounded-2xl bg-white text-navy hover:scale-105 shadow-2xl transition-all">
                   Join Elite Now
                 </Button>
               </Link>
               <Link href="/courses" className="w-full md:w-auto">
-                <Button variant="secondary" className="w-full h-20 px-16 text-[10px] font-black uppercase tracking-[0.3em] rounded-2xl border-white/10 hover:bg-white/5 text-white transition-all">
+                <Button variant="secondary" className="w-full h-16 md:h-20 px-10 md:px-16 text-[9px] md:text-[10px] font-black uppercase tracking-[0.3em] rounded-2xl border-white/10 hover:bg-white/5 text-white transition-all">
                   Browse Tracks
                 </Button>
               </Link>

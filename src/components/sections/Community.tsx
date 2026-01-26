@@ -197,9 +197,9 @@ const HackerBattle = () => {
 
 export function Community() {
   return (
-    <section id="community" className="py-24 relative overflow-hidden bg-transparent">
+    <section id="community" className="py-16 md:py-20 relative overflow-hidden bg-transparent">
       {/* Background Ambience */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-900/20 via-navy to-navy" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-900/10 via-[#010208] to-[#010208]" />
       <div className="absolute top-0 left-0 w-full h-full opacity-30 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] mix-blend-overlay" />
       
       {/* Code Running Animation */}
@@ -219,7 +219,7 @@ export function Community() {
            initial={{ y: -20, opacity: 0 }}
            whileInView={{ y: 0, opacity: 1 }}
            viewport={{ once: true }}
-           className="bg-white/5 border border-white/10 backdrop-blur-md px-4 py-2 rounded-full flex items-center gap-2 mb-24 md:mb-16 shadow-[0_0_20px_rgba(56,189,248,0.2)]"
+           className="bg-white/5 border border-white/10 backdrop-blur-md px-4 py-2 rounded-full flex items-center gap-2 mb-16 md:mb-16 shadow-[0_0_20px_rgba(56,189,248,0.2)]"
         >
           <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
           <span className="text-gray-300 text-xs font-semibold tracking-wider uppercase">24/7 Instant Help</span>
@@ -227,7 +227,7 @@ export function Community() {
 
 
         {/* Orbital Hub Visual */}
-        <div className="relative w-[300px] h-[300px] md:w-[400px] md:h-[400px] mb-16 flex items-center justify-center">
+        <div className="relative w-[280px] h-[280px] md:w-[450px] md:h-[450px] mb-8 md:mb-16 flex items-center justify-center scale-90 md:scale-100">
            
            {/* Crash/Shockwave Animation */}
            <motion.div
@@ -240,10 +240,10 @@ export function Community() {
            <motion.div
               animate={{ boxShadow: ["0 0 20px rgba(59, 130, 246, 0.2)", "0 0 60px rgba(59, 130, 246, 0.6)", "0 0 20px rgba(59, 130, 246, 0.2)"] }}
               transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-              className="w-32 h-32 md:w-40 md:h-40 bg-gradient-to-br from-[#020617] to-[#1e3a8a] rounded-full flex flex-col items-center justify-center z-20 relative shadow-2xl border border-blue-500/30"
+              className="w-24 h-24 md:w-40 md:h-40 bg-gradient-to-br from-[#020617] to-[#1e3a8a] rounded-full flex flex-col items-center justify-center z-20 relative shadow-2xl border border-blue-500/30"
            >
               <div className="absolute -inset-1 rounded-full border border-white/10 scale-110" />
-              <h3 className="text-3xl font-bold z-10 relative flex items-center justify-center cursor-default">
+              <h3 className="text-xl md:text-3xl font-bold z-10 relative flex items-center justify-center cursor-default">
                  {"SDEC".split("").map((char, i) => (
                    <motion.span
                      key={i}
@@ -274,12 +274,12 @@ export function Community() {
 
            {/* Orbit Rings */}
            <div className="absolute inset-0 border border-white/5 rounded-full" />
-           <div className="absolute inset-[15%] border border-white/5 rounded-full" />
+           <div className="absolute inset-[15%] border border-white/5 rounded-full shadow-[inset_0_0_20px_rgba(34,211,238,0.05)]" />
 
            {/* Orbiting Icons */}
            <motion.div
               animate={{ rotate: 360 }}
-              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+              transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
               className="absolute inset-0 w-full h-full"
            >
               {avatars.map((avatar, i) => {
@@ -287,22 +287,23 @@ export function Community() {
                  return (
                      <div
                      key={i}
-                     className="absolute top-1/2 left-1/2 w-12 h-12 -ml-6 -mt-6"
+                     className="absolute top-1/2 left-1/2 w-10 h-10 md:w-12 md:h-12 -ml-5 -mt-5 md:-ml-6 md:-mt-6"
                      style={{
-                       transform: `rotate(${angle}deg) translate(140px) rotate(-${angle}deg)` 
+                        // Dynamic radius: 100px on mobile, 160px on desktop
+                        transform: `rotate(${angle}deg) translate(clamp(100px, 35vw, 160px)) rotate(-${angle}deg)` 
                      }}
                    >
                      <motion.div 
                         animate={{ rotate: -360 }}
-                        transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                        transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
                         whileHover={{ scale: 1.2 }}
                         className={`relative group cursor-pointer flex flex-col items-center`}
                      >
-                        <div className={`w-12 h-12 rounded-full border-2 ${avatar.color} bg-[#0A192F] flex items-center justify-center shadow-[0_0_15px_rgba(0,0,0,0.5)] z-20 relative`}>
-                           <avatar.icon size={20} className={avatar.text} />
+                        <div className={`w-10 h-10 md:w-12 md:h-12 rounded-full border border-white/20 md:border-2 ${avatar.color} bg-[#0A192F] flex items-center justify-center shadow-[0_0_15px_rgba(0,0,0,0.5)] z-20 relative`}>
+                           <avatar.icon size={16} className={avatar.text} />
                         </div>
-                        {/* Label - Always visible now */}
-                        <div className="absolute top-full mt-2 bg-navy/90 text-white text-[10px] font-bold py-1 px-3 rounded-full border border-white/10 shadow-lg whitespace-nowrap z-10">
+                        {/* Label - Subtle on mobile */}
+                        <div className="absolute top-full mt-2 bg-navy/90 text-white text-[8px] md:text-[10px] font-bold py-1 px-3 rounded-full border border-white/10 shadow-lg whitespace-nowrap z-10 opacity-0 md:opacity-100 group-hover:opacity-100 transition-opacity">
                            {avatar.role}
                         </div>
                      </motion.div>

@@ -34,7 +34,7 @@ const featuresRight = [
 
 export function Benefits() {
   return (
-    <section className="py-24 relative bg-transparent overflow-hidden">
+    <section className="py-16 md:py-20 relative bg-transparent overflow-hidden">
       <div className="container mx-auto px-6 relative z-10">
         
         {/* Section Header */}

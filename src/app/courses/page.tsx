@@ -11,7 +11,7 @@ export default function CoursesPage() {
       <Navbar />
       
       {/* Spacer for fixed navbar */}
-      <div className="pt-20">
+      <div className="pt-10">
         <Courses />
       </div>
 
