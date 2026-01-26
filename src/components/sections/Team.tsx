@@ -64,7 +64,7 @@ const TEAM_MEMBERS: TeamMember[] = [
   },
   {
     name: "RASHA KP",
-    role: "Fullstack Developer",
+    role: "Backend Developer",      
     image: "/images/team/team_3.png",
     workImage: "/images/team/bg_fullstack.png",
     bio: "SYSTEM ENGINEERING",
@@ -85,7 +85,7 @@ const TEAM_MEMBERS: TeamMember[] = [
     role: "Fullstack Developer",
     image: "/images/team/team_7.png",
     workImage: "/images/team/bg_fullstack.png",
-    bio: "ROBUST SOLUTIONS",
+    bio: "Fullstack Developer",
     quote: "Engineering robust solutions for complex challenges.",
     icon: Code
   }
@@ -157,7 +157,12 @@ export function Team() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isMuted, setIsMuted] = useState(false); // Enable unmuted by default for automatic play
   const [isFinished, setIsFinished] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Initialize Audio
   useEffect(() => {
@@ -237,22 +242,22 @@ export function Team() {
     let opacity = 0;
     let scale = 0.5;
     let x: string | number = 0;
-    // Removed 3D tilt and blur as requested
     let rotateY = 0;
     let filter = "none";
 
-    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+    // Fix Hydration Error: Only calculate window-based styles on client
+    const isMobile = mounted && window.innerWidth < 768;
 
     if (isActive) {
       zIndex = 50; 
       opacity = 1; 
-      scale = isMobile ? 1.05 : 1.2; // Scale down slightly on mobile to prevent clashing
+      scale = isMobile ? 1.05 : 1.2; 
       x = 0;
     } else if (isNext) {
       zIndex = 30; 
       opacity = 0.3; 
       scale = 0.8; 
-      x = isMobile ? "80%" : "95%"; // Closer peek on mobile
+      x = isMobile ? "80%" : "95%"; 
     } else if (isPrev) {
       zIndex = 30; 
       opacity = 0.3; 

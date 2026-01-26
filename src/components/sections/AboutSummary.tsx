@@ -21,7 +21,7 @@ const CodeRain = () => {
   return (
     <div className="absolute inset-0 overflow-hidden opacity-10 pointer-events-none">
       <div className="flex justify-between px-2">
-        {[...Array(typeof window === 'undefined' ? 8 : (window.innerWidth < 768 ? 4 : 8))].map((_, i) => {
+        {[...Array(window.innerWidth < 768 ? 4 : 8)].map((_, i) => {
            const Icon = rainIcons[Math.floor(Math.random() * rainIcons.length)];
            const keyword = keywords[Math.floor(Math.random() * keywords.length)];
            return (
