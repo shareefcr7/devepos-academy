@@ -90,7 +90,7 @@ export function Hero() {
         {/* Extra Active Stardust - Only rendered on client to avoid hydration mismatch */}
         {mounted && (
           <div className="absolute inset-0 pointer-events-none">
-            {[...Array(window.innerWidth < 768 ? 8 : 50)].map((_, i) => (
+            {[...Array(window.innerWidth < 768 ? 15 : 50)].map((_, i) => (
               <motion.div
                 key={i}
                 className="absolute w-1 h-1 bg-white rounded-full blur-[1px]"
@@ -137,7 +137,7 @@ export function Hero() {
            animate={{ opacity: 1, y: 0 }}
            transition={{ duration: 0.8 }}
         >
-          <div className="inline-flex items-center gap-3 py-2.5 px-10 rounded-full bg-white/5 text-white/70 text-[10px] font-black uppercase tracking-[0.4em] mb-8 md:mb-12 border border-white/10 backdrop-blur-3xl shadow-[0_0_40px_rgba(0,210,255,0.1)]">
+          <div className="inline-flex items-center gap-3 py-2.5 px-6 md:px-10 rounded-full bg-white/5 text-white/70 text-[9px] md:text-[10px] font-black uppercase tracking-[0.3em] md:tracking-[0.4em] mb-8 md:mb-12 border border-white/10 backdrop-blur-3xl shadow-[0_0_40px_rgba(0,210,255,0.1)]">
             <div className="w-2 h-2 rounded-full bg-electric-blue animate-ping shadow-[0_0_15px_#00d2ff]" />
             Launch your career in tech
           </div>
@@ -149,10 +149,10 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
         >
-          <h1 className="flex flex-col items-center gap-3 md:gap-4 px-4 text-center">
-            <span className="text-3xl md:text-7xl font-light text-white/40 tracking-[0.3em] md:tracking-[0.4em] uppercase mb-2">Master the Future</span>
-            <span className="text-white/20 text-xl md:text-4xl font-black uppercase tracking-[0.6em] md:tracking-[0.8em] mb-4">Of</span>
-            <span className="relative text-4xl md:text-9xl font-black uppercase tracking-tighter leading-tight md:leading-none
+          <h1 className="flex flex-col items-center gap-2 md:gap-4 px-2 md:px-4 text-center">
+            <span className="text-2xl md:text-7xl font-light text-white/40 tracking-[0.2em] md:tracking-[0.4em] uppercase mb-1 md:mb-2">Master the Future</span>
+            <span className="text-white/20 text-lg md:text-4xl font-black uppercase tracking-[0.4em] md:tracking-[0.8em] mb-2 md:mb-4">Of</span>
+            <span className="relative text-[2.5rem] leading-[1.1] md:text-9xl font-black uppercase tracking-tighter md:leading-none
                            text-transparent bg-clip-text bg-gradient-to-b from-white to-white/10 px-4"
                   style={{ WebkitTextStroke: '0.5px rgba(255,255,255,0.15)' }}>
               Web Development
@@ -162,7 +162,7 @@ export function Hero() {
         </motion.div>
 
         <motion.p
-          className="text-base md:text-2xl text-blue-100/20 mb-10 md:mb-16 max-w-4xl mx-auto font-light leading-relaxed tracking-[0.2em] md:tracking-[0.3em] uppercase px-4"
+          className="text-sm md:text-2xl text-blue-100/20 mb-8 md:mb-16 max-w-4xl mx-auto font-light leading-relaxed tracking-[0.15em] md:tracking-[0.3em] uppercase px-6"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 0.7 }}
@@ -171,18 +171,18 @@ export function Hero() {
         </motion.p>
 
         <motion.div
-          className="flex flex-col sm:flex-row items-center justify-center gap-6 md:gap-8 px-4"
+          className="flex flex-col sm:flex-row items-center justify-center gap-4 md:gap-8 px-4"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.7 }}
         >
           <Link href="#courses" className="w-full sm:w-auto">
-            <Button size="lg" className="w-full h-14 md:h-16 px-10 md:px-16 text-[9px] md:text-[10px] font-black uppercase tracking-[0.3em] rounded-2xl bg-white text-navy hover:scale-105 shadow-2xl transition-all">
+            <Button size="lg" className="w-full h-12 md:h-16 px-8 md:px-16 text-[9px] md:text-[10px] font-black uppercase tracking-[0.3em] rounded-2xl bg-white text-navy hover:scale-105 shadow-2xl transition-all">
               Start Now
             </Button>
           </Link>
           <Link href="/courses" className="w-full sm:w-auto">
-            <Button variant="secondary" size="lg" className="w-full h-14 md:h-16 px-10 md:px-16 text-[9px] md:text-[10px] font-black uppercase tracking-[0.3em] rounded-2xl border-white/10 hover:bg-white/5 text-white transition-all">
+            <Button variant="secondary" size="lg" className="w-full h-12 md:h-16 px-8 md:px-16 text-[9px] md:text-[10px] font-black uppercase tracking-[0.3em] rounded-2xl border-white/10 hover:bg-white/5 text-white transition-all">
               Explore
             </Button>
           </Link>
