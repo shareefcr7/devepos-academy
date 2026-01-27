@@ -41,6 +41,7 @@ export function Hero() {
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 bg-[#020617]">
       {/* --- CINEMATIC FLOWING BACKGROUND --- */}
       <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-15 mix-blend-overlay pointer-events-none z-10" />
         <motion.div
           className="absolute inset-x-[-20%] inset-y-[-20%] w-[140%] h-[140%]"
           initial={{ scale: 1.1, rotate: 0 }}

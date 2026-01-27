@@ -97,8 +97,9 @@ export function Testimonials() {
   return (
     <section className="py-16 md:py-20 bg-transparent relative overflow-hidden">
       
-      {/* Background Gradient */}
+      {/* Background Gradient & Texture */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#0b1021] pointer-events-none opacity-100" />
+      <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10 mix-blend-overlay pointer-events-none" />
 
       <div className="container mx-auto px-6 relative z-10">
         <SectionHeading 

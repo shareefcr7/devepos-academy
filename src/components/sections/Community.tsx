@@ -200,7 +200,7 @@ export function Community() {
     <section id="community" className="py-16 md:py-20 relative overflow-hidden bg-transparent">
       {/* Background Ambience */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-900/10 via-[#010208] to-[#010208]" />
-      <div className="absolute top-0 left-0 w-full h-full opacity-30 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] mix-blend-overlay" />
+      <div className="absolute top-0 left-0 w-full h-full opacity-20 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] mix-blend-overlay pointer-events-none" />
       
       {/* Code Running Animation */}
       <CodeRain />

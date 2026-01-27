@@ -88,6 +88,15 @@ const TEAM_MEMBERS: TeamMember[] = [
     bio: "SCALABLE SOLUTIONS EXPERT",
     quote: "Engineering robust solutions for complex challenges.",
     icon: Code
+  },
+  {
+    name: "NIVED",
+    role: "Project Head",
+    image: "/images/team/nived.png",
+    workImage: "/images/team/bg_project.png",
+    bio: "STRATEGIC EXECUTION",
+    quote: "Turning vision into reality through disciplined execution.",
+    icon: Shield
   }
 ];
 
@@ -220,7 +229,7 @@ TeamCard.displayName = "TeamCard";
 // --- Main Component ---
 export function Team() {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [isMuted, setIsMuted] = useState(false); // Enable unmuted by default for automatic play
+  const [isMuted, setIsMuted] = useState(true); // Default to muted to prevent autoplay errors
   const [mounted, setMounted] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const sectionRef = useRef(null);
@@ -245,15 +254,16 @@ export function Team() {
   }, []);
 
   // Audio Playback Logic - Automatic Play
+  // Only attempt to play if NOT muted to avoid browser exceptions
   useEffect(() => {
     if (audioRef.current) {
       if (!isMuted && isInView) {
-        // Attempt to play (browser might block until first click)
         const playPromise = audioRef.current.play();
         if (playPromise !== undefined) {
-          playPromise.catch(() => {
-            // If blocked, we'll wait for user to toggle mute
-            console.log("Autoplay blocked - awaiting user interaction");
+          playPromise.catch((e) => {
+            console.log("Audio playback blocked (expected behavior until interaction):", e);
+             // If blocked, we ensure state reflects it
+             if (!isMuted) setIsMuted(true);
           });
         }
         audioRef.current.volume = 0.5;
@@ -342,6 +352,14 @@ export function Team() {
       {/* Clean Dark Background Environment */}
       <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-[#010208] via-transparent to-[#010208]" />
+        
+        {/* Cinematic Ambient Glow */}
+        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-blue-500/5 rounded-full blur-[150px] opacity-40 mix-blend-screen" />
+        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-cyan-500/5 rounded-full blur-[120px] opacity-30 mix-blend-screen" />
+        
+        {/* Grain Texture */}
+        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10 mix-blend-overlay" />
+        
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_transparent_20%,_#010208_100%)]" />
       </div>
 
@@ -429,7 +447,7 @@ export function Team() {
           <div className="relative w-full h-full flex items-center justify-center">
             {TEAM_MEMBERS.map((member, index) => (
               <TeamCard 
-                key={member.name} 
+                key={index} 
                 member={member} 
                 style={getCardStyle(index)} 
                 isActive={index === activeIndex} 

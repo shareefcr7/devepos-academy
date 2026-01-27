@@ -6,6 +6,7 @@ import { Footer } from "@/components/layout/Footer";
 import { Hero } from "@/components/sections/Hero";
 import { AboutSummary } from "@/components/sections/AboutSummary"; // New
 import { FeaturedTopics } from "@/components/sections/FeaturedTopics";
+import { Team } from "@/components/sections/Team"; // New
 import { Courses } from "@/components/sections/Courses";
 import { Process } from "@/components/sections/Process"; // New
 import { Benefits } from "@/components/sections/Benefits";
@@ -36,6 +37,9 @@ export default function Home() {
         
         {/* 3. Featured Topics (Value) */}
         <FeaturedTopics />
+
+        {/* 3.5. Team Section (Credibility) */}
+        <Team />
         
         {/* 4. Courses Section (Core Business) */}
         <Courses />

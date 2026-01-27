@@ -8,13 +8,15 @@ const steps = [
   { icon: UserPlus, title: "Enroll Course", desc: "Choose your path and join." },
   { icon: PlayCircle, title: "Access Content", desc: "Watch high-quality videos." },
   { icon: Code2, title: "Practice Projects", desc: "Build real-world apps." },
-  { icon: MessageCircle, title: "Internship with Stipend", desc: "Internship with stipend." },
+  { icon: MessageCircle, title: "Internship with Stipend", desc: "Gain industry experience with paid opportunities." },
   { icon: Award, title: "Earn Certificate", desc: "Showcase your skills." },
 ];
 
 export function Process() {
   return (
     <section className="py-16 md:py-20 bg-transparent relative overflow-hidden">
+      {/* Texture Overlay */}
+      <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10 mix-blend-overlay pointer-events-none" />
       <div className="container mx-auto px-6 relative z-10">
         <SectionHeading
           badge="OUR PROCESS"
