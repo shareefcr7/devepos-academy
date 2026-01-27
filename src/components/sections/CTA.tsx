@@ -71,8 +71,8 @@ const EcosystemCanvas = () => {
         let animationFrameId: number;
 
         const particles: Particle[] = [];
-        const particleCount = 100;
-        const connectionDistance = 120;
+        const particleCount = 60; // Reduced for performance
+        const connectionDistance = 100;
 
         class Particle {
             x: number;
@@ -88,14 +88,13 @@ const EcosystemCanvas = () => {
                 this.vx = (Math.random() - 0.5) * 0.5;
                 this.vy = (Math.random() - 0.5) * 0.5;
                 this.size = Math.random() * 1.5 + 0.5;
-                this.color = Math.random() > 0.5 ? "rgba(34, 211, 238, " : "rgba(59, 130, 246, "; // Cyan or Blue base
+                this.color = Math.random() > 0.5 ? "rgba(34, 211, 238, " : "rgba(59, 130, 246, "; 
             }
 
             update() {
                 this.x += this.vx;
                 this.y += this.vy;
 
-                // Bounce off edges
                 if (this.x < 0 || this.x > width) this.vx *= -1;
                 if (this.y < 0 || this.y > height) this.vy *= -1;
             }
@@ -134,7 +133,7 @@ const EcosystemCanvas = () => {
                     if (distance < connectionDistance) {
                         const opacity = 1 - (distance / connectionDistance);
                         ctx.beginPath();
-                        ctx.strokeStyle = `rgba(34, 211, 238, ${opacity * 0.2})`; // Cyan glow lines
+                        ctx.strokeStyle = `rgba(34, 211, 238, ${opacity * 0.2})`; 
                         ctx.moveTo(particles[i].x, particles[i].y);
                         ctx.lineTo(particles[j].x, particles[j].y);
                         ctx.stroke();
