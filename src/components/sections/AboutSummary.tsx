@@ -61,7 +61,7 @@ export function AboutSummary() {
   const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
 
   return (
-    <section ref={containerRef} className="py-32 relative bg-[#010208] overflow-hidden perspective-[2000px]">
+    <section ref={containerRef} className="py-24 md:py-32 relative bg-[#010208] overflow-hidden perspective-[2000px]">
       
       {/* Cinematic Lighting & Atmosphere */}
       <div className="absolute inset-0 pointer-events-none">
@@ -98,42 +98,40 @@ export function AboutSummary() {
               </span>
             </motion.div>
             
-            <h2 className="text-[clamp(2.5rem,5vw,4.5rem)] font-black leading-[0.9] text-white uppercase tracking-tighter mb-8 bg-clip-text">
-               Forging The <br />
-               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-white animate-text-shimmer bg-[length:200%_auto]">
-                 Digital Elite
-               </span>
+            <h2 className="text-[clamp(2rem,4vw,3.5rem)] font-black leading-[1.1] text-white uppercase tracking-tighter mb-8">
+               Premier <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-white animate-text-shimmer bg-[length:200%_auto]">Offline Tech</span> <br />
+               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-white animate-text-shimmer bg-[length:200%_auto]">Training</span> & Career <br />
+               Development
             </h2>
             
-            <p className="text-white/40 text-lg md:text-xl font-light leading-relaxed mb-12 max-w-xl border-l-2 border-white/10 pl-6">
-              Processing raw talent into high-performance <span className="text-white">engineering architects</span>. 
-              Bridging the void between theoretical data and deployed reality through intense, project-rooted protocols.
+            <p className="text-white/60 text-lg md:text-xl font-light leading-relaxed mb-12 max-w-xl border-l-2 border-cyan-500/30 pl-6">
+              SDEC Academy is a leading offline destination for aspiring developers and tech enthusiasts. We bridge the gap between academic learning and industry requirements through hands-on, project-based training.
             </p>
 
             <div className="space-y-6">
               {[
-                { label: "Protocol: Industry-Grade Mentorship", icon: Users },
-                { label: "Target: Full-Stack Architecture", icon: Server },
-                { label: "Status: Live Project Deployment", icon: Zap }
+                { label: "Designed for Students, Freelancers & Aspiring Engineers", icon: Users },
+                { label: "Focus on Practical, Industry-Oriented Learning", icon: Laptop },
+                { label: "Mentorship directly from Industry Experts", icon: CheckCircle }
               ].map((item, i) => (
                 <motion.div 
                   key={i}
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.4 + (i * 0.1) }}
-                  className="group relative h-16 bg-white/[0.02] border border-white/5 rounded-xl overflow-hidden flex items-center px-6 gap-5 hover:bg-white/[0.05] transition-colors"
+                  className="group relative h-auto py-4 bg-white/[0.02] border border-white/5 rounded-xl overflow-hidden flex items-start px-6 gap-5 hover:bg-white/[0.05] transition-colors"
                 >
                   <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 to-transparent translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-700" />
                   
-                  <div className="w-8 h-8 rounded-lg bg-black flex items-center justify-center border border-white/10 group-hover:border-cyan-500/50 transition-colors">
+                  <div className="w-8 h-8 rounded-lg bg-black flex-shrink-0 flex items-center justify-center border border-white/10 group-hover:border-cyan-500/50 transition-colors mt-1">
                     <item.icon size={16} className="text-white/40 group-hover:text-cyan-400 transition-colors" />
                   </div>
                   
-                  <span className="font-mono text-xs tracking-[0.1em] uppercase text-white/60 group-hover:text-white transition-colors">
+                  <span className="font-mono text-sm tracking-wide text-white/80 group-hover:text-white transition-colors pt-1.5 leading-relaxed">
                     {item.label}
                   </span>
 
-                  <div className="ml-auto flex items-center gap-2">
+                  <div className="ml-auto flex items-center gap-2 mt-2">
                     <div className="w-1.5 h-1.5 rounded-full bg-cyan-500/20 group-hover:bg-cyan-400 group-hover:shadow-[0_0_10px_#22d3ee] transition-all" />
                   </div>
                 </motion.div>
@@ -147,7 +145,7 @@ export function AboutSummary() {
             whileInView={{ opacity: 1, scale: 1, rotateY: 0 }}
             transition={{ duration: 1.2, ease: "easeOut" }}
             style={{ y: y1, opacity }}
-            className="relative h-[600px] w-full hidden lg:block"
+            className="relative h-[300px] md:h-[500px] lg:h-[600px] w-full block mt-12 lg:mt-0"
           >
              {/* Holographic Frame */}
              <div className="absolute inset-0 z-20 border border-white/10 rounded-[2rem] pointer-events-none">
@@ -205,7 +203,6 @@ export function AboutSummary() {
              </motion.div>
 
           </motion.div>
-
         </div>
       </div>
     </section>

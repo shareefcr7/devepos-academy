@@ -85,7 +85,7 @@ const TEAM_MEMBERS: TeamMember[] = [
     role: "Fullstack Developer",
     image: "/images/team/team_7.png",
     workImage: "/images/team/bg_fullstack.png",
-    bio: "Fullstack Developer",
+    bio: "SCALABLE SOLUTIONS EXPERT",
     quote: "Engineering robust solutions for complex challenges.",
     icon: Code
   }
@@ -113,39 +113,104 @@ const TeamCard = memo(({ member, style, isActive }: { member: TeamMember, style:
     style={{ willChange: "transform, opacity, filter" }}
     className="absolute w-[260px] md:w-[320px] aspect-[3/4]"
   >
-    <div className={`relative w-full h-full rounded-[2.5rem] overflow-hidden border transition-all duration-500
-                    ${isActive ? "border-cyan-500/30 bg-[#080a15] shadow-[0_0_50px_rgba(34,211,238,0.2)]" : "border-white/5 bg-[#05060f]"}
+    <div className={`relative w-full h-full rounded-[2rem] overflow-hidden border transition-all duration-500
+                    ${isActive ? "border-cyan-500/50 bg-[#080a15] shadow-[0_0_60px_rgba(34,211,238,0.3)]" : "border-white/5 bg-[#05060f]"}
                    `}>
-      <Image
-        src={member.image}
-        alt={member.name}
-        fill
-        quality={100}
-        priority={isActive}
-        className={`object-cover transition-all duration-[2s] ${isActive ? "scale-100 opacity-100" : "scale-110 opacity-60"}`}
-      />
+      {/* Glitch/Hologram Effect on Image */}
+      <div className="relative w-full h-full"> 
+         <Image
+            src={member.image}
+            alt={member.name}
+            fill
+            quality={100}
+            priority={isActive}
+            className={`object-cover transition-all duration-[2s] ${isActive ? "scale-100 opacity-100" : "scale-110 opacity-50 grayscale"}`}
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#020617] via-transparent to-transparent opacity-80" />
+      </div>
       
-      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-90" />
+      {/* --- ACTIVE SCANNER UI --- */}
+      {isActive && (
+        <div className="absolute inset-0 pointer-events-none z-20">
+            {/* 1. Scanning Line */}
+            <motion.div 
+               animate={{ top: ["0%", "100%", "0%"] }}
+               transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+               className="absolute left-0 right-0 h-0.5 bg-cyan-400 shadow-[0_0_20px_#22d3ee] z-30"
+            >
+                <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-t from-cyan-400/20 to-transparent" />
+            </motion.div>
+
+            {/* 2. Viewfinder Corners */}
+            <div className="absolute top-4 left-4 w-8 h-8 border-t-2 border-l-2 border-cyan-400 rounded-tl-lg" />
+            <div className="absolute top-4 right-4 w-8 h-8 border-t-2 border-r-2 border-cyan-400 rounded-tr-lg" />
+            <div className="absolute bottom-4 left-4 w-8 h-8 border-b-2 border-l-2 border-cyan-400 rounded-bl-lg" />
+            <div className="absolute bottom-4 right-4 w-8 h-8 border-b-2 border-r-2 border-cyan-400 rounded-br-lg" />
+
+            {/* 3. Tech Data Overlay */}
+            <div className="absolute top-8 left-6 space-y-1">
+                <motion.div 
+                    initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }}
+                    className="flex items-center gap-2"
+                >
+                    <Shield size={10} className="text-cyan-400" />
+                    <span className="text-[8px] font-mono text-cyan-400 tracking-widest">IDENTITY_VERIFIED</span>
+                </motion.div>
+                <motion.div 
+                    initial={{ width: 0 }} animate={{ width: "100%" }} transition={{ duration: 1, repeat: Infinity }}
+                    className="h-[1px] bg-cyan-400/30" 
+                />
+            </div>
+
+            {/* 4. Side Metrics */}
+            <div className="absolute right-4 top-1/2 -translate-y-1/2 flex flex-col gap-1 items-end opacity-60">
+                {[...Array(6)].map((_, i) => (
+                    <motion.div 
+                        key={i}
+                        animate={{ width: [4, 16, 4], opacity: [0.3, 1, 0.3] }}
+                        transition={{ duration: 1 + i * 0.2, repeat: Infinity }}
+                        className="h-0.5 bg-cyan-400 rounded-full"
+                    />
+                ))}
+            </div>
+
+            {/* 5. Grid Overlay */}
+            <div className="absolute inset-0 bg-[linear-gradient(rgba(34,211,238,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(34,211,238,0.03)_1px,transparent_1px)] bg-[size:20px_20px] z-10" />
+        </div>
+      )}
       
-      <div className="absolute inset-x-0 bottom-0 p-8 transform-gpu">
+      {/* Content Info */}
+      <div className="absolute inset-x-0 bottom-0 p-8 transform-gpu z-30 flex flex-col justify-end bg-gradient-to-t from-[#020617] via-[#020617]/80 to-transparent pt-20">
          <motion.h3 
-           animate={{ letterSpacing: isActive ? "0px" : "4px" }}
-           className="text-3xl md:text-5xl font-black tracking-tighter uppercase mb-2 leading-none text-transparent bg-clip-text bg-gradient-to-b from-white to-white/10"
-           style={{ WebkitTextStroke: '0.5px rgba(255,255,255,0.15)' }}>
+           animate={{ letterSpacing: isActive ? "0px" : "2px" }}
+           className="text-2xl md:text-4xl font-black tracking-tight uppercase mb-2 leading-none text-white"
+         >
            {member.name}
          </motion.h3>
-         <p className={`${member.role === 'CEO' ? 'text-cyan-400/90' : 'text-cyan-400/60'} font-mono text-[9px] md:text-[11px] font-black tracking-[0.6em] uppercase`}>
-           {member.role}
-         </p>
+         
+         <div className="flex flex-col gap-2">
+            <div className="flex items-center gap-3">
+                <span className={`w-8 h-0.5 ${isActive ? 'bg-cyan-400' : 'bg-white/20'}`} />
+                <p className={`${member.role === 'CEO' ? 'text-cyan-400 font-extrabold text-sm md:text-base' : 'text-cyan-400/90 font-bold text-xs md:text-sm'} tracking-widest uppercase`}>
+                    {member.role}
+                </p>
+            </div>
+            
+            {/* Short Description Reveal */}
+            {isActive && (
+                <motion.div 
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: "auto" }}
+                    transition={{ duration: 0.5 }}
+                    className="overflow-hidden"
+                >
+                    <p className="text-[10px] md:text-[11px] text-white/60 font-mono border-l-2 border-cyan-500/20 pl-3 leading-relaxed mt-2 uppercase tracking-wider">
+                        // {member.bio}
+                    </p>
+                </motion.div>
+            )}
+         </div>
       </div>
-
-      {isActive && (
-        <motion.div 
-          className="absolute inset-0 border-2 border-cyan-400/20 rounded-[2.5rem]"
-          animate={{ opacity: [0, 1, 0], scale: [1, 1.05, 1] }}
-          transition={{ duration: 3, repeat: Infinity }}
-        />
-      )}
     </div>
   </motion.div>
 ));
@@ -156,7 +221,6 @@ TeamCard.displayName = "TeamCard";
 export function Team() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isMuted, setIsMuted] = useState(false); // Enable unmuted by default for automatic play
-  const [isFinished, setIsFinished] = useState(false);
   const [mounted, setMounted] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const sectionRef = useRef(null);
@@ -177,62 +241,32 @@ export function Team() {
   }, []);
 
   const nextMember = useCallback(() => {
-    setActiveIndex((prev) => {
-      if (prev >= TEAM_MEMBERS.length - 1) {
-        setIsFinished(true);
-        return prev;
-      }
-      return prev + 1;
-    });
+    setActiveIndex((prev) => (prev + 1) % TEAM_MEMBERS.length);
   }, []);
 
-  // Audio Playback Logic - Automatic Play from 1st to 8th
+  // Audio Playback Logic - Automatic Play
   useEffect(() => {
     if (audioRef.current) {
-      if (!isMuted && !isFinished && isInView) {
+      if (!isMuted && isInView) {
         // Attempt to play (browser might block until first click)
         const playPromise = audioRef.current.play();
         if (playPromise !== undefined) {
           playPromise.catch(() => {
-            // If blocked, we'll wait for user to toggle mute or click restart
+            // If blocked, we'll wait for user to toggle mute
             console.log("Autoplay blocked - awaiting user interaction");
           });
         }
         audioRef.current.volume = 0.5;
-      } else if (isFinished || !isInView) {
-        // Fade out transition
-        let vol = 0.5;
-        const fadeOut = setInterval(() => {
-          if (vol > 0) {
-            vol -= 0.05;
-            if (audioRef.current) audioRef.current.volume = Math.max(0, vol);
-          } else {
-            if (audioRef.current) audioRef.current.pause();
-            clearInterval(fadeOut);
-          }
-        }, 100);
       } else {
-        audioRef.current.pause();
+         audioRef.current.pause();
       }
     }
-  }, [isMuted, isFinished, isInView]);
+  }, [isMuted, isInView]);
 
   useEffect(() => {
-    if (isFinished) return;
     const interval = setInterval(nextMember, AUTO_PLAY_INTERVAL);
     return () => clearInterval(interval);
-  }, [nextMember, isFinished]);
-
-  const handleRestart = () => {
-    setIsFinished(false);
-    setActiveIndex(0);
-    if (audioRef.current) {
-      audioRef.current.currentTime = 0;
-      audioRef.current.volume = 0.5;
-      setIsMuted(false); // Ensure unmuted on restart
-      audioRef.current.play().catch(() => {});
-    }
-  };
+  }, [nextMember]);
 
   const getCardStyle = (index: number) => {
     const total = TEAM_MEMBERS.length;
@@ -280,16 +314,6 @@ export function Team() {
     <section ref={sectionRef} className="py-32 relative overflow-hidden bg-[#010208] perspective-[3500px]">
       {/* Audio Control Toggle */}
       <div className="absolute top-12 right-12 z-[100] flex items-center gap-4">
-        {isFinished && (
-          <motion.button
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            onClick={handleRestart}
-            className="px-6 py-3 rounded-full bg-white/5 border border-white/10 text-white/40 font-mono text-[9px] tracking-[0.3em] uppercase hover:bg-white/10 hover:text-white transition-all backdrop-blur-xl"
-          >
-            Restart System Scan
-          </motion.button>
-        )}
         <motion.button
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -431,21 +455,19 @@ export function Team() {
 
                <div className="flex flex-col items-center gap-4">
                   <div className="flex items-center gap-2">
-                     <span className={`w-1.5 h-1.5 rounded-full ${isFinished ? "bg-white" : "bg-cyan-400 shadow-[0_0_8px_#22d3ee]"}`} />
-                     <span className={`${isFinished ? "text-white/40" : "text-cyan-400/60"} font-mono text-[9px] tracking-[0.8em] uppercase`}>
-                       {isFinished ? "System Finalized: Mission Clear" : "Status: Professional Scan Active"}
+                     <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 shadow-[0_0_8px_#22d3ee]" />
+                     <span className="text-cyan-400/60 font-mono text-[9px] tracking-[0.8em] uppercase">
+                       Status: Professional Scan Active
                      </span>
                   </div>
-                  {!isFinished && (
-                    <div className="w-48 h-0.5 bg-white/5 rounded-full overflow-hidden">
-                       <motion.div 
-                         initial={{ x: "-100%" }}
-                         animate={{ x: "0%" }}
-                         transition={{ duration: AUTO_PLAY_INTERVAL / 1000, ease: "linear" }}
-                         className="h-full bg-cyan-400/40"
-                       />
-                    </div>
-                  )}
+                  <div className="w-48 h-0.5 bg-white/5 rounded-full overflow-hidden">
+                     <motion.div 
+                       initial={{ x: "-100%" }}
+                       animate={{ x: "0%" }}
+                       transition={{ duration: AUTO_PLAY_INTERVAL / 1000, ease: "linear" }}
+                       className="h-full bg-cyan-400/40"
+                     />
+                  </div>
                </div>
             </motion.div>
           </AnimatePresence>

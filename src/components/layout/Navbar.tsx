@@ -23,6 +23,18 @@ export function Navbar() {
     { name: "Contact", href: "/contact" },
   ];
 
+  // Body scroll lock effect
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [isMobileMenuOpen]);
+
   return (
     <motion.nav
       className={cn(
@@ -93,7 +105,7 @@ export function Navbar() {
             </Link>
           ))}
           
-          <Link href="/#courses">
+          <Link href="/contact">
             <Button className="h-11 px-8 rounded-xl bg-white text-navy font-black text-[10px] tracking-[0.2em] uppercase hover:bg-white/90 shadow-xl transition-all">
               Join Elite
             </Button>
@@ -115,14 +127,14 @@ export function Navbar() {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, backdropFilter: "blur(0px)" }}
-            animate={{ opacity: 1, backdropFilter: "blur(40px)" }}
-            exit={{ opacity: 0, backdropFilter: "blur(0px)" }}
-            transition={{ duration: 0.5 }}
-            className="md:hidden fixed inset-0 bg-black/80 z-[10000] flex flex-col"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="md:hidden fixed inset-0 bg-[#010208] z-[99999] flex flex-col overflow-hidden"
           >
             {/* Minimalist Header */}
-            <div className="flex items-center justify-between px-8 py-10 shrink-0 border-b border-white/5">
+            <div className="flex items-center justify-between px-8 py-10 shrink-0 border-b border-white/5 bg-[#010208]">
               <Link href="/" className="flex items-center gap-3" onClick={() => setIsMobileMenuOpen(false)}>
                 <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-electric to-electric-blue flex items-center justify-center">
                   <Zap className="text-white fill-white" size={20} />
@@ -131,7 +143,8 @@ export function Navbar() {
               </Link>
               <button 
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="p-3 rounded-xl bg-white/5 border border-white/10 text-white"
+                className="p-3 rounded-xl bg-white/5 border border-white/10 text-white hover:bg-white/10 transition-colors"
+                aria-label="Close Menu"
               >
                 <X size={24} />
               </button>
@@ -168,7 +181,7 @@ export function Navbar() {
               </div>
             </div>
 
-            <div className="p-10 text-center border-t border-white/5 bg-black/40">
+            <div className="p-10 text-center border-t border-white/5 bg-[#010208]">
                <p className="text-white/10 text-[9px] font-bold tracking-[0.3em] uppercase italic">PIONEER. INNOVATE. SCALE. © 2026 SDEC ACADEMY</p>
             </div>
           </motion.div>

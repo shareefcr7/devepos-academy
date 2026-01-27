@@ -38,7 +38,7 @@ export function Hero() {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 bg-[#010208]">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 bg-[#020617]">
       {/* --- CINEMATIC FLOWING BACKGROUND --- */}
       <div className="absolute inset-0 z-0">
         <motion.div
@@ -60,7 +60,7 @@ export function Hero() {
             src="/images/hero_particles.png"
             alt="Cinematic Flowing Particles"
             fill
-            className="object-cover opacity-70 mix-blend-screen scale-110"
+            className="object-cover opacity-60 mix-blend-screen scale-110"
             priority
           />
         </motion.div>
@@ -118,8 +118,8 @@ export function Hero() {
         )}
 
         {/* Cinematic Vignette */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#010208]/95 via-transparent to-[#010208]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_transparent_30%,_rgba(1,2,8,0.95)_100%)]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#020617] via-blue-900/5 to-[#020617]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_transparent_30%,_rgba(2,6,23,0.95)_100%)]" />
       </div>
 
       {/* --- BACKGROUND DECORATION LAYER (Behind Text) --- */}
@@ -149,25 +149,43 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
         >
-          <h1 className="flex flex-col items-center gap-2 md:gap-4 px-2 md:px-4 text-center">
-            <span className="text-2xl md:text-7xl font-light text-white/40 tracking-[0.2em] md:tracking-[0.4em] uppercase mb-1 md:mb-2">Master the Future</span>
-            <span className="text-white/20 text-lg md:text-4xl font-black uppercase tracking-[0.4em] md:tracking-[0.8em] mb-2 md:mb-4">Of</span>
-            <span className="relative text-[2.5rem] leading-[1.1] md:text-9xl font-black uppercase tracking-tighter md:leading-none
-                           text-transparent bg-clip-text bg-gradient-to-b from-white to-white/10 px-4"
-                  style={{ WebkitTextStroke: '0.5px rgba(255,255,255,0.15)' }}>
+          <h1 className="flex flex-col items-center justify-center text-center relative z-20">
+            {/* Background Layer Text - ICE EFFECT */}
+            <div className="flex flex-col items-center leading-[0.8] select-none pointer-events-none">
+              <span className="text-[clamp(3.5rem,9vw,8rem)] font-black tracking-tighter uppercase whitespace-nowrap
+                             text-transparent bg-clip-text bg-gradient-to-b from-white/40 via-white/10 to-transparent"
+                    style={{ WebkitTextStroke: '1px rgba(67, 185, 227, 0.3)' }}>
+                Master The
+              </span>
+              <span className="text-[clamp(3.5rem,9vw,8rem)] font-black tracking-tighter uppercase whitespace-nowrap
+                             text-transparent bg-clip-text bg-gradient-to-b from-white/40 via-white/10 to-transparent"
+                    style={{ WebkitTextStroke: '1px rgba(67, 185, 227, 0.3)' }}>
+                Future
+              </span>
+            </div>
+
+            {/* Middle Layer */}
+            <span className="text-white font-black text-lg md:text-2xl tracking-[0.5em] uppercase -mt-2 md:-mt-6 mb-4 relative z-10 drop-shadow-lg">
+              Of
+            </span>
+
+            {/* Foreground Main Text */}
+            <span className="relative text-[clamp(2.5rem,8vw,7rem)] font-black uppercase tracking-tighter leading-[0.9]
+                           text-transparent bg-clip-text bg-gradient-to-r from-[#8B5CF6] via-[#3B82F6] to-[#06B6D4]
+                           filter drop-shadow-[0_0_30px_rgba(59,130,246,0.5)] z-20 px-4">
               Web Development
-              <div className="absolute -inset-10 bg-electric-blue/10 blur-[60px] -z-10 rounded-full animate-pulse opacity-50 md:opacity-100" />
+              <div className="absolute -inset-20 bg-blue-500/20 blur-[100px] -z-10 rounded-full animate-pulse opacity-50" />
             </span>
           </h1>
         </motion.div>
 
         <motion.p
-          className="text-sm md:text-2xl text-blue-100/20 mb-8 md:mb-16 max-w-4xl mx-auto font-light leading-relaxed tracking-[0.15em] md:tracking-[0.3em] uppercase px-6"
+          className="text-sm md:text-xl text-blue-100/80 mb-8 md:mb-16 max-w-4xl mx-auto font-medium leading-relaxed tracking-[0.15em] md:tracking-[0.3em] uppercase px-6"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 0.7 }}
         >
-          <span className="text-white/50 font-black">Premier Offline Tech Training</span> & Career Development.
+          <span className="text-cyan-400 font-black">Premier Tech Training</span> & Career Development.
         </motion.p>
 
         <motion.div

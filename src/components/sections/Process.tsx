@@ -114,6 +114,7 @@ export function Process() {
 
                {/* Continuous Moving Particle - ROCKET */}
                <g filter="url(#glow)">
+                 <animate attributeName="opacity" values="1;1;0" keyTimes="0;0.96;1" dur="8s" repeatCount="indefinite" />
                  <animateMotion 
                    dur="8s" 
                    repeatCount="indefinite" 
@@ -196,34 +197,59 @@ export function Process() {
                         <Award size={32} className="text-purple-500" />
                      </div>
                      
-                     {/* Celebration Stars */}
+                     {/* Celebration Stars & Crash Effect */}
                      <div className="absolute inset-0 overflow-visible pointer-events-none">
-                        {[...Array(12)].map((_, i) => (
-                           <motion.div
-                              key={i}
-                              className="absolute left-1/2 top-1/2"
-                              initial={{ x: 0, y: 0, scale: 0, opacity: 0 }}
-                              animate={{ 
-                                 x: ((i % 2 === 0 ? 1 : -1) * (i * 10 + 20)), 
-                                 y: ((i % 3 === 0 ? 1 : -1) * (i * 10 + 20)),
-                                 scale: [0, 1, 0],
-                                 opacity: [0, 1, 0],
-                                 rotate: [0, 180]
-                              }}
-                              transition={{ 
-                                 duration: 2, 
-                                 repeat: Infinity, 
-                                 repeatDelay: (i % 3) + 1,
-                                 delay: (i % 5) * 0.2,
-                                 ease: "easeOut" 
-                              }}
-                           >
-                              <Star 
-                                size={i % 2 === 0 ? 12 : 8} 
-                                className="fill-yellow-400 text-yellow-400" 
-                              />
-                           </motion.div>
-                        ))}
+                        {/* Shockwave Ring */}
+                        <motion.div 
+                           className="absolute inset-0 rounded-full border-2 border-white/50"
+                           animate={{ scale: [1, 2], opacity: [0, 0, 1, 0], borderWidth: ["2px", "0px"] }}
+                           transition={{ duration: 8, times: [0, 0.9, 0.95, 1], repeat: Infinity, ease: "easeOut" }}
+                        />
+                        <motion.div 
+                           className="absolute inset-0 rounded-full border border-purple-500/50"
+                           animate={{ scale: [1, 2.5], opacity: [0, 0, 1, 0] }}
+                           transition={{ duration: 8, times: [0, 0.92, 0.98, 1], repeat: Infinity, ease: "easeOut" }}
+                        />
+
+                        {/* Particles Explosion */}
+                        {[...Array(20)].map((_, i) => {
+                           // Random angles and distances
+                           const angle = (i * 360) / 20;
+                           const radius = 60 + Math.random() * 40;
+                           const x = Math.cos(angle * (Math.PI / 180)) * radius;
+                           const y = Math.sin(angle * (Math.PI / 180)) * radius;
+                           const delay = Math.random() * 0.05; // Slight offset for natural feel
+                           const scale = 0.5 + Math.random();
+                           
+                           return (
+                              <motion.div
+                                 key={i}
+                                 className="absolute left-1/2 top-1/2"
+                                 initial={{ x: 0, y: 0, scale: 0, opacity: 0 }}
+                                 animate={{ 
+                                    x: [0, 0, x], 
+                                    y: [0, 0, y],
+                                    scale: [0, 0, scale, 0],
+                                    opacity: [0, 0, 1, 0],
+                                    rotate: [0, 0, 180 + Math.random() * 180]
+                                 }}
+                                 transition={{ 
+                                    duration: 8, 
+                                    times: [0, 0.92, 0.96, 1], // Trigger at end of loop overlap
+                                    repeat: Infinity, 
+                                    ease: "easeOut" 
+                                 }}
+                              >
+                                 {i % 3 === 0 ? (
+                                    <Star size={12} className="fill-yellow-400 text-yellow-400 drop-shadow-[0_0_8px_rgba(250,204,21,0.8)]" />
+                                 ) : i % 3 === 1 ? (
+                                    <div className="w-2 h-2 rounded-full bg-cyan-400 drop-shadow-[0_0_5px_rgba(34,211,238,0.8)]" />
+                                 ) : (
+                                    <div className="w-1.5 h-1.5 rotate-45 bg-purple-500 drop-shadow-[0_0_5px_rgba(168,85,247,0.8)]" />
+                                 )}
+                              </motion.div>
+                           )
+                        })}
                      </div>
                   </div>
                   <h3 className="text-xl font-bold text-white mb-2">{steps[4].title}</h3>
