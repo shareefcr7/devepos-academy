@@ -147,6 +147,7 @@ export function Testimonials() {
                     src={t.image} 
                     alt={t.name} 
                     fill 
+                    sizes="48px"
                     className="object-cover"
                     onError={(e) => {
                        // Fallback if image fails (using a gradient placeholder)

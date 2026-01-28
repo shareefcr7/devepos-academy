@@ -248,13 +248,21 @@ export function Team() {
   // Audio Playback
   useEffect(() => {
     if (audioRef.current) {
-      if (!isMuted && isInView) {
-        audioRef.current.play().catch(() => setIsMuted(true));
+      // Strictly disable audio on mobile to prevent autoplay errors and performance issues
+      if (!isMuted && isInView && !isMobile) {
+        const playPromise = audioRef.current.play();
+        if (playPromise !== undefined) {
+          playPromise.catch((error) => {
+            // Silently catch the error to prevent "Pause on caught exceptions" in DevTools
+            // console.warn("Audio playback failed:", error); 
+            setIsMuted(true);
+          });
+        }
       } else {
         audioRef.current.pause();
       }
     }
-  }, [isMuted, isInView]);
+  }, [isMuted, isInView, isMobile]);
 
   useEffect(() => {
     const interval = setInterval(nextMember, AUTO_PLAY_INTERVAL);
