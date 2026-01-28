@@ -162,7 +162,7 @@ export function AboutSummary() {
              </div>
 
              {/* Main Image Container */}
-             <div className="relative w-full h-full rounded-[2rem] overflow-hidden filter grayscale brightness-[0.8] hover:grayscale-0 hover:brightness-100 transition-all duration-700 bg-black">
+             <div className="relative w-full h-full rounded-[2rem] overflow-hidden filter grayscale brightness-[0.8] hover:grayscale-0 hover:brightness-100 active:grayscale-0 active:brightness-100 transition-all duration-700 bg-black cursor-pointer group/image">
                 <Image 
                   src="/images/IMAGE6.avif"
                   alt="SDEC Facility"
@@ -190,12 +190,19 @@ export function AboutSummary() {
              <motion.div 
                animate={{ y: [-10, 10, -10] }}
                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-               className="absolute -right-10 top-1/2 -translate-y-1/2 bg-[#0a0a0a]/90 backdrop-blur-xl border border-white/10 p-8 rounded-3xl z-30 shadow-2xl min-w-[200px] flex flex-col items-center justify-center text-center"
+               className="absolute right-4 bottom-4 md:-right-6 md:top-1/2 md:-translate-y-1/2 bg-black/30 backdrop-blur-md border border-white/10 p-4 rounded-2xl z-30 shadow-2xl flex flex-col items-center justify-center text-center gap-2 max-w-[160px] md:max-w-[200px]"
              >
-                <div className="w-16 h-16 rounded-2xl bg-white/5 flex items-center justify-center mb-4 border border-white/10">
-                   <GraduationCap size={32} className="text-white" />
+                <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-white/5 flex items-center justify-center border border-white/10">
+                   <GraduationCap size={20} className="text-white md:w-6 md:h-6" />
                 </div>
-                <div className="text-lg font-bold text-white mb-1">Certificate of Completion</div>
+                <div className="text-xs md:text-sm font-bold text-white">Certificate of Completion</div>
+                <div className="flex items-center justify-center gap-2 opacity-60">
+                   <Code size={12} className="text-blue-400" />
+                   <div className="w-1 h-1 rounded-full bg-white/20" />
+                   <Database size={12} className="text-purple-400" />
+                   <div className="w-1 h-1 rounded-full bg-white/20" />
+                   <Server size={12} className="text-cyan-400" />
+                </div>
              </motion.div>
 
           </motion.div>

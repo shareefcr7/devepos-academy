@@ -23,8 +23,9 @@ export default function Home() {
     <main className="min-h-screen bg-navy text-white relative">
       <LogoIntro onComplete={() => setIntroComplete(true)} />
       
+      {introComplete && <Navbar />}
+      
       <div className={`transition-opacity duration-1000 ${introComplete ? "opacity-100" : "opacity-0"}`}>
-        <Navbar />
         <Stars />
         <div className="glow-mesh" />
         

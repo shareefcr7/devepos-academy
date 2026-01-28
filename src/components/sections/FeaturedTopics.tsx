@@ -2,25 +2,25 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Sparkles } from "lucide-react";
+import { Zap, Sparkles, Palette, PenTool, Code, Layers, Server, Database, FileCode, Terminal, Globe, GitBranch, Box, Hash, Layout } from "lucide-react";
 
 const topicData = [
-  { name: "Tailwind", url: "https://tailwindcss.com", courseId: "l2-frontend" },
-  { name: "Figma", url: "https://figma.com", courseId: "l2-frontend" },
-  { name: "React", url: "https://react.dev", courseId: "l3" },
-  { name: "Next.js", url: "https://nextjs.org", courseId: "l3" },
-  { name: "Node.js", url: "https://nodejs.org", courseId: "l2-backend" },
-  { name: "MongoDB", url: "https://mongodb.com", courseId: "l2-backend" },
-  { name: "MySQL", url: "https://mysql.com", courseId: "l2-backend" },
-  { name: "JavaScript", url: "https://javascript.info", courseId: "l1" },
-  { name: "TypeScript", url: "https://typescriptlang.org", courseId: "l3" },
-  { name: "Vite", url: "https://vitejs.dev", courseId: "l1" },
-  { name: "GiHub", url: "https://github.com", courseId: "l1" },
-  { name: "Git", url: "https://git-scm.com", courseId: "l1" },
-  { name: "Express.js", url: "https://expressjs.com", courseId: "l2-backend" },
-  { name: "REST APIs", url: "https://restfulapi.net", courseId: "l2-backend" },
-  { name: "Python", url: "https://python.org", courseId: "l4" },
-  { name: "PostgreSQL", url: "https://postgresql.org", courseId: "l4" }
+  { name: "Tailwind", url: "https://tailwindcss.com", courseId: "l2-frontend", icon: Palette },
+  { name: "Figma", url: "https://figma.com", courseId: "l2-frontend", icon: PenTool },
+  { name: "React", url: "https://react.dev", courseId: "l3", icon: Code },
+  { name: "Next.js", url: "https://nextjs.org", courseId: "l3", icon: Layers },
+  { name: "Node.js", url: "https://nodejs.org", courseId: "l2-backend", icon: Server },
+  { name: "MongoDB", url: "https://mongodb.com", courseId: "l2-backend", icon: Database },
+  { name: "MySQL", url: "https://mysql.com", courseId: "l2-backend", icon: Database },
+  { name: "JavaScript", url: "https://javascript.info", courseId: "l1", icon: FileCode },
+  { name: "TypeScript", url: "https://typescriptlang.org", courseId: "l3", icon: FileCode },
+  { name: "Vite", url: "https://vitejs.dev", courseId: "l1", icon: Zap },
+  { name: "GiHub", url: "https://github.com", courseId: "l1", icon: Globe },
+  { name: "Git", url: "https://git-scm.com", courseId: "l1", icon: GitBranch },
+  { name: "Express.js", url: "https://expressjs.com", courseId: "l2-backend", icon: Server },
+  { name: "REST APIs", url: "https://restfulapi.net", courseId: "l2-backend", icon: Globe },
+  { name: "Python", url: "https://python.org", courseId: "l4", icon: Terminal },
+  { name: "PostgreSQL", url: "https://postgresql.org", courseId: "l4", icon: Database }
 ];
 
 const TopicCard = ({ topic }: { topic: typeof topicData[0] }) => (
@@ -38,7 +38,7 @@ const TopicCard = ({ topic }: { topic: typeof topicData[0] }) => (
       <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
       
       <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-blue-500/20 to-cyan-500/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-500 border border-white/10 group-hover:border-blue-400/50 relative overflow-hidden">
-        <Sparkles size={24} className="text-blue-400 group-hover:text-cyan-400 transition-colors filter drop-shadow-[0_0_8px_rgba(0,210,255,0.8)]" />
+        <topic.icon size={24} className="text-blue-400 group-hover:text-cyan-400 transition-colors filter drop-shadow-[0_0_8px_rgba(0,210,255,0.8)]" />
         <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 animate-shimmer" />
       </div>
       

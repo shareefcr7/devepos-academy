@@ -165,6 +165,57 @@ export default function CourseDetail() {
             </div>
             
             <div className="relative max-w-6xl mx-auto">
+                {/* Mobile Snake Line Animation */}
+                <div className="block lg:hidden absolute inset-0 -top-8 -z-10 w-full h-full pointer-events-none">
+                   <svg className="w-full h-full visible" viewBox="0 0 400 800" fill="none" preserveAspectRatio="none">
+                     <defs>
+                       <linearGradient id="mobileAssetLineGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                         <stop offset="0%" stopColor="#7000ff" stopOpacity="0.1" />
+                         <stop offset="50%" stopColor="#00d2ff" stopOpacity="0.3" />
+                         <stop offset="100%" stopColor="#7000ff" stopOpacity="0.1" />
+                       </linearGradient>
+                       <linearGradient id="mobileAssetActiveGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                         <stop offset="0%" stopColor="#7000ff" />
+                         <stop offset="100%" stopColor="#00d2ff" />
+                       </linearGradient>
+                     </defs>
+
+                     {/* 
+                        Mobile Path (4 Rows, 2 Cols):
+                        Row 1 (y=50): 100 -> 300
+                        Row 2 (y=250): 300 -> 100
+                        Row 3 (y=450): 100 -> 300
+                        Row 4 (y=650): 300 -> 100
+                     */}
+                     <motion.path 
+                       d="M 100 50 L 300 50 A 50 50 0 0 1 300 150 L 300 150 A 50 50 0 0 1 300 250 L 100 250 A 50 50 0 0 0 100 350 L 100 350 A 50 50 0 0 0 100 450 L 300 450 A 50 50 0 0 1 300 550 L 300 550 A 50 50 0 0 1 300 650 L 100 650"
+                       stroke="url(#mobileAssetLineGradient)"
+                       strokeWidth="2"
+                       strokeDasharray="8 8"
+                       strokeLinecap="round"
+                       initial={{ opacity: 0.2 }}
+                       animate={{ opacity: [0.2, 0.4, 0.2] }}
+                       transition={{ duration: 3, repeat: Infinity }}
+                     />
+
+                     <path
+                       d="M 100 50 L 300 50 A 50 50 0 0 1 300 150 L 300 150 A 50 50 0 0 1 300 250 L 100 250 A 50 50 0 0 0 100 350 L 100 350 A 50 50 0 0 0 100 450 L 300 450 A 50 50 0 0 1 300 550 L 300 550 A 50 50 0 0 1 300 650 L 100 650"
+                       stroke="url(#mobileAssetActiveGradient)"
+                       strokeWidth="2"
+                       strokeLinecap="round"
+                       className="opacity-40"
+                     />
+                     
+                     <circle r="4" fill="#00d2ff" filter="url(#assetGlow)">
+                       <animateMotion 
+                         dur="15s" 
+                         repeatCount="indefinite" 
+                         path="M 100 50 L 300 50 A 50 50 0 0 1 300 150 L 300 150 A 50 50 0 0 1 300 250 L 100 250 A 50 50 0 0 0 100 350 L 100 350 A 50 50 0 0 0 100 450 L 300 450 A 50 50 0 0 1 300 550 L 300 550 A 50 50 0 0 1 300 650 L 100 650"
+                       />
+                     </circle>
+                   </svg>
+                </div>
+
                 {/* Desktop Snake Line Animation */}
                 <div className="hidden lg:block absolute inset-0 -top-8 -z-10 w-full h-full pointer-events-none">
                    <svg className="w-full h-full visible" viewBox="0 0 1200 400" fill="none" preserveAspectRatio="none">

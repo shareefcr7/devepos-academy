@@ -36,6 +36,7 @@ export function Navbar() {
   }, [isMobileMenuOpen]);
 
   return (
+    <>
     <motion.nav
       className={cn(
         "fixed top-0 left-0 right-0 z-[9999] transition-all duration-500",
@@ -123,6 +124,8 @@ export function Navbar() {
         </motion.button>
       </div>
 
+      </motion.nav>
+
       {/* Mobile Menu Overlay - Premium Glass Version */}
       <AnimatePresence>
         {isMobileMenuOpen && (
@@ -187,6 +190,6 @@ export function Navbar() {
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.nav>
+    </>
   );
 }

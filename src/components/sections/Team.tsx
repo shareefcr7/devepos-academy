@@ -46,9 +46,9 @@ const TEAM_MEMBERS: TeamMember[] = [
   },
   {
     name: "MARSHOOK ALI",
-    role: "Frontend Developer",
+    role: "Fullstack Developer",
     image: "/images/team/team_1.png",
-    workImage: "/images/team/bg_frontend.png",
+    workImage: "/images/team/bg_fullstack.png",
     bio: "INTERFACIAL DESIGN",
     quote: "Designing interfaces that bridge human emotion and code.",
     icon: Code
@@ -64,10 +64,10 @@ const TEAM_MEMBERS: TeamMember[] = [
   },
   {
     name: "RASHA KP",
-    role: "Backend Developer",      
+    role: "Fullstack Developer",      
     image: "/images/team/team_3.png",
     workImage: "/images/team/bg_fullstack.png",
-    bio: "SYSTEM ENGINEERING",
+    bio: "FULLSTACK DEVELOPER",
     quote: "Architecting seamless systems from core to cloud.",
     icon: Terminal
   },
@@ -76,7 +76,7 @@ const TEAM_MEMBERS: TeamMember[] = [
     role: "Fullstack Developer",
     image: "/images/team/team_5.png",
     workImage: "/images/team/bg_fullstack.png",
-    bio: "WEB PERFORMANCE",
+    bio: "FULLSTACK DEVELOPER",
     quote: "Building the high-performance backbone of modern web.",
     icon: Cpu
   },
@@ -85,18 +85,45 @@ const TEAM_MEMBERS: TeamMember[] = [
     role: "Fullstack Developer",
     image: "/images/team/team_7.png",
     workImage: "/images/team/bg_fullstack.png",
-    bio: "SCALABLE SOLUTIONS EXPERT",
+    bio: "FULLSTACK DEVELOPER",
     quote: "Engineering robust solutions for complex challenges.",
     icon: Code
   },
-  {
+  { 
     name: "NIVED",
-    role: "Project Head",
+    role: "SOFTWARE TESTER",
     image: "/images/team/nived.png",
     workImage: "/images/team/bg_project.png",
-    bio: "STRATEGIC EXECUTION",
-    quote: "Turning vision into reality through disciplined execution.",
+    bio: "TESTING",
+    quote: "Testing the code to ensure it works as expected.",
     icon: Shield
+  },
+  {
+    name: "HRITHIK",
+    role: "Fullstack Developer",
+    image: "/images/team/hrithik.png",
+    workImage: "/images/team/bg_fullstack.png",
+    bio: "FULLSTACK DEVELOPER",
+    quote: "Crafting interfaces that define the future of interaction.",
+    icon: Code
+  },
+  {
+    name: "MINHAJ",
+    role: "Backend Dev",
+    image: "/images/team/minhaj.png",
+    workImage: "/images/team/bg_fullstack.png",
+    bio: "FULLSTACK DEVELOPER",
+    quote: "Building the invisible backbone of digital reality.",
+    icon: Terminal
+  },
+  {
+    name: "DANISH",
+    role: "Fullstack Dev",
+    image: "/images/team/danish.png",
+    workImage: "/images/team/bg_fullstack.png",
+    bio: "FULLSTACK DEVELOPER",
+    quote: "Building the invisible backbone of digital reality.",
+    icon: Cpu
   }
 ];
 
@@ -367,61 +394,44 @@ export function Team() {
             <span className="text-[10px] font-black tracking-[0.6em] uppercase text-cyan-400/50">Core Faculty Profile Scan</span>
           </motion.div>
           
-          <div className="flex flex-col items-center select-none">
-            <motion.h2 
-              initial={{ opacity: 0, letterSpacing: "0.2em" }}
-              whileInView={{ opacity: 1, letterSpacing: "0.5em" }}
-              transition={{ duration: 1.2, ease: "easeOut" }}
-              className="text-[clamp(2rem,6vw,6rem)] font-black text-white leading-tight uppercase relative inline-block"
-            >
-              Meet Our
-              <motion.div 
-                className="absolute -bottom-2 left-0 w-full h-px bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent"
-                initial={{ scaleX: 0 }}
-                whileInView={{ scaleX: 1 }}
-                transition={{ duration: 1.5, delay: 0.3 }}
-              />
-            </motion.h2>
-            
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1, delay: 0.2 }}
-              className="relative mt-2"
-            >
-              <h2 className="text-[clamp(4rem,16vw,14rem)] font-black tracking-tighter leading-none uppercase text-transparent whitespace-nowrap"
-                  style={{ 
-                    WebkitTextStroke: '1px rgba(255,255,255,0.15)',
-                    textShadow: '0 0 40px rgba(34,211,238,0.1)'
-                  }}>
-                Team
-              </h2>
-              
-              <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[1rem]">
-                <motion.div
-                  animate={{ 
-                    x: ["-100%", "200%"],
-                  }}
-                  transition={{ 
-                    duration: 2.5, 
-                    repeat: Infinity, 
-                    ease: "easeInOut",
-                    repeatDelay: 1
-                  }}
-                  className="absolute inset-y-0 w-32 bg-gradient-to-r from-transparent via-cyan-400/30 to-transparent skew-x-[35deg] blur-md"
-                />
-              </div>
+          <div className="flex flex-col items-center select-none relative z-20">
+             {/* Small Top Text */}
+             <motion.h2 
+               initial={{ opacity: 0, letterSpacing: "0.2em", y: 20 }}
+               whileInView={{ opacity: 1, letterSpacing: "0.5em", y: 0 }}
+               transition={{ duration: 0.8 }}
+               className="text-lg md:text-2xl font-black text-white uppercase tracking-[0.3em] md:tracking-[0.5em] mb-[-1.5rem] md:mb-[-3rem] relative z-20 mix-blend-exclusion"
+             >
+                Meet Our
+             </motion.h2>
 
-              <motion.div
-                animate={{ opacity: [0.3, 1, 0.3] }}
-                transition={{ duration: 3.5, repeat: Infinity, ease: "linear" }}
-                className="absolute inset-0 text-[clamp(4rem,16vw,14rem)] font-black tracking-tighter leading-none uppercase text-transparent whitespace-nowrap blur-[15px] pointer-events-none"
-                style={{ WebkitTextStroke: '1px rgba(34,211,238,0.2)' }}
-                aria-hidden="true"
-              >
-                Team
-              </motion.div>
-            </motion.div>
+             {/* Large Back Text with Fill Animation */}
+             <div className="relative">
+               <motion.h2 
+                  initial={{ opacity: 0, scale: 0.9, filter: "blur(10px)" }}
+                  whileInView={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+                  transition={{ duration: 1, delay: 0.2 }}
+                  className="text-[clamp(5rem,18vw,12rem)] font-black text-transparent uppercase tracking-tighter"
+                  style={{ 
+                    WebkitTextStroke: '1px rgba(255,255,255,0.2)' 
+                  }}
+               >
+                  Team
+               </motion.h2>
+               
+               {/* Animated Fill Overlay */}
+               <motion.h2
+                  className="absolute inset-0 text-[clamp(5rem,18vw,12rem)] font-black text-cyan-500/10 uppercase tracking-tighter overflow-hidden"
+                  initial={{ clipPath: "polygon(0 100%, 100% 100%, 100% 100%, 0 100%)" }}
+                  whileInView={{ clipPath: "polygon(0 0%, 100% 0%, 100% 100%, 0 100%)" }}
+                  transition={{ duration: 1.5, delay: 0.5, ease: "easeOut" }}
+                  style={{ 
+                    WebkitTextStroke: '0px transparent' 
+                  }}
+               >
+                  Team
+               </motion.h2>
+             </div>
           </div>
           
           <motion.div 
