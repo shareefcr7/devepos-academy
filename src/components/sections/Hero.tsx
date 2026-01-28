@@ -25,6 +25,7 @@ const FloatingIcon = ({ icon: Icon, delay, x, y, color }: any) => (
       opacity: { duration: 0.5, delay: delay },
       scale: { duration: 0.5, delay: delay }
     }}
+    style={{ willChange: "transform" }}
   >
     <Icon size={32} />
   </motion.div>
@@ -32,16 +33,21 @@ const FloatingIcon = ({ icon: Icon, delay, x, y, color }: any) => (
 
 export function Hero() {
   const [mounted, setMounted] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     setMounted(true);
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 bg-[#020617]">
       {/* --- CINEMATIC FLOWING BACKGROUND --- */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-15 mix-blend-overlay pointer-events-none z-10" />
+        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-15 mix-blend-overlay pointer-events-none z-10 hidden md:block" />
         <motion.div
           className="absolute inset-x-[-20%] inset-y-[-20%] w-[140%] h-[140%]"
           initial={{ scale: 1.1, rotate: 0 }}
@@ -56,11 +62,13 @@ export function Hero() {
             repeat: Infinity, 
             ease: "easeInOut" 
           }}
+          style={{ willChange: "transform" }}
         >
           <Image 
             src="/images/hero_particles.png"
             alt="Cinematic Flowing Particles"
             fill
+            sizes="100vw"
             className="object-cover opacity-60 mix-blend-screen scale-110"
             priority
           />
@@ -68,14 +76,15 @@ export function Hero() {
 
         {/* Dynamic Light Streaks */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          {[...Array(6)].map((_, i) => (
+          {[...Array(isMobile ? 3 : 6)].map((_, i) => (
             <motion.div
               key={i}
               className="absolute h-px bg-gradient-to-r from-transparent via-cyan-400/50 to-transparent"
               style={{ 
                 width: "40%",
                 top: `${20 + i * 15}%`,
-                left: "-50%" 
+                left: "-50%",
+                willChange: "left"
               }}
               animate={{ left: "120%" }}
               transition={{ 
@@ -91,7 +100,7 @@ export function Hero() {
         {/* Extra Active Stardust - Only rendered on client to avoid hydration mismatch */}
         {mounted && (
           <div className="absolute inset-0 pointer-events-none">
-            {[...Array(window.innerWidth < 768 ? 15 : 50)].map((_, i) => (
+            {[...Array(isMobile ? 10 : 50)].map((_, i) => (
               <motion.div
                 key={i}
                 className="absolute w-1 h-1 bg-white rounded-full blur-[1px]"
@@ -113,6 +122,7 @@ export function Hero() {
                   ease: "easeInOut",
                   delay: Math.random() * i
                 }}
+                style={{ willChange: "transform, opacity" }}
               />
             ))}
           </div>
@@ -124,7 +134,7 @@ export function Hero() {
       </div>
 
       {/* --- BACKGROUND DECORATION LAYER (Behind Text) --- */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
+      <div className="absolute inset-0 z-0 pointer-events-none hidden md:block">
         <FloatingIcon icon={Code} delay={0} x={-550} y={-250} color="text-blue-500/30" />
         <FloatingIcon icon={Server} delay={1} x={550} y={-200} color="text-green-500/30" />
         <FloatingIcon icon={Database} delay={0.5} x={-600} y={300} color="text-yellow-500/30" />
@@ -137,6 +147,7 @@ export function Hero() {
            initial={{ opacity: 0, y: 20 }}
            animate={{ opacity: 1, y: 0 }}
            transition={{ duration: 0.8 }}
+           className="will-change-transform"
         >
           <div className="inline-flex items-center gap-3 py-2.5 px-6 md:px-10 rounded-full bg-white/5 text-white/70 text-[9px] md:text-[10px] font-black uppercase tracking-[0.3em] md:tracking-[0.4em] mb-8 md:mb-12 border border-white/10 backdrop-blur-3xl shadow-[0_0_40px_rgba(0,210,255,0.1)]">
             <div className="w-2 h-2 rounded-full bg-electric-blue animate-ping shadow-[0_0_15px_#00d2ff]" />

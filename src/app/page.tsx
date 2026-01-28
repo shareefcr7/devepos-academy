@@ -5,6 +5,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Hero } from "@/components/sections/Hero";
 import { AboutSummary } from "@/components/sections/AboutSummary"; // New
+import { FeaturedTopics } from "@/components/sections/FeaturedTopics"; // New
 import { Team } from "@/components/sections/Team"; // New
 import { Courses } from "@/components/sections/Courses";
 import { Process } from "@/components/sections/Process"; // New
@@ -32,6 +33,9 @@ export default function Home() {
         
         {/* 2. About Academy (Who We Are) */}
         <AboutSummary />
+
+        {/* 2.5 Core Modules (Technologies) */}
+        <FeaturedTopics />
 
         {/* 3. Team Section (Credibility) */}
         <Team />

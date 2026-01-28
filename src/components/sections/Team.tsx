@@ -112,18 +112,16 @@ const TeamCard = memo(({ member, style, isActive }: { member: TeamMember, style:
       zIndex: style.zIndex,
       opacity: style.opacity,
       scale: style.scale,
-      rotateY: style.rotateY,
-      filter: style.filter
     }}
     transition={{
       duration: PASSING_DURATION,
       ease: [0.22, 1, 0.36, 1]
     }}
-    style={{ willChange: "transform, opacity, filter" }}
+    style={{ willChange: "transform, opacity" }}
     className="absolute w-[260px] md:w-[320px] aspect-[3/4]"
   >
     <div className={`relative w-full h-full rounded-[2rem] overflow-hidden border transition-all duration-500
-                    ${isActive ? "border-cyan-500/50 bg-[#080a15] shadow-[0_0_60px_rgba(34,211,238,0.3)]" : "border-white/5 bg-[#05060f]"}
+                    ${isActive ? "border-cyan-500/50 bg-[#080a15] shadow-[0_0_30px_rgba(34,211,238,0.2)]" : "border-white/5 bg-[#05060f]"}
                    `}>
       {/* Glitch/Hologram Effect on Image */}
       <div className="relative w-full h-full"> 
@@ -131,7 +129,8 @@ const TeamCard = memo(({ member, style, isActive }: { member: TeamMember, style:
             src={member.image}
             alt={member.name}
             fill
-            quality={100}
+            sizes="(max-width: 768px) 260px, 320px"
+            quality={85}
             priority={isActive}
             className={`object-cover transition-all duration-[2s] ${isActive ? "scale-100 opacity-100" : "scale-110 opacity-50 grayscale"}`}
         />
@@ -145,7 +144,8 @@ const TeamCard = memo(({ member, style, isActive }: { member: TeamMember, style:
             <motion.div 
                animate={{ top: ["0%", "100%", "0%"] }}
                transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-               className="absolute left-0 right-0 h-0.5 bg-cyan-400 shadow-[0_0_20px_#22d3ee] z-30"
+               className="absolute left-0 right-0 h-0.5 bg-cyan-400 shadow-[0_0_10px_#22d3ee] z-30"
+               style={{ willChange: "top" }}
             >
                 <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-t from-cyan-400/20 to-transparent" />
             </motion.div>
@@ -170,21 +170,6 @@ const TeamCard = memo(({ member, style, isActive }: { member: TeamMember, style:
                     className="h-[1px] bg-cyan-400/30" 
                 />
             </div>
-
-            {/* 4. Side Metrics */}
-            <div className="absolute right-4 top-1/2 -translate-y-1/2 flex flex-col gap-1 items-end opacity-60">
-                {[...Array(6)].map((_, i) => (
-                    <motion.div 
-                        key={i}
-                        animate={{ width: [4, 16, 4], opacity: [0.3, 1, 0.3] }}
-                        transition={{ duration: 1 + i * 0.2, repeat: Infinity }}
-                        className="h-0.5 bg-cyan-400 rounded-full"
-                    />
-                ))}
-            </div>
-
-            {/* 5. Grid Overlay */}
-            <div className="absolute inset-0 bg-[linear-gradient(rgba(34,211,238,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(34,211,238,0.03)_1px,transparent_1px)] bg-[size:20px_20px] z-10" />
         </div>
       )}
       
@@ -227,25 +212,32 @@ const TeamCard = memo(({ member, style, isActive }: { member: TeamMember, style:
 TeamCard.displayName = "TeamCard";
 
 // --- Main Component ---
+// --- Main Component ---
 export function Team() {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [isMuted, setIsMuted] = useState(true); // Default to muted to prevent autoplay errors
+  const [isMuted, setIsMuted] = useState(true);
   const [mounted, setMounted] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { amount: 0.3 });
 
   useEffect(() => {
     setMounted(true);
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
   // Initialize Audio
   useEffect(() => {
-    // New Samurai Cinematic Track
-    audioRef.current = new Audio("https://cdn.pixabay.com/download/audio/2025/10/20/audio_b0342ad798.mp3?filename=samurai-423024.mp3");
-    if (audioRef.current) {
-      audioRef.current.volume = 0.5;
-      audioRef.current.loop = true;
+    if (typeof window !== 'undefined') {
+        const audio = new Audio("https://cdn.pixabay.com/download/audio/2025/10/20/audio_b0342ad798.mp3?filename=samurai-423024.mp3");
+        audioRef.current = audio;
+        audio.volume = 0.5;
+        audio.loop = true;
     }
   }, []);
 
@@ -253,22 +245,13 @@ export function Team() {
     setActiveIndex((prev) => (prev + 1) % TEAM_MEMBERS.length);
   }, []);
 
-  // Audio Playback Logic - Automatic Play
-  // Only attempt to play if NOT muted to avoid browser exceptions
+  // Audio Playback
   useEffect(() => {
     if (audioRef.current) {
       if (!isMuted && isInView) {
-        const playPromise = audioRef.current.play();
-        if (playPromise !== undefined) {
-          playPromise.catch((e) => {
-            console.log("Audio playback blocked (expected behavior until interaction):", e);
-             // If blocked, we ensure state reflects it
-             if (!isMuted) setIsMuted(true);
-          });
-        }
-        audioRef.current.volume = 0.5;
+        audioRef.current.play().catch(() => setIsMuted(true));
       } else {
-         audioRef.current.pause();
+        audioRef.current.pause();
       }
     }
   }, [isMuted, isInView]);
@@ -291,12 +274,9 @@ export function Team() {
     let opacity = 0;
     let scale = 0.5;
     let x: string | number = 0;
-    let rotateY = 0;
     let filter = "none";
 
-    // Fix Hydration Error: Only calculate window-based styles on client
-    const isMobile = mounted && window.innerWidth < 768;
-
+    // Optimized for performance
     if (isActive) {
       zIndex = 50; 
       opacity = 1; 
@@ -317,24 +297,24 @@ export function Team() {
       opacity = 0;
     }
 
-    return { zIndex, opacity, scale, x, rotateY, filter };
+    return { zIndex, opacity, scale, x, filter };
   };
 
   return (
     <section ref={sectionRef} className="py-32 relative overflow-hidden bg-[#010208] perspective-[3500px]">
       {/* Audio Control Toggle */}
-      <div className="absolute top-12 right-12 z-[100] flex items-center gap-4">
+      <div className="absolute top-12 right-6 md:right-12 z-[100] flex items-center gap-4">
         <motion.button
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           onClick={() => setIsMuted(!isMuted)}
-          className="p-4 rounded-full bg-white/5 border border-white/10 backdrop-blur-xl transition-all hover:bg-cyan-500/20 group flex items-center gap-3"
+          className="p-3 md:p-4 rounded-full bg-white/5 border border-white/10 backdrop-blur-xl transition-all hover:bg-cyan-500/20 group flex items-center gap-3"
         >
           {isMuted ? (
             <VolumeX size={18} className="text-white/40 group-hover:text-cyan-400" />
           ) : (
             <div className="relative flex items-center gap-3">
-              <div className="flex flex-col items-end">
+              <div className="flex flex-col items-end hidden md:flex">
                 <span className="text-[7px] font-black text-cyan-400/40 uppercase tracking-widest leading-none">Audio</span>
                 <span className="text-[10px] font-black text-cyan-400 leading-none">LIVE</span>
               </div>
@@ -353,12 +333,16 @@ export function Team() {
       <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-[#010208] via-transparent to-[#010208]" />
         
-        {/* Cinematic Ambient Glow */}
-        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-blue-500/5 rounded-full blur-[150px] opacity-40 mix-blend-screen" />
-        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-cyan-500/5 rounded-full blur-[120px] opacity-30 mix-blend-screen" />
+        {/* Cinematic Ambient Glow - Simplified for Mobile */}
+        {!isMobile && (
+            <>
+                <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-blue-500/5 rounded-full blur-[150px] opacity-40 mix-blend-screen" />
+                <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-cyan-500/5 rounded-full blur-[120px] opacity-30 mix-blend-screen" />
+            </>
+        )}
         
-        {/* Grain Texture */}
-        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10 mix-blend-overlay" />
+        {/* Grain Texture - Only on Desktop */}
+        <div className="hidden md:block absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10 mix-blend-overlay" />
         
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_transparent_20%,_#010208_100%)]" />
       </div>
@@ -368,6 +352,7 @@ export function Team() {
           <motion.div 
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             className="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-cyan-400/5 border border-cyan-400/10 mb-8 backdrop-blur-sm"
           >
             <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 shadow-[0_0_12px_rgba(34,211,238,0.5)] animate-pulse" />

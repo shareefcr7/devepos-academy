@@ -142,6 +142,7 @@ export function Process() {
                 key={index}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
                 transition={{ delay: index * 0.2 }}
                 className="flex flex-col items-center text-center relative z-10"
               >
@@ -170,6 +171,7 @@ export function Process() {
              <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
                 whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
                 transition={{ delay: 3 * 0.2 }}
                 className="flex flex-col items-center text-center relative z-10 lg:order-2"
               >
@@ -187,6 +189,7 @@ export function Process() {
               <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
                 whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
                 transition={{ delay: 4 * 0.2 }}
                 className="flex flex-col items-center text-center relative z-10 lg:order-1"
               >

@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { CheckCircle, Code, Terminal, Laptop, Zap, Users, Database, Cloud, Server, Shield, Cpu, Activity } from "lucide-react";
+import { CheckCircle, Code, Terminal, Laptop, Zap, Users, Database, Cloud, Server, Shield, Cpu, Activity, GraduationCap } from "lucide-react";
 import Image from "next/image";
 
 // --- Enhanced Background Elements ---
@@ -87,21 +87,19 @@ export function AboutSummary() {
                initial={{ opacity: 0, y: 10 }}
                whileInView={{ opacity: 1, y: 0 }}
                transition={{ delay: 0.2 }}
-               className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-md mb-8 group cursor-cell"
+               className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-blue-900/20 border border-blue-500/30 backdrop-blur-md mb-8 group cursor-cell"
             >
-              <div className="relative flex items-center justify-center w-5 h-5">
-                 <div className="absolute inset-0 bg-cyan-500/20 rounded-full animate-ping" />
-                 <Cpu size={12} className="text-cyan-400 relative z-10" />
+              <div className="relative flex items-center justify-center w-2 h-2">
+                 <div className="absolute inset-0 bg-blue-500 rounded-full animate-pulse" />
               </div>
-              <span className="text-[10px] font-black tracking-[0.3em] uppercase text-cyan-400/80 group-hover:text-cyan-400 transition-colors">
-                System Identity: SDEC
+              <span className="text-[10px] font-black tracking-[0.3em] uppercase text-blue-400 group-hover:text-blue-300 transition-colors">
+                WHO WE ARE
               </span>
             </motion.div>
             
-            <h2 className="text-[clamp(2rem,4vw,3.5rem)] font-black leading-[1.1] text-white uppercase tracking-tighter mb-8">
-               Premier <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-white animate-text-shimmer bg-[length:200%_auto]">Offline Tech</span> <br />
-               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-white animate-text-shimmer bg-[length:200%_auto]">Training</span> & Career <br />
-               Development
+            <h2 className="text-[clamp(2.5rem,5vw,4rem)] font-black leading-[1] text-white uppercase tracking-tighter mb-8">
+               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-white animate-text-shimmer bg-[length:200%_auto]">TECH TRAINING</span> & <br />
+               CAREER <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-white animate-text-shimmer bg-[length:200%_auto]">DEVELOPMENT</span>
             </h2>
             
             <p className="text-white/60 text-lg md:text-xl font-light leading-relaxed mb-12 max-w-xl border-l-2 border-cyan-500/30 pl-6">
@@ -192,14 +190,12 @@ export function AboutSummary() {
              <motion.div 
                animate={{ y: [-10, 10, -10] }}
                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-               className="absolute -right-10 top-1/2 -translate-y-1/2 bg-black/90 backdrop-blur-xl border border-white/10 p-6 rounded-2xl z-30 shadow-2xl"
+               className="absolute -right-10 top-1/2 -translate-y-1/2 bg-[#0a0a0a]/90 backdrop-blur-xl border border-white/10 p-8 rounded-3xl z-30 shadow-2xl min-w-[200px] flex flex-col items-center justify-center text-center"
              >
-                <div className="flex items-center gap-4 mb-4">
-                   <div className="w-3 h-3 rounded-full bg-green-500 animate-pulse" />
-                   <span className="text-[10px] font-bold text-white/60 tracking-widest uppercase">System Status</span>
+                <div className="w-16 h-16 rounded-2xl bg-white/5 flex items-center justify-center mb-4 border border-white/10">
+                   <GraduationCap size={32} className="text-white" />
                 </div>
-                <div className="text-2xl font-black text-white mb-1">98.9%</div>
-                <div className="text-[10px] text-white/40 uppercase tracking-wider">Placement Rate Effect</div>
+                <div className="text-lg font-bold text-white mb-1">Certificate of Completion</div>
              </motion.div>
 
           </motion.div>
