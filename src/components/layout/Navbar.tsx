@@ -154,8 +154,8 @@ export function Navbar() {
             </div>
 
             <div className="flex-1 overflow-y-auto px-6 py-12 relative z-10 custom-scrollbar">
-              <div className="flex flex-col gap-6">
-                <span className="text-white/20 text-[10px] font-black tracking-[0.5em] uppercase mb-4 ml-4">Navigation Index</span>
+              <div className="flex flex-col gap-3">
+                <span className="text-white/20 text-[10px] font-black tracking-[0.5em] uppercase mb-2 ml-4">Navigation Index</span>
                 {navLinks.map((link, i) => (
                   <motion.div
                     key={link.name}
@@ -166,17 +166,17 @@ export function Navbar() {
                     <Link
                       href={link.href}
                       onClick={() => setIsMobileMenuOpen(false)}
-                      className="group w-full py-8 px-10 rounded-[2rem] bg-white/[0.03] border border-white/5 transition-all hover:bg-white/[0.08] hover:border-cyan-500/30 flex items-center justify-between"
+                      className="group w-full py-5 px-6 rounded-2xl bg-white/[0.03] border border-white/5 transition-all hover:bg-white/[0.08] hover:border-cyan-500/30 flex items-center justify-between"
                     >
                       <span 
-                        className="text-4xl md:text-5xl font-black tracking-tighter uppercase transition-all duration-500
+                        className="text-2xl md:text-3xl font-black tracking-tighter uppercase transition-all duration-500
                                    text-transparent bg-clip-text bg-gradient-to-b from-white to-white/10 group-hover:text-white group-hover:tracking-normal"
                         style={{ WebkitTextStroke: '1px rgba(255,255,255,0.15)' }}
                       >
                         {link.name}
                       </span>
-                      <div className="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center border border-white/10 transition-all group-hover:bg-cyan-500 group-hover:border-transparent">
-                        <ChevronRight className="text-white/30 group-hover:text-white" size={20} />
+                      <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center border border-white/10 transition-all group-hover:bg-cyan-500 group-hover:border-transparent">
+                        <ChevronRight className="text-white/30 group-hover:text-white" size={18} />
                       </div>
                     </Link>
                   </motion.div>

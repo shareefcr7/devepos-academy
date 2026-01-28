@@ -109,7 +109,7 @@ const TEAM_MEMBERS: TeamMember[] = [
   },
   {
     name: "MINHAJ",
-    role: "Backend Dev",
+    role: "Fullstack Developer",
     image: "/images/team/minhaj.png",
     workImage: "/images/team/bg_fullstack.png",
     bio: "FULLSTACK DEVELOPER",
@@ -118,7 +118,7 @@ const TEAM_MEMBERS: TeamMember[] = [
   },
   {
     name: "DANISH",
-    role: "Fullstack Dev",
+    role: "Fullstack Developer",
     image: "/images/team/danish.png",
     workImage: "/images/team/bg_fullstack.png",
     bio: "FULLSTACK DEVELOPER",
@@ -203,8 +203,21 @@ const TeamCard = memo(({ member, style, isActive }: { member: TeamMember, style:
       {/* Content Info */}
       <div className="absolute inset-x-0 bottom-0 p-8 transform-gpu z-30 flex flex-col justify-end bg-gradient-to-t from-[#020617] via-[#020617]/80 to-transparent pt-20">
          <motion.h3 
-           animate={{ letterSpacing: isActive ? "0px" : "2px" }}
-           className="text-2xl md:text-4xl font-black tracking-tight uppercase mb-2 leading-none text-white"
+           animate={{ 
+             letterSpacing: isActive ? "0px" : "2px",
+             backgroundPosition: ["200% center", "-200% center"]
+           }}
+           transition={{ 
+             letterSpacing: { duration: 0.5 },
+             backgroundPosition: { duration: 3, repeat: Infinity, ease: "linear" }
+           }}
+           style={{
+             backgroundImage: "linear-gradient(90deg, #ffffff 0%, #ffffff 45%, #22d3ee 50%, #ffffff 55%, #ffffff 100%)",
+             backgroundSize: "200% auto",
+             WebkitBackgroundClip: "text",
+             WebkitTextFillColor: "transparent"
+           }}
+           className="text-2xl md:text-3xl font-black tracking-tight uppercase mb-2 leading-none drop-shadow-lg"
          >
            {member.name}
          </motion.h3>
@@ -413,7 +426,7 @@ export function Team() {
                   transition={{ duration: 1, delay: 0.2 }}
                   className="text-[clamp(5rem,18vw,12rem)] font-black text-transparent uppercase tracking-tighter"
                   style={{ 
-                    WebkitTextStroke: '1px rgba(255,255,255,0.2)' 
+                    WebkitTextStroke: '1px rgba(255,255,255,0.4)' 
                   }}
                >
                   Team
@@ -421,7 +434,7 @@ export function Team() {
                
                {/* Animated Fill Overlay */}
                <motion.h2
-                  className="absolute inset-0 text-[clamp(5rem,18vw,12rem)] font-black text-cyan-500/10 uppercase tracking-tighter overflow-hidden"
+                  className="absolute inset-0 text-[clamp(5rem,18vw,12rem)] font-black text-cyan-400/20 uppercase tracking-tighter overflow-hidden"
                   initial={{ clipPath: "polygon(0 100%, 100% 100%, 100% 100%, 0 100%)" }}
                   whileInView={{ clipPath: "polygon(0 0%, 100% 0%, 100% 100%, 0 100%)" }}
                   transition={{ duration: 1.5, delay: 0.5, ease: "easeOut" }}

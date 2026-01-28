@@ -10,22 +10,35 @@ import { cn } from "@/lib/utils";
 const CubeNetworkBackground = () => {
   const [cubes, setCubes] = useState<{ x: number; y: number; z: number; delay: number; duration: number }[]>([]);
   const [lines, setLines] = useState<{ top: number; left: number; duration: number }[]>([]);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    // Generate random values only on client side to avoid hydration mismatch
-    setCubes(Array.from({ length: 8 }).map(() => ({
-       x: Math.random() * 100,
-       y: Math.random() * 100,
-       z: Math.random() * 500 - 250,
-       delay: Math.random() * 5,
-       duration: Math.random() * 10 + 20
-    })));
+    const handleResize = () => {
+        const mobile = window.innerWidth < 768;
+        setIsMobile(mobile);
 
-    setLines(Array.from({ length: 6 }).map(() => ({
-       top: Math.random() * 100,
-       left: Math.random() * 100,
-       duration: Math.random() * 5 + 5
-    })));
+        // Reduce load on mobile
+        const cubeCount = mobile ? 3 : 8; 
+        const lineCount = mobile ? 2 : 6;
+
+        setCubes(Array.from({ length: cubeCount }).map(() => ({
+          x: Math.random() * 100,
+          y: Math.random() * 100,
+          z: Math.random() * 500 - 250,
+          delay: Math.random() * 5,
+          duration: Math.random() * 10 + 20
+        })));
+
+        setLines(Array.from({ length: lineCount }).map(() => ({
+          top: Math.random() * 100,
+          left: Math.random() * 100,
+          duration: Math.random() * 5 + 5
+        })));
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   return (
@@ -64,13 +77,13 @@ const CubeNetworkBackground = () => {
                  delay: cube.delay
                }}
              >
-                {/* Cube Faces - Updated to Blue/White Theme */}
-                <div className="absolute inset-0 border border-blue-400/40 bg-blue-600/20 backdrop-blur-sm shadow-[0_0_20px_rgba(59,130,246,0.3)] translate-z-[40px]" /> {/* Front */}
-                <div className="absolute inset-0 border border-blue-400/40 bg-blue-600/20 backdrop-blur-sm shadow-[0_0_20px_rgba(59,130,246,0.3)] translate-z-[-40px]" /> {/* Back */}
-                <div className="absolute inset-0 border border-blue-400/40 bg-blue-600/20 backdrop-blur-sm shadow-[0_0_20px_rgba(59,130,246,0.3)] rotate-y-90 translate-z-[40px]" /> {/* Right */}
-                <div className="absolute inset-0 border border-blue-400/40 bg-blue-600/20 backdrop-blur-sm shadow-[0_0_20px_rgba(59,130,246,0.3)] rotate-y-[-90deg] translate-z-[40px]" /> {/* Left */}
-                <div className="absolute inset-0 border border-blue-400/40 bg-blue-600/20 backdrop-blur-sm shadow-[0_0_20px_rgba(59,130,246,0.3)] rotate-x-90 translate-z-[40px]" /> {/* Top */}
-                <div className="absolute inset-0 border border-blue-400/40 bg-blue-600/20 backdrop-blur-sm shadow-[0_0_20px_rgba(59,130,246,0.3)] rotate-x-[-90deg] translate-z-[40px]" /> {/* Bottom */}
+                {/* Cube Faces - Optimized for Mobile */}
+                <div className={cn("absolute inset-0 border border-blue-400/40 bg-blue-600/20 translate-z-[40px]", !isMobile && "backdrop-blur-sm shadow-[0_0_20px_rgba(59,130,246,0.3)]")} /> {/* Front */}
+                <div className={cn("absolute inset-0 border border-blue-400/40 bg-blue-600/20 translate-z-[-40px]", !isMobile && "backdrop-blur-sm shadow-[0_0_20px_rgba(59,130,246,0.3)]")} /> {/* Back */}
+                <div className={cn("absolute inset-0 border border-blue-400/40 bg-blue-600/20 rotate-y-90 translate-z-[40px]", !isMobile && "backdrop-blur-sm shadow-[0_0_20px_rgba(59,130,246,0.3)]")} /> {/* Right */}
+                <div className={cn("absolute inset-0 border border-blue-400/40 bg-blue-600/20 rotate-y-[-90deg] translate-z-[40px]", !isMobile && "backdrop-blur-sm shadow-[0_0_20px_rgba(59,130,246,0.3)]")} /> {/* Left */}
+                <div className={cn("absolute inset-0 border border-blue-400/40 bg-blue-600/20 rotate-x-90 translate-z-[40px]", !isMobile && "backdrop-blur-sm shadow-[0_0_20px_rgba(59,130,246,0.3)]")} /> {/* Top */}
+                <div className={cn("absolute inset-0 border border-blue-400/40 bg-blue-600/20 rotate-x-[-90deg] translate-z-[40px]", !isMobile && "backdrop-blur-sm shadow-[0_0_20px_rgba(59,130,246,0.3)]")} /> {/* Bottom */}
                 
                 {/* Glowing Core - Pure White/Blue */}
                 <div className="absolute inset-4 bg-white/30 blur-md rounded-full translate-z-0 animate-pulse" />
