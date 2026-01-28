@@ -69,7 +69,7 @@ export default function CourseDetail() {
                 </div>
 
                 <Link href="/contact" className="flex-1">
-                  <Button className="w-full h-full group relative overflow-hidden bg-electric-blue/90 hover:bg-electric-blue text-navy hover:text-white font-black px-12 py-10 text-2xl rounded-none transition-all duration-500 border-none">
+                  <Button className="w-full h-full group relative overflow-hidden bg-electric-blue/90 hover:bg-electric-blue active:bg-electric-blue active:scale-[0.98] text-navy hover:text-white font-black px-12 py-10 text-2xl rounded-none transition-all duration-200 border-none">
                     <span className="relative z-10 flex items-center justify-center gap-4 tracking-tighter">
                       {course.ctaLabel.toUpperCase()}
                       <ArrowRight className="group-hover:translate-x-2 transition-transform" size={28} />
@@ -306,7 +306,7 @@ export default function CourseDetail() {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1 }}
-                  className="flex items-start gap-6 p-10 rounded-[3rem] bg-navy-light/10 backdrop-blur-xl border border-white/5 hover:border-electric-blue/20 transition-all duration-500 group relative overflow-hidden"
+                  className="flex items-start gap-6 p-10 rounded-[3rem] bg-navy-light/10 backdrop-blur-xl border border-white/5 hover:border-electric-blue/20 active:border-electric-blue/50 active:bg-electric-blue/5 transition-all duration-300 group relative overflow-hidden"
                 >
                    {/* Background Number */}
                    <div className="absolute -right-4 -bottom-4 text-9xl font-black text-white/[0.02] pointer-events-none group-hover:text-electric-blue/[0.04] transition-colors">
